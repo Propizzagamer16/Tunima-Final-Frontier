@@ -49,8 +49,7 @@ movement_speed = 15.0
 position = Vector2(4, -5)
 scale = Vector2(3.0625, 3.4375)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"Idle"
-frame_progress = 0.507954
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8erm5")

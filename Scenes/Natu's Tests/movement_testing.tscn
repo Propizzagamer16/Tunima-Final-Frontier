@@ -40,6 +40,6 @@ movement_speed = 300.0
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="TheGreatWaveOffKanagawa" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(581, 365)
+position = Vector2(578, 364)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_dunn6")
