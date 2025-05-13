@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6aw3voq4mpk7"]
+[gd_scene load_steps=6 format=3 uid="uid://cvgs25kevmpjt"]
 
 [ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/2DPLAYER.tscn" id="2_bct62"]
 [ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/The Great Wave off Kanagawa.jpg" id="2_q5emu"]
