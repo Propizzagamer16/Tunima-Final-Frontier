@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://c4cbqi8by1vti"]
+[gd_scene load_steps=36 format=4 uid="uid://r43hwiuoeh27"]
 
 [ext_resource type="Texture2D" path="res://Tiles/platformer tiles/tile_0016.png" id="1_m73v0"]
 [ext_resource type="Texture2D" path="res://Tiles/platformer tiles/tile_0017.png" id="2_ypi0w"]
