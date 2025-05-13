@@ -1,45 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://wdxsx60d3cuy"]
+[gd_scene load_steps=6 format=3 uid="uid://wdxsx60d3cuy"]
 
-[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/player.tscn" id="1_gtul1"]
 [ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/The Great Wave off Kanagawa.jpg" id="2_dunn6"]
+[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/4DPLAYER.tscn" id="2_hhvfv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xw48q"]
-size = Vector2(1205.31, 125)
+size = Vector2(1930.08, 307.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdole"]
-size = Vector2(167.656, 587.75)
+size = Vector2(167.656, 1166.88)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hhvfv"]
+font_size = 160
+outline_size = 20
+outline_color = Color(1, 0.258824, 1, 1)
 
 [node name="Movement Testing" type="Node2D"]
-
-[node name="Panel" type="Panel" parent="."]
-offset_left = -8.0
-offset_top = 534.0
-offset_right = 1176.0
-offset_bottom = 664.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(584.5, 598.5)
+position = Vector2(957.961, 1142.75)
 shape = SubResource("RectangleShape2D_xw48q")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1234, 252.875)
+position = Vector2(1997, 585)
 shape = SubResource("RectangleShape2D_vdole")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-84, 297)
+position = Vector2(-86, 576)
 shape = SubResource("RectangleShape2D_vdole")
-
-[node name="Player1" parent="." instance=ExtResource("1_gtul1")]
-position = Vector2(492, 454)
-movement_speed = 300.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="TheGreatWaveOffKanagawa" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(581, 365)
-scale = Vector2(0.8, 0.8)
+position = Vector2(960, 584)
+scale = Vector2(1.32917, 1.3)
 texture = ExtResource("2_dunn6")
+
+[node name="Player1" parent="." instance=ExtResource("2_hhvfv")]
+position = Vector2(981, 931)
+scale = Vector2(1.7, 1.7)
+movement_speed = 500.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1219.0
+offset_top = 149.0
+offset_right = 1691.0
+offset_bottom = 358.0
+text = "4D"
+label_settings = SubResource("LabelSettings_hhvfv")
+horizontal_alignment = 1

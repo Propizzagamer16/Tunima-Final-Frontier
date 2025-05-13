@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bht2r6sdxcs71"]
+
+[ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/2DPLAYER.tscn" id="2_bct62"]
+[ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/The Great Wave off Kanagawa.jpg" id="2_q5emu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw48q"]
+size = Vector2(1930.08, 307.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdole"]
+size = Vector2(167.656, 1166.88)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c610h"]
+font_size = 160
+outline_size = 20
+outline_color = Color(1, 0.258824, 1, 1)
+
+[node name="Movement Testing" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(957.961, 1142.75)
+shape = SubResource("RectangleShape2D_xw48q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1997, 585)
+shape = SubResource("RectangleShape2D_vdole")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-86, 576)
+shape = SubResource("RectangleShape2D_vdole")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TheGreatWaveOffKanagawa" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(960, 584)
+scale = Vector2(1.32917, 1.3)
+texture = ExtResource("2_q5emu")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1219.0
+offset_top = 149.0
+offset_right = 1691.0
+offset_bottom = 358.0
+text = "2D"
+label_settings = SubResource("LabelSettings_c610h")
+horizontal_alignment = 1
+
+[node name="2DPlayer" parent="." instance=ExtResource("2_bct62")]
+position = Vector2(464, 610)
+scale = Vector2(4, 4)
