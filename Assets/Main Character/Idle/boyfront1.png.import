@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0a0hg2gewpni"
-path="res://.godot/imported/boyfront1.png-2427d74e65945bb689732c3139694e21.ctex"
+path="res://.godot/imported/boyfront1.png-32d3c49f88e620a16d934ebe34bc4ee2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/Main Character/Idle/boyfront1.png"
-dest_files=["res://.godot/imported/boyfront1.png-2427d74e65945bb689732c3139694e21.ctex"]
+source_file="res://Assets/Main Character/Idle/boyfront1.png"
+dest_files=["res://.godot/imported/boyfront1.png-32d3c49f88e620a16d934ebe34bc4ee2.ctex"]
 
 [params]
 
