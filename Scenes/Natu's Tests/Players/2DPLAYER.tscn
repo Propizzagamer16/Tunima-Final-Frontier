@@ -33,3 +33,5 @@ position = Vector2(3, 4)
 scale = Vector2(1.78125, 1.875)
 sprite_frames = SubResource("SpriteFrames_sl2fy")
 animation = &"Idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
