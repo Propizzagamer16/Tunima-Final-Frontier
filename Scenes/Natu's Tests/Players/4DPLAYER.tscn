@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://botjx0e8asnn4"]
+[gd_scene load_steps=7 format=3 uid="uid://botjx0e8asnn4"]
 
 [ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/player.gd" id="1_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_vgqql"]
@@ -22,6 +22,9 @@ animations = [{
 radius = 26.0
 height = 70.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0kl1"]
+radius = 40.1995
+
 [node name="Player1" type="CharacterBody2D"]
 position = Vector2(-1, -1)
 motion_mode = 1
@@ -35,4 +38,16 @@ sprite_frames = SubResource("SpriteFrames_dw050")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_8erm5")
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+shape = SubResource("CircleShape2D_f0kl1")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
