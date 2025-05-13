@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c444bx3ekjvx6"
-path="res://.godot/imported/playerGrey_walk2.png-0d48e8efe681300a2e17e353a2796aa2.ctex"
+uid="uid://duembigoqtw6q"
+path="res://.godot/imported/boyfront0 (1).png-f93bd639fd607d4a78404b2a28c694ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/playerGrey_walk2.png"
-dest_files=["res://.godot/imported/playerGrey_walk2.png-0d48e8efe681300a2e17e353a2796aa2.ctex"]
+source_file="res://Animations/Main Character/Idle/boyfront0 (1).png"
+dest_files=["res://.godot/imported/boyfront0 (1).png-f93bd639fd607d4a78404b2a28c694ee.ctex"]
 
 [params]
 
