@@ -1,5 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://wdxsx60d3cuy"]
 
+<<<<<<< Updated upstream:Scenes/Natu's Tests/4Dmovement_testing.tscn
+=======
+[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/player.tscn" id="1_gtul1"]
+>>>>>>> Stashed changes:Scenes/Natu's Tests/movement_testing.tscn
 [ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/The Great Wave off Kanagawa.jpg" id="2_dunn6"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/4DPLAYER.tscn" id="2_hhvfv"]
 
