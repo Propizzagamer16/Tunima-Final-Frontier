@@ -33,6 +33,7 @@ shape = SubResource("RectangleShape2D_vdole")
 
 [node name="Player1" parent="." instance=ExtResource("1_gtul1")]
 position = Vector2(492, 454)
+movement_speed = 300.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
