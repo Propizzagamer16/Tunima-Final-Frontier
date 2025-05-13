@@ -1,8 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://botjx0e8asnn4"]
 
+<<<<<<< HEAD
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Animations/Main Character/Idle/boyfront0 (1).png" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://b0a0hg2gewpni" path="res://Animations/Main Character/Idle/boyfront1.png" id="3_fkybt"]
+=======
+[ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/player.gd" id="1_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_vgqql"]
+[ext_resource type="Texture2D" uid="uid://b0a0hg2gewpni" path="res://Assets/Main Character/Idle/boyfront1.png" id="3_fkybt"]
+>>>>>>> 889ffe8f63ed82bfde86d833e23adf1dd7b0150a
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x3wgy"]
 load_path = "res://.godot/imported/playerGrey_walk1.png-5e922429ac19968c4daf425bcc914901.ctex"
@@ -41,7 +47,9 @@ height = 70.0
 
 [node name="Player1" type="CharacterBody2D"]
 position = Vector2(-1, -1)
+motion_mode = 1
 script = ExtResource("1_6t5aa")
+movement_speed = 15.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -5)
@@ -49,6 +57,7 @@ scale = Vector2(3.0625, 3.4375)
 sprite_frames = SubResource("SpriteFrames_dw050")
 animation = &"Idle"
 frame_progress = 0.950762
+frame_progress = 0.507954
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8erm5")
