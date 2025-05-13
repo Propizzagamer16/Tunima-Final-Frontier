@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c4cbqi8by1vti"]
+
+[node name="platformer level" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]

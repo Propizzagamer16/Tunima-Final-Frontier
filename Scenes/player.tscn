@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://botjx0e8asnn4"]
 
-[ext_resource type="Texture2D" uid="uid://855mi225ydk2" path="res://playerGrey_up1.png" id="1_hqtel"]
-[ext_resource type="Texture2D" uid="uid://c7f5dy0sbmth3" path="res://playerGrey_up2.png" id="2_sweqy"]
-[ext_resource type="Texture2D" uid="uid://33wdc408tjl1" path="res://playerGrey_walk1.png" id="3_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://c444bx3ekjvx6" path="res://playerGrey_walk2.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://855mi225ydk2" path="res://Animations/playerGrey_up1.png" id="1_hqtel"]
+[ext_resource type="Texture2D" uid="uid://c7f5dy0sbmth3" path="res://Animations/playerGrey_up2.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://33wdc408tjl1" path="res://Animations/playerGrey_walk1.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://c444bx3ekjvx6" path="res://Animations/playerGrey_walk2.png" id="4_1jxqw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
 animations = [{
