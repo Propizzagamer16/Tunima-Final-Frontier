@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d28t7lkrln2l"]
+[gd_scene load_steps=7 format=3 uid="uid://dgtrs0jdb0fpc"]
 
 [ext_resource type="Script" uid="uid://3xxa8if53vo3" path="res://Scenes/Natu's Tests/Enemies/(TD)CommonEnemy.gd" id="1_bhqga"]
 [ext_resource type="Texture2D" uid="uid://0lc7q05ov14n" path="res://Assets/Main Character/Idle/raw desert.png" id="2_r7ugd"]

@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://d3762in4kq8ev"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bep85a2b5tdi6"]
 
-[ext_resource type="Texture2D" uid="uid://bpttl3l2usf5p" path="res://Tiles/platformer tiles/pixil-frame-0.png" id="1_e3020"]
+[ext_resource type="Texture2D" uid="uid://bpttl3l2usf5p" path="res://Tiles/platformer tiles/pixil-frame-0.png" id="1_h8vpa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ujgj0"]
-texture = ExtResource("1_e3020")
+texture = ExtResource("1_h8vpa")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
