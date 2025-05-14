@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6aw3voq4mpk7"]
+[gd_scene load_steps=7 format=3 uid="uid://b6aw3voq4mpk7"]
 
 [ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/2DPLAYER.tscn" id="2_bct62"]
 [ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/The Great Wave off Kanagawa.jpg" id="2_q5emu"]
+[ext_resource type="PackedScene" uid="uid://pijr62tkt7mb" path="res://Scenes/Natu's Tests/Enemies/2DEnemy.tscn" id="3_q5emu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xw48q"]
 size = Vector2(1930.08, 307.5)
@@ -51,3 +52,6 @@ horizontal_alignment = 1
 [node name="2DPlayer" parent="." instance=ExtResource("2_bct62")]
 position = Vector2(464, 610)
 scale = Vector2(4, 4)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_q5emu")]
+position = Vector2(1323, 897)
