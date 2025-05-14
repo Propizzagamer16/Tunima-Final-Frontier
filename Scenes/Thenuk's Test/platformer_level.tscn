@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=4 uid="uid://c4cbqi8by1vti"]
+[gd_scene load_steps=3 format=4 uid="uid://cbpiyhag81ofx"]
 
-[ext_resource type="TileSet" uid="uid://bx6xt5wiu6603" path="res://new_tile_set.tres" id="1_rdmv5"]
+[ext_resource type="TileSet" uid="uid://d3762in4kq8ev" path="res://new_tile_set.tres" id="1_rdmv5"]
 [ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.tscn" id="2_rq4i2"]
 
 [node name="Platformer Game" type="Node2D"]
