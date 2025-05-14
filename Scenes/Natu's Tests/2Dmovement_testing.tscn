@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/2DPLAYER.tscn" id="2_bct62"]
 [ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/The Great Wave off Kanagawa.jpg" id="2_q5emu"]
 [ext_resource type="PackedScene" uid="uid://pijr62tkt7mb" path="res://Scenes/Natu's Tests/Enemies/2DCommonEnemy.tscn" id="3_q5emu"]
+[ext_resource type="PackedScene" uid="uid://pijr62tkt7mb" path="res://Scenes/Natu's Tests/Enemies/2DEnemy.tscn" id="3_q5emu"]
+=======
+[ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/Loading & Title/The Great Wave off Kanagawa.jpg" id="2_q5emu"]
+>>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xw48q"]
 size = Vector2(1930.08, 307.5)
