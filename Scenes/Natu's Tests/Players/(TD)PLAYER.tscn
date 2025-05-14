@@ -1,18 +1,18 @@
 [gd_scene load_steps=8 format=3 uid="uid://botjx0e8asnn4"]
 
-[ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/4DPLAYER.gd" id="1_f0kl1"]
-[ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_vgqql"]
-[ext_resource type="Texture2D" uid="uid://b0a0hg2gewpni" path="res://Assets/Main Character/Idle/boyfront1.png" id="3_fkybt"]
-[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://hearts.tscn" id="4_efgoi"]
+[ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/(TD)PLAYER.gd" id="1_rkc1m"]
+[ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_klbth"]
+[ext_resource type="Texture2D" uid="uid://b0a0hg2gewpni" path="res://Assets/Main Character/Idle/boyfront1.png" id="3_agiwq"]
+[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="4_81qc2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vgqql")
+"texture": ExtResource("2_klbth")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_fkybt")
+"texture": ExtResource("3_agiwq")
 }],
 "loop": true,
 "name": &"Idle",
@@ -28,7 +28,7 @@ radius = 40.1995
 
 [node name="Player1" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_f0kl1")
+script = ExtResource("1_rkc1m")
 movement_speed = 15.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -47,12 +47,13 @@ shape = SubResource("CapsuleShape2D_8erm5")
 shape = SubResource("CircleShape2D_f0kl1")
 
 [node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 1.5
 
 [node name="deal_attack" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="regen_timer" type="Timer" parent="."]
-wait_time = 6.007
+wait_time = 10.0
 
 [node name="health_bar" type="CanvasLayer" parent="."]
 
@@ -64,34 +65,34 @@ offset_bottom = 40.0
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
-[node name="Hearts" parent="health_bar/HBoxContainer/heart" instance=ExtResource("4_efgoi")]
+[node name="Hearts" parent="health_bar/HBoxContainer/heart" instance=ExtResource("4_81qc2")]
 position = Vector2(32, 29)
 
 [node name="heart3" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
-[node name="Hearts" parent="health_bar/HBoxContainer/heart3" instance=ExtResource("4_efgoi")]
+[node name="Hearts" parent="health_bar/HBoxContainer/heart3" instance=ExtResource("4_81qc2")]
 position = Vector2(32, 29)
 
 [node name="heart4" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
-[node name="Hearts" parent="health_bar/HBoxContainer/heart4" instance=ExtResource("4_efgoi")]
+[node name="Hearts" parent="health_bar/HBoxContainer/heart4" instance=ExtResource("4_81qc2")]
 position = Vector2(32, 29)
 
 [node name="heart5" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
-[node name="Hearts" parent="health_bar/HBoxContainer/heart5" instance=ExtResource("4_efgoi")]
+[node name="Hearts" parent="health_bar/HBoxContainer/heart5" instance=ExtResource("4_81qc2")]
 position = Vector2(32, 29)
 
 [node name="heart2" type="TextureRect" parent="health_bar/HBoxContainer"]
 layout_mode = 2
 
-[node name="Hearts" parent="health_bar/HBoxContainer/heart2" instance=ExtResource("4_efgoi")]
+[node name="Hearts" parent="health_bar/HBoxContainer/heart2" instance=ExtResource("4_81qc2")]
 position = Vector2(32, 29)
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]

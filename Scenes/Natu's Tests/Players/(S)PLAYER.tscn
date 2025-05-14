@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjwsywgisca7c"]
 
-[ext_resource type="Script" uid="uid://dkhd2j6njig8v" path="res://Scenes/Natu's Tests/Players/2DPLAYER.gd" id="1_leoo0"]
+[ext_resource type="Script" uid="uid://dkhd2j6njig8v" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.gd" id="1_leoo0"]
 [ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_6ramj"]
 [ext_resource type="Texture2D" uid="uid://b0a0hg2gewpni" path="res://Assets/Main Character/Idle/boyfront1.png" id="3_fdhgg"]
-[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://hearts.tscn" id="4_6ramj"]
+[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="4_6ramj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crfb6"]
 radius = 17.0
