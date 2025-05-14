@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/(TD)PLAYER.gd" id="1_rkc1m"]
 [ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_klbth"]
 [ext_resource type="Texture2D" uid="uid://b0a0hg2gewpni" path="res://Assets/Main Character/Idle/boyfront1.png" id="3_agiwq"]
-[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://hearts.tscn" id="4_81qc2"]
+[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="4_81qc2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
 animations = [{
