@@ -1,7 +1,11 @@
 [gd_scene load_steps=3 format=4 uid="uid://c4cbqi8by1vti"]
 
+<<<<<<< Updated upstream
 [ext_resource type="TileSet" uid="uid://dxmr4j3xtbbuu" path="res://Scenes/platformer_level.tres" id="1_rdmv5"]
 [ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/2DPLAYER.tscn" id="2_rq4i2"]
+=======
+[ext_resource type="TileSet" uid="uid://xsvvkqgjh62b" path="res://Scenes/platformer_level.tres" id="1_rdmv5"]
+>>>>>>> Stashed changes
 
 [node name="platformer level" type="Node2D"]
 
