@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwvipqtaf36m6"]
+
+[ext_resource type="Script" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.gd" id="1_6ramj"]
+[ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_6ramj"]
+[ext_resource type="Texture2D" uid="uid://b0a0hg2gewpni" path="res://Assets/Main Character/Idle/boyfront1.png" id="3_fdhgg"]
+[ext_resource type="PackedScene" path="res://hearts.tscn" id="4_6ramj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crfb6"]
+radius = 17.0
+height = 50.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sl2fy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6ramj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fdhgg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_6ramj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_crfb6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -4)
+scale = Vector2(1.78125, 1.875)
+sprite_frames = SubResource("SpriteFrames_sl2fy")
+animation = &"Idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 0.504
+
+[node name="deal_attack" type="Timer" parent="."]
+wait_time = 0.578
+
+[node name="health_bar" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="health_bar"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="heart" type="TextureRect" parent="health_bar/HBoxContainer"]
+custom_minimum_size = Vector2(41, 0)
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="heart3" type="TextureRect" parent="health_bar/HBoxContainer"]
+custom_minimum_size = Vector2(41, 0)
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart3" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="heart4" type="TextureRect" parent="health_bar/HBoxContainer"]
+custom_minimum_size = Vector2(41, 0)
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart4" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="heart5" type="TextureRect" parent="health_bar/HBoxContainer"]
+custom_minimum_size = Vector2(41, 0)
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart5" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="heart2" type="TextureRect" parent="health_bar/HBoxContainer"]
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart2" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="regen_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]
+[connection signal="timeout" from="regen_timer" to="." method="_on_regen_timer_timeout"]
