@@ -1,0 +1,6 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6aw3voq4mpk7"]
+
+[ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.tscn" id="2_bct62"]
+[ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/Loading & Title/The Great Wave off Kanagawa.jpg" id="2_q5emu"]
+[ext_resource type="PackedScene" uid="uid://pijr62tkt7mb" path="res://Scenes/Natu's Tests/Enemies/(TD)CommonEnemy.tscn" id="3_q5emu"]
+[ext_resource type="PackedScene" uid="uid://pijr62tkt7mb" path="res://Scenes/Natu's Tests/Enemies/(TD)CommonEnemy.tscn" id="3_q5emu"]
