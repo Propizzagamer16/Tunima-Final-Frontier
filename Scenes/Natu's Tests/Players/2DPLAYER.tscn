@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjwsywgisca7c"]
+[gd_scene load_steps=7 format=3 uid="uid://cjwsywgisca7c"]
 
 [ext_resource type="Script" uid="uid://dkhd2j6njig8v" path="res://Scenes/Natu's Tests/Players/2DPLAYER.gd" id="1_leoo0"]
 [ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_6ramj"]
 [ext_resource type="Texture2D" uid="uid://b0a0hg2gewpni" path="res://Assets/Main Character/Idle/boyfront1.png" id="3_fdhgg"]
+[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://hearts.tscn" id="4_6ramj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crfb6"]
 radius = 17.0
@@ -43,5 +44,48 @@ wait_time = 0.504
 [node name="deal_attack" type="Timer" parent="."]
 wait_time = 0.578
 
+[node name="health_bar" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="health_bar"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="heart" type="TextureRect" parent="health_bar/HBoxContainer"]
+custom_minimum_size = Vector2(41, 0)
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="heart3" type="TextureRect" parent="health_bar/HBoxContainer"]
+custom_minimum_size = Vector2(41, 0)
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart3" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="heart4" type="TextureRect" parent="health_bar/HBoxContainer"]
+custom_minimum_size = Vector2(41, 0)
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart4" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="heart5" type="TextureRect" parent="health_bar/HBoxContainer"]
+custom_minimum_size = Vector2(41, 0)
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart5" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="heart2" type="TextureRect" parent="health_bar/HBoxContainer"]
+layout_mode = 2
+
+[node name="Hearts" parent="health_bar/HBoxContainer/heart2" instance=ExtResource("4_6ramj")]
+position = Vector2(32, 29)
+
+[node name="regen_timer" type="Timer" parent="."]
+
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]
+[connection signal="timeout" from="regen_timer" to="." method="_on_regen_timer_timeout"]

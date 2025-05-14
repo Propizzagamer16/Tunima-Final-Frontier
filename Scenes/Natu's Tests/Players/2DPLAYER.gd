@@ -12,6 +12,8 @@ var alive = true
 var attack_ip = false
 var current_dir = "none"
 
+var hearts_list : Array[TextureRect]
+
 func _ready():
 	get_node("AnimatedSprite2D").play("Idle")
 
@@ -52,7 +54,7 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 
 func enemy_attacks(delta):
 	if enemy_inattack_range and enemy_attack_cooldown:
-		health -= 20
+		take_damage()
 		enemy_attack_cooldown = false
 		$attack_cooldown.start()
 		
@@ -72,18 +74,32 @@ func _on_deal_attack_timeout() -> void:
 	Global.current_attack = false
 	attack_ip = false
 
-#func update_health():
-	#var healthbar = $healthbar
-	#healthbar.value = health
-	#if health >= 100:
-		#healthbar.visible = false
-	#else:
-		#healthbar.visible = true
-#
-#func _on_regen_timer_timeout() -> void:
-	#if health <= 100:
-		#health += 20
-		#if health > 100:
-			#health = 100
-	#if health <= 0:
-		#health = 0
+func _on_regen_timer_timeout() -> void:
+	if health <= 100:
+		health += 20
+		if health > 100:
+			health = 100
+	if health <= 0:
+		health = 0
+
+func take_damage():
+	if health > 0:
+		health -= 20
+		update_hearts()
+		
+
+func update_hearts():
+	var hearts_to_show = int(health / 20)  # Still needed
+
+	# Hide or show each heart manually
+	hearts_list[0].visible = hearts_to_show >= 1
+	hearts_list[1].visible = hearts_to_show >= 2
+	hearts_list[2].visible = hearts_to_show >= 3
+	hearts_list[3].visible = hearts_to_show >= 4
+	hearts_list[4].visible = hearts_to_show >= 5
+
+	# Optional: heartbeat animation on last heart
+	if hearts_to_show == 1:
+		hearts_list[0].get_child(0).play("Beating")
+	else:
+		hearts_list[0].get_child(0).play("Idle")
