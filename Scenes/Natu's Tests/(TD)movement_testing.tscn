@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/Loading & Title/The Great Wave off Kanagawa.jpg" id="2_dunn6"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/(TD)PLAYER.tscn" id="2_hhvfv"]
-[ext_resource type="PackedScene" uid="uid://dgtrs0jdb0fpc" path="res://Scenes/Natu's Tests/Enemies/CommonEnemy(S).tscn" id="3_yivp6"]
+[ext_resource type="PackedScene" uid="uid://d28t7lkrln2l" path="res://Scenes/Natu's Tests/Enemies/CommonEnemy(S).tscn" id="3_yivp6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xw48q"]
 size = Vector2(1930.08, 307.5)
