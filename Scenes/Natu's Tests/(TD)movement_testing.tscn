@@ -46,13 +46,14 @@ scale = Vector2(1.7, 1.7)
 movement_speed = 500.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = 1219.0
-offset_top = 149.0
-offset_right = 1691.0
-offset_bottom = 358.0
-text = "4D"
+offset_left = 1119.0
+offset_top = 146.0
+offset_right = 1896.0
+offset_bottom = 587.0
+text = "Top Down
+"
 label_settings = SubResource("LabelSettings_hhvfv")
 horizontal_alignment = 1
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_yivp6")]
-position = Vector2(319, 915)
+position = Vector2(128, 196)
