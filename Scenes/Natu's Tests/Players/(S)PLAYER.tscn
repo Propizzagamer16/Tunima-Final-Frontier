@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="4_6ramj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crfb6"]
-radius = 17.0
-height = 50.0
+radius = 16.0
+height = 38.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sl2fy"]
 animations = [{
@@ -30,8 +30,8 @@ script = ExtResource("1_leoo0")
 shape = SubResource("CapsuleShape2D_crfb6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2, 3)
-scale = Vector2(1.78125, 1.875)
+position = Vector2(2, -2)
+scale = Vector2(1.78125, 1.8125)
 sprite_frames = SubResource("SpriteFrames_sl2fy")
 animation = &"Idle"
 
@@ -44,42 +44,49 @@ wait_time = 0.578
 [node name="health_bar" type="CanvasLayer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="health_bar"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 181.0
+offset_bottom = 41.0
 
 [node name="heart" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart" instance=ExtResource("4_6ramj")]
-position = Vector2(32, 29)
+position = Vector2(25, 25)
+scale = Vector2(2.5, 2.1)
 
 [node name="heart3" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart3" instance=ExtResource("4_6ramj")]
-position = Vector2(32, 29)
+position = Vector2(23, 24.8)
+scale = Vector2(2.5, 2.1)
 
 [node name="heart4" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart4" instance=ExtResource("4_6ramj")]
-position = Vector2(32, 29)
+position = Vector2(23, 24.8)
+scale = Vector2(2.5, 2.1)
 
 [node name="heart5" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart5" instance=ExtResource("4_6ramj")]
-position = Vector2(32, 29)
+position = Vector2(22, 24.8)
+scale = Vector2(2.5, 2.1)
 
 [node name="heart2" type="TextureRect" parent="health_bar/HBoxContainer"]
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart2" instance=ExtResource("4_6ramj")]
-position = Vector2(32, 29)
+position = Vector2(21, 24.8)
+scale = Vector2(2.5, 2.1)
 
 [node name="regen_timer" type="Timer" parent="."]
 
