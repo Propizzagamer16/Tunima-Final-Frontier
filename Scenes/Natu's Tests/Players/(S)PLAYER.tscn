@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjwsywgisca7c"]
+[gd_scene load_steps=8 format=3 uid="uid://cjwsywgisca7c"]
 
 [ext_resource type="Script" uid="uid://dkhd2j6njig8v" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.gd" id="1_leoo0"]
 [ext_resource type="Texture2D" uid="uid://duembigoqtw6q" path="res://Assets/Main Character/Idle/boyfront0 (1).png" id="2_6ramj"]
@@ -23,6 +23,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6n4wj"]
+size = Vector2(33, 37)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_leoo0")
 
@@ -39,7 +42,7 @@ animation = &"Idle"
 wait_time = 0.504
 
 [node name="deal_attack" type="Timer" parent="."]
-wait_time = 0.578
+wait_time = 0.383
 
 [node name="health_bar" type="CanvasLayer" parent="."]
 
@@ -92,6 +95,14 @@ scale = Vector2(2.5, 2.1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+position = Vector2(0.5, 7.5)
+shape = SubResource("RectangleShape2D_6n4wj")
+
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]
 [connection signal="timeout" from="regen_timer" to="." method="_on_regen_timer_timeout"]
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]

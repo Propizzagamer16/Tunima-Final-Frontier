@@ -49,6 +49,7 @@ position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_gr7ad")
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 2.996
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
