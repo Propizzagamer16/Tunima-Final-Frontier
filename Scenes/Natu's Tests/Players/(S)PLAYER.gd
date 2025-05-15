@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-
 const SPEED = 500.0
-const JUMP_VELOCITY = -900.0
+const JUMP_VELOCITY = -1300.0
+
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
@@ -18,6 +18,7 @@ func _ready():
 	get_node("AnimatedSprite2D").play("Idle")
 
 func _physics_process(delta: float) -> void:
+	delta = 0.04
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -25,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_W") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
 
 	var direction := Input.get_axis("ui_A", "ui_D")
 	if direction:
@@ -47,7 +47,6 @@ func _on_player_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_inattack_range = true
 
-
 func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
@@ -57,8 +56,6 @@ func enemy_attacks(delta):
 		take_damage()
 		enemy_attack_cooldown = false
 		$attack_cooldown.start()
-		
-
 
 func _on_attack_cooldown_timeout() -> void:
 	enemy_attack_cooldown = true
