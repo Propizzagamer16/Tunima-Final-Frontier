@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://3xxa8if53vo3" path="res://Scenes/Natu's Tests/Enemies/(TD)CommonEnemy.gd" id="1_gr7ad"]
 [ext_resource type="Texture2D" uid="uid://0lc7q05ov14n" path="res://Assets/Main Character/Idle/raw desert.png" id="2_bevlb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jeobe"]
-size = Vector2(1160, 547)
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5b8b"]
+radius = 316.697
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7k104"]
 radius = 69.0
@@ -30,8 +30,8 @@ script = ExtResource("1_gr7ad")
 [node name="detection_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(0, -142.5)
-shape = SubResource("RectangleShape2D_jeobe")
+position = Vector2(-2, -1)
+shape = SubResource("CircleShape2D_k5b8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7k104")

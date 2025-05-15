@@ -15,10 +15,19 @@ var current_dir = "none"
 var hearts_list : Array[TextureRect]
 
 func _ready():
+	var hearts_parent = $health_bar/HBoxContainer
+	for child in hearts_parent.get_children():
+		hearts_list.append(child)
+		
 	get_node("AnimatedSprite2D").play("Idle")
 
 func _physics_process(delta: float) -> void:
 	
+	if health <= 0:
+		alive = false
+		health = 0
+		self.queue_free()
+		
 	delta = 0.04
 	# Add the gravity.
 	if not is_on_floor():
@@ -47,6 +56,7 @@ func player_movement(delta):
 	move_and_slide()
 	enemy_attacks(delta)
 	attack()
+	test_dmg()
 	
 func play_anim(movement):
 	var dir = current_dir
@@ -54,17 +64,19 @@ func play_anim(movement):
 	
 	if dir == "right":
 		anim.flip_h = false
-		if movement == 1:
-			anim.play("SideWalk")
-		elif movement == 0:
-			anim.play("SideIdle")
+		if attack_ip == false:
+			if movement == 1:
+				anim.play("SideWalk")
+			elif movement == 0:
+				anim.play("SideIdle")
 				
 	if dir == "left":
 		anim.flip_h = true
-		if movement == 1:
-			anim.play("SideWalk")
-		elif movement == 0:
-			anim.play("SideIdle")
+		if attack_ip == false:
+			if movement == 1:
+				anim.play("SideWalk")
+			elif movement == 0:
+				anim.play("SideIdle")
 
 	#ATTACK
 func player():
@@ -124,14 +136,17 @@ func update_hearts():
 	var hearts_to_show = int(health / 20)  # Still needed
 
 	# Hide or show each heart manually
-	hearts_list[0].visible = hearts_to_show >= 1
 	hearts_list[1].visible = hearts_to_show >= 2
 	hearts_list[2].visible = hearts_to_show >= 3
 	hearts_list[3].visible = hearts_to_show >= 4
 	hearts_list[4].visible = hearts_to_show >= 5
 
-	# Optional: heartbeat animation on last heart
+	 #Optional: heartbeat animation on last heart
 	if hearts_to_show == 1:
 		hearts_list[0].get_child(0).play("Beating")
 	else:
 		hearts_list[0].get_child(0).play("Idle")
+
+func test_dmg():
+	if Input.is_action_just_pressed("ui_S"):
+		take_damage()

@@ -462,6 +462,7 @@ layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart" instance=ExtResource("4_81qc2")]
 position = Vector2(32, 29)
+animation = &"Beating"
 
 [node name="heart3" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)

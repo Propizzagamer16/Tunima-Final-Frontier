@@ -50,8 +50,11 @@ label_settings = SubResource("LabelSettings_c610h")
 horizontal_alignment = 1
 
 [node name="2DPlayer" parent="." instance=ExtResource("2_bct62")]
-position = Vector2(120, 769)
+position = Vector2(125, 520)
 scale = Vector2(4, 4)
 
 [node name="Enemy" parent="." instance=ExtResource("3_q5emu")]
 position = Vector2(1323, 897)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_q5emu")]
+position = Vector2(791, 844)
