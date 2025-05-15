@@ -1,10 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dy8xrqwst7tms"]
 
-[ext_resource type="Texture2D" uid="uid://duwejsktmtoh3" path="res://Assets/Backgrounds/Dungeon Tutorial/Dungeon (S)/dungeon layout (S).png" id="1_ydo4q"]
+[ext_resource type="Texture2D" uid="uid://cfywbm624uxy6" path="res://Assets/Backgrounds/Dungeon Tutorial/Dungeon (S)/dungeon layout (S).png" id="1_ydo4q"]
 
 [node name="(s)Dungeon" type="Node2D"]
 
 [node name="DungeonLayout(s)" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-scale = Vector2(1.00052, 1.00093)
 texture = ExtResource("1_ydo4q")
