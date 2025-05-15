@@ -225,7 +225,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"DownAttack",
-"speed": 2.67
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -288,7 +288,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"SideAttack",
-"speed": 2.67
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -351,7 +351,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"UpAttack",
-"speed": 2.67
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -430,7 +430,7 @@ movement_speed = 15.0
 position = Vector2(-1, -29)
 scale = Vector2(3.0625, 3.4375)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"UpAttack"
+animation = &"SideIdle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
@@ -445,7 +445,7 @@ shape = SubResource("CircleShape2D_f0kl1")
 wait_time = 1.5
 
 [node name="deal_attack" type="Timer" parent="."]
-wait_time = 1.308
+wait_time = 0.5
 
 [node name="regen_timer" type="Timer" parent="."]
 wait_time = 10.0

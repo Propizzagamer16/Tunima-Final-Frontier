@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 500.0
+const speed = 500.0
 const JUMP_VELOCITY = -1300.0
 
 
@@ -18,6 +18,7 @@ func _ready():
 	get_node("AnimatedSprite2D").play("Idle")
 
 func _physics_process(delta: float) -> void:
+	
 	delta = 0.04
 	# Add the gravity.
 	if not is_on_floor():
@@ -26,19 +27,45 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_W") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	var direction := Input.get_axis("ui_A", "ui_D")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		_ready()
+		
+	player_movement(delta)
 	
+func player_movement(delta):	
+	
+	if Input.is_action_pressed("ui_D"):
+		current_dir = "right"
+		play_anim(1)
+		velocity.x = speed
+	elif Input.is_action_pressed("ui_A"):
+		play_anim(1)
+		current_dir = "left"
+		velocity.x = -speed
+	else:
+		play_anim(0)
+		velocity.x = 0
+
 	move_and_slide()
 	enemy_attacks(delta)
 	attack()
-	#update_health()
 	
+func play_anim(movement):
+	var dir = current_dir
+	var anim = $AnimatedSprite2D
+	
+	if dir == "right":
+		anim.flip_h = false
+		if movement == 1:
+			anim.play("SideWalk")
+		elif movement == 0:
+			anim.play("SideIdle")
+				
+	if dir == "left":
+		anim.flip_h = true
+		if movement == 1:
+			anim.play("SideWalk")
+		elif movement == 0:
+			anim.play("SideIdle")
+
 	#ATTACK
 func player():
 		pass
@@ -65,6 +92,14 @@ func attack():
 	if Input.is_action_just_pressed("attack"):
 		Global.current_attack = true
 		attack_ip = true
+		if dir == "right":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("SideAttack")
+			$deal_attack.start()
+		if dir == "left":
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("SideAttack")
+			$deal_attack.start()
 
 func _on_deal_attack_timeout() -> void:
 	$deal_attack.stop()

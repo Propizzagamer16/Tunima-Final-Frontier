@@ -68,33 +68,37 @@ func play_anim(movement):
 	
 	if dir == "right":
 		anim.flip_h = false
-		if movement == 1:
-			anim.play("SideWalk")
-		elif movement == 0:
-			if attack_ip == false:
-				anim.play("SideIdle")
+		if attack_ip == false:
+			if movement == 1:
+				anim.play("SideWalk")
+			elif movement == 0:
+				if attack_ip == false:
+					anim.play("SideIdle")
 				
 	if dir == "left":
 		anim.flip_h = true
-		if movement == 1:
-			anim.play("SideWalk")
-		elif movement == 0:
-			if attack_ip == false:
-				anim.play("SideIdle")
+		if attack_ip == false:
+			if movement == 1:
+				anim.play("SideWalk")
+			elif movement == 0:
+				if attack_ip == false:
+					anim.play("SideIdle")
 			
 	if dir == "up":
-		if movement == 1:
-			anim.play("UpWalk")
-		elif movement == 0:
-			if attack_ip == false:
-				anim.play("UpIdle")
+		if attack_ip == false:
+			if movement == 1:
+				anim.play("UpWalk")
+			elif movement == 0:
+				if attack_ip == false:
+					anim.play("UpIdle")
 			
 	if dir == "down":
-		if movement == 1:
-			anim.play("DownWalk")
-		elif movement == 0:
-			if attack_ip == false:
-				anim.play("Idle")
+		if attack_ip == false:
+			if movement == 1:
+				anim.play("DownWalk")
+			elif movement == 0:
+				if attack_ip == false:
+					anim.play("Idle")
 
 ##ATTACK
 func player():
