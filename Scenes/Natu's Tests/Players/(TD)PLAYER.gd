@@ -7,7 +7,7 @@ var alive = true
 
 var attack_ip = false
 var current_dir = "none"
-const speed = 100
+const speed = 700
 
 var hearts_list : Array[TextureRect]
 #
@@ -28,25 +28,73 @@ func _physics_process(delta):
 		health = 0
 		self.queue_free()
 		print("player has been killed")
-		
-	move_and_slide()
+	
 	player_movement(delta)
 	enemy_attacks(delta)
 	attack()
 	
 func player_movement(delta):	
-	character_direction.x = Input.get_axis("ui_A", "ui_D")
-	character_direction.y = Input.get_axis("ui_W", "ui_S")
-
-	if character_direction != Vector2.ZERO:
-		character_direction = character_direction.normalized()
-		velocity = character_direction * movement_speed
+	
+	if Input.is_action_pressed("ui_D"):
+		current_dir = "right"
+		play_anim(1)
+		velocity.x = speed
+		velocity.y = 0
+	elif Input.is_action_pressed("ui_A"):
+		play_anim(1)
+		current_dir = "left"
+		velocity.x = -speed
+		velocity.y = 0
+	elif Input.is_action_pressed("ui_S"):
+		play_anim(1)
+		current_dir = "down"
+		velocity.x = 0
+		velocity.y = speed
+	elif Input.is_action_pressed("ui_W"):
+		play_anim(1)
+		current_dir = "up"
+		velocity.x = 0
+		velocity.y = -speed
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
-		_ready()
+		play_anim(0)
+		velocity.x = 0
+		velocity.y = 0
 
+	move_and_slide()
 
-
+func play_anim(movement):
+	var dir = current_dir
+	var anim = $AnimatedSprite2D
+	
+	if dir == "right":
+		anim.flip_h = false
+		if movement == 1:
+			anim.play("SideWalk")
+		elif movement == 0:
+			if attack_ip == false:
+				anim.play("SideIdle")
+				
+	if dir == "left":
+		anim.flip_h = true
+		if movement == 1:
+			anim.play("SideWalk")
+		elif movement == 0:
+			if attack_ip == false:
+				anim.play("SideIdle")
+			
+	if dir == "up":
+		if movement == 1:
+			anim.play("UpWalk")
+		elif movement == 0:
+			if attack_ip == false:
+				anim.play("UpIdle")
+			
+	if dir == "down":
+		if movement == 1:
+			anim.play("DownWalk")
+		elif movement == 0:
+			if attack_ip == false:
+				anim.play("Idle")
 
 ##ATTACK
 func player():
@@ -77,9 +125,22 @@ func attack():
 	if Input.is_action_just_pressed("attack"):
 		Global.current_attack = true
 		attack_ip = true
+		if dir == "right":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("SideAttack")
+			$deal_attack.start()
+		if dir == "left":
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("SideAttack")
+			$deal_attack.start()
+		if dir == "down":
+			$AnimatedSprite2D.play("DownAttack")
+			$deal_attack.start()
+		if dir == "up":
+			$AnimatedSprite2D.play("UpAttack")
+			$deal_attack.start()
 
 func _on_deal_attack_timeout() -> void:
-	$deal_attack.stop()
 	Global.current_attack = false
 	attack_ip = false
 

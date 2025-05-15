@@ -40,8 +40,9 @@ func deal_with_damage():
 	if player_inattack_zone and Global.current_attack == true:
 		if can_take_damage == true:
 			health -= 20
-			$take_damage_cooldown.start()
 			can_take_damage = false
+			Global.current_attack = false
+			$take_damage_cooldown.start()
 			if health <= 0:
 				self.queue_free()
 
