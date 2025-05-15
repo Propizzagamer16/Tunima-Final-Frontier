@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.tscn" id="2_bct62"]
 [ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/Loading & Title/The Great Wave off Kanagawa.jpg" id="2_q5emu"]
-[ext_resource type="PackedScene" path="res://Scenes/Natu's Tests/Enemies/CommonEnemy(S).tscn" id="3_q5emu"]
-[ext_resource type="PackedScene" path="res://Scenes/Natu's Tests/Enemies/CommonEnemy(S).tscn" id="3_q5emu"]
+[ext_resource type="PackedScene" uid="uid://bsn73jg2i75mq" path="res://Scenes/Natu's Tests/Enemies/(S)CommonEnemy.tscn" id="3_q5emu"]
+[ext_resource type="PackedScene" uid="uid://bsn73jg2i75mq" path="res://Scenes/Natu's Tests/Enemies/(S)CommonEnemy.tscn" id="3_q5emu"]
 [ext_resource type="Texture2D" uid="uid://cuxnkos0srfyn" path="res://Assets/Backgrounds/Loading & Title/The Great Wave off Kanagawa.jpg" id="2_q5emu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xw48q"]

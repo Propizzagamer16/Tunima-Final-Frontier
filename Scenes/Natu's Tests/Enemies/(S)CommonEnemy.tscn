@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bsn73jg2i75mq"]
 
-[ext_resource type="Script" uid="uid://3xxa8if53vo3" path="res://Scenes/Natu's Tests/Enemies/(TD)CommonEnemy.gd" id="1_bhqga"]
+[ext_resource type="Script" path="res://Scenes/Natu's Tests/Enemies/(S)CommonEnemy.gd" id="1_xs0qf"]
 [ext_resource type="Texture2D" uid="uid://0lc7q05ov14n" path="res://Assets/Main Character/Idle/raw desert.png" id="2_r7ugd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xaro"]
@@ -25,7 +25,7 @@ animations = [{
 radius = 128.191
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_bhqga")
+script = ExtResource("1_xs0qf")
 
 [node name="detection_area" type="Area2D" parent="."]
 
