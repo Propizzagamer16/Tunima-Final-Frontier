@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpttl3l2usf5p"
-path="res://.godot/imported/pixil-frame-0.png-a348b961cda5cf664ddc5e09b3c42c62.ctex"
+path="res://.godot/imported/pixil-frame-0.png-52b639eddb028f28b8d309369ae40bf6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/platformer tiles/pixil-frame-0.png"
-dest_files=["res://.godot/imported/pixil-frame-0.png-a348b961cda5cf664ddc5e09b3c42c62.ctex"]
+source_file="res://Assets/Tiles/platformer tiles/pixil-frame-0.png"
+dest_files=["res://.godot/imported/pixil-frame-0.png-52b639eddb028f28b8d309369ae40bf6.ctex"]
 
 [params]
 
