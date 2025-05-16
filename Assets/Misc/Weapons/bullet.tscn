@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh5kc88i7a7s2"]
+[gd_scene load_steps=7 format=3 uid="uid://dh5kc88i7a7s2"]
 
 [ext_resource type="Texture2D" uid="uid://godqsckmgsgt" path="res://Assets/Misc/Weapons/spritesheet.png" id="1_8t1dn"]
 [ext_resource type="Script" uid="uid://cdyyrw2enw70m" path="res://Assets/Misc/Weapons/bullet.gd" id="2_4anwo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4anwo"]
+radius = 3.6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4anwo"]
 atlas = ExtResource("1_8t1dn")
@@ -21,15 +24,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_h0mi4")
 }],
 "loop": true,
-"name": &"shot",
+"name": &"shoot",
 "speed": 11.0
 }]
 
-[node name="bullet" type="AnimatedSprite2D"]
+[node name="bullet" type="Area2D"]
 scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_n8o1o")
-animation = &"shot"
-frame_progress = 0.774559
 script = ExtResource("2_4anwo")
 
 [node name="Timer" type="Timer" parent="."]
@@ -37,4 +37,15 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.4, 0.6)
+shape = SubResource("CircleShape2D_4anwo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n8o1o")
+animation = &"shoot"
+autoplay = "shoot"
+frame_progress = 0.190582
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

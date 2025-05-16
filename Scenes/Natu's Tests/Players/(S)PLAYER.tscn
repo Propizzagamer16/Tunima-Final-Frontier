@@ -8,8 +8,8 @@
 radius = 6.0
 height = 18.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6n4wj"]
-size = Vector2(13, 19)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7663"]
+size = Vector2(22, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkc1m"]
 atlas = ExtResource("3_x7663")
@@ -488,11 +488,11 @@ scale = Vector2(2.5, 2.1)
 [node name="player_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
-position = Vector2(0.5, -1)
-shape = SubResource("RectangleShape2D_6n4wj")
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_x7663")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(-1, -8)
 sprite_frames = SubResource("SpriteFrames_6n4wj")
 animation = &"SideAttack"
 
