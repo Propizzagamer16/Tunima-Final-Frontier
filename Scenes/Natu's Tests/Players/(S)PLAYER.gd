@@ -152,8 +152,9 @@ func player_shooting():
 				direction = 1
 			elif current_dir == "left":
 				direction = -1
-				
-		bullet_instance.direction = direction
+		
+		bullet_instance.direction = Vector2(direction, 0) 
+		bullet_instance.is_sideview = true                 
 		bullet_instance.global_position = muzzle.global_position
 		get_parent().add_child(bullet_instance)
 
