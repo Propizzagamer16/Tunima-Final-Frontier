@@ -58,7 +58,11 @@ func deal_with_damage():
 			can_take_damage = false
 			if health <= 0:
 				self.queue_free()
-
+				
+func take_bullet_damage():
+	health -= 5
+	if health <= 0:
+		self.queue_free()
 
 func _on_take_damage_cooldown_timeout() -> void:
 	can_take_damage = true

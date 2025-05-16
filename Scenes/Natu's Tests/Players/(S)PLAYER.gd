@@ -23,7 +23,7 @@ func _ready():
 	for child in hearts_parent.get_children():
 		hearts_list.append(child)
 		
-	get_node("AnimatedSprite2D").play("Idle")
+	get_node("AnimatedSprite2D").play("SideIdle")
 
 func _physics_process(delta: float) -> void:
 	
