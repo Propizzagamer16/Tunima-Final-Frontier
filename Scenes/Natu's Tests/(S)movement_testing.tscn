@@ -52,6 +52,8 @@ horizontal_alignment = 1
 [node name="2DPlayer" parent="." instance=ExtResource("2_bct62")]
 position = Vector2(125, 520)
 scale = Vector2(4, 4)
+collision_layer = 2
+collision_mask = 2
 
 [node name="Enemy" parent="." instance=ExtResource("3_q5emu")]
 position = Vector2(1323, 897)

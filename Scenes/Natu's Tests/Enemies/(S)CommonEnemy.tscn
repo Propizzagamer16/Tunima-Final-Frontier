@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0lc7q05ov14n" path="res://Assets/Main Character/Idle/raw desert.png" id="2_r7ugd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5wil"]
-size = Vector2(497, 188)
+size = Vector2(2966, 2183)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xs0qf"]
 size = Vector2(116, 188)
@@ -29,7 +29,7 @@ script = ExtResource("1_xs0qf")
 [node name="detection_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(0.500008, -2)
+position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_i5wil")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -51,6 +51,18 @@ shape = SubResource("RectangleShape2D_frgk7")
 [node name="take_damage_cooldown" type="Timer" parent="."]
 
 [node name="do_attack" type="Timer" parent="."]
+
+[node name="wall_ray_right" type="RayCast2D" parent="."]
+target_position = Vector2(83, -70)
+
+[node name="wall_ray_left" type="RayCast2D" parent="."]
+target_position = Vector2(-76, -80)
+
+[node name="ground_ray_right" type="RayCast2D" parent="."]
+target_position = Vector2(67, 106)
+
+[node name="ground_ray_left" type="RayCast2D" parent="."]
+target_position = Vector2(-65, 109)
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

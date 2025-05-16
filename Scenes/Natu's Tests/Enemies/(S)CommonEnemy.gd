@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 150
+var speed = 350
 var player_chase = false
 var player = null
 
@@ -9,19 +9,30 @@ var player_inattack_zone = false
 var can_take_damage = true
 var player_attack_cooldown = true
 
+@export var gravity = 5000.0
+@export var jump_velocity = -1500.0
+
+
 func _physics_process(delta):
 	deal_with_damage()
 	attack_player()
 
+	# Apply gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	else:
+		velocity.y = 0  # Reset vertical velocity when grounded
+
+	# Horizontal chase movement
 	if player_chase:
 		var direction = sign(player.position.x - position.x)
 		velocity.x = direction * speed
 	else:
 		velocity.x = 0
-	
-	# Use move_and_slide to keep physics interactions (like collision and gravity)
+
+	handle_jumping()
+
 	move_and_slide()
-	
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
@@ -35,8 +46,6 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 
 func enemy():
 	pass
-
-
 
 func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
@@ -74,3 +83,15 @@ func _on_do_attack_timeout() -> void:
 		player.call("take_damage")
 		$do_attack.stop()
 		player_attack_cooldown = true
+
+func handle_jumping():
+	var wall_ray_right = $wall_ray_right
+	var ground_ray_right = $ground_ray_right
+	var wall_ray_left = $wall_ray_left
+	var ground_ray_left = $ground_ray_left
+	# Only jump if touching the ground
+	if player_inattack_zone == false:
+		if is_on_floor():
+			# Jump if a wall is in front or a ledge is coming
+			if wall_ray_right.is_colliding() or wall_ray_left.is_colliding() or not ground_ray_right.is_colliding() or not ground_ray_left.is_colliding():
+				velocity.y = jump_velocity
