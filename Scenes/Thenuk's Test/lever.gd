@@ -9,7 +9,7 @@ func _ready():
 		$Sprite2D.flip_h = true
 
 func _process(_delta):
-	if $Area2D.overlaps_body($"../player") and Input.is_action_just_pressed("use"):
+	if $Area2D.overlaps_body($"../../../player") and Input.is_action_just_pressed("use"):
 		if state == "0":
 			state = "1"
 		else:

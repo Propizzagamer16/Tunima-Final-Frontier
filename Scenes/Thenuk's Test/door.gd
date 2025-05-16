@@ -21,6 +21,8 @@ func CheckCode():
 	print("Code from levers:", codeFromLevers)
 
 	if code == codeFromLevers:
-		$"StaticBody2D/CollisionShape2D".disabled = true  # unlock
+		$"StaticBody2D/CollisionShape2D".disabled = false
+		$Closed.visible = true  # unlock
 	else:
-		$"StaticBody2D/CollisionShape2D".disabled = false  # lock
+		$"StaticBody2D/CollisionShape2D".disabled = true 
+		$Closed.visible = false # lock
