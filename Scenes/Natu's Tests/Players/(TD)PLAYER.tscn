@@ -418,8 +418,8 @@ animations = [{
 radius = 26.0
 height = 70.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f0kl1"]
-radius = 40.1995
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biusk"]
+size = Vector2(44, 67)
 
 [node name="Player1" type="CharacterBody2D"]
 motion_mode = 1
@@ -439,7 +439,8 @@ shape = SubResource("CapsuleShape2D_8erm5")
 [node name="player_hitbox" type="Area2D" parent="."]
 
 [node name="CollionShape2D" type="CollisionShape2D" parent="player_hitbox"]
-shape = SubResource("CircleShape2D_f0kl1")
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_biusk")
 
 [node name="attack_cooldown" type="Timer" parent="."]
 wait_time = 1.5

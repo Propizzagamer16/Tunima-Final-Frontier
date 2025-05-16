@@ -482,8 +482,6 @@ scale = Vector2(2.5, 2.1)
 
 [node name="regen_timer" type="Timer" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="player_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
@@ -494,6 +492,9 @@ shape = SubResource("RectangleShape2D_6n4wj")
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_6n4wj")
 animation = &"SideAttack"
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(12, 2)
 
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]

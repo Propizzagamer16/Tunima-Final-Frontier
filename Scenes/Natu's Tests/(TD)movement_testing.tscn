@@ -40,11 +40,6 @@ position = Vector2(960, 584)
 scale = Vector2(1.32917, 1.3)
 texture = ExtResource("2_dunn6")
 
-[node name="Player1" parent="." instance=ExtResource("2_hhvfv")]
-position = Vector2(981, 931)
-scale = Vector2(1.7, 1.7)
-movement_speed = 500.0
-
 [node name="Label" type="Label" parent="."]
 offset_left = 1119.0
 offset_top = 146.0
@@ -56,4 +51,11 @@ label_settings = SubResource("LabelSettings_hhvfv")
 horizontal_alignment = 1
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_yivp6")]
-position = Vector2(128, 196)
+position = Vector2(467, 231)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("3_yivp6")]
+position = Vector2(890, 237)
+
+[node name="Player1" parent="." instance=ExtResource("2_hhvfv")]
+position = Vector2(921, 911)
+scale = Vector2(2, 2)

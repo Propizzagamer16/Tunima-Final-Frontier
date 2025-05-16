@@ -3,6 +3,9 @@ extends CharacterBody2D
 const speed = 500.0
 const JUMP_VELOCITY = -1300.0
 
+var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
+@onready var muzzle : Marker2D = $Muzzle
+var muzzle_position
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
@@ -15,6 +18,7 @@ var current_dir = "none"
 var hearts_list : Array[TextureRect]
 
 func _ready():
+	muzzle_position = muzzle.position
 	var hearts_parent = $health_bar/HBoxContainer
 	for child in hearts_parent.get_children():
 		hearts_list.append(child)
@@ -36,8 +40,10 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_W") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
+	
+	muzzle_position_update()
 	player_movement(delta)
+	player_shooting()
 	
 func player_movement(delta):	
 	
@@ -54,9 +60,7 @@ func player_movement(delta):
 		velocity.x = 0
 
 	move_and_slide()
-	enemy_attacks(delta)
 	attack()
-	test_dmg()
 	
 func play_anim(movement):
 	var dir = current_dir
@@ -89,10 +93,6 @@ func _on_player_hitbox_body_entered(body: Node2D) -> void:
 func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
-
-func enemy_attacks(delta):
-	if Global.common_enemy_current_attack == true:
-		take_damage()
 
 func attack():
 	var dir = current_dir
@@ -142,6 +142,25 @@ func update_hearts():
 	else:
 		hearts_list[0].get_child(0).play("Idle")
 
-func test_dmg():
-	if Input.is_action_just_pressed("ui_S"):
-		take_damage()
+func player_shooting():
+	var direction : float = Input.get_axis("ui_A", "ui_D")
+	
+	if Input.is_action_just_pressed("shoot"):
+		var bullet_instance = bullet.instantiate() as Node2D
+		if direction == 0:
+			if current_dir == "right":
+				direction = 1
+			elif current_dir == "left":
+				direction = -1
+				
+		bullet_instance.direction = direction
+		bullet_instance.global_position = muzzle.global_position
+		get_parent().add_child(bullet_instance)
+
+func muzzle_position_update():
+	var direction : float = Input.get_axis("ui_A", "ui_D")
+	
+	if direction < 0:
+		muzzle.position.x = -muzzle_position.x
+	elif direction > 0:
+		muzzle.position.x = muzzle_position.x
