@@ -10,7 +10,11 @@ func _ready():
 
 func _process(_delta):
 	if $Area2D.overlaps_body($"../player") and Input.is_action_just_pressed("use"):
-		state = "1" if state == "0" else "0"
+		if state == "0":
+			state = "1"
+		else:
+			state = "0"
+		LeverGobal.leverChanged()
 
 	if state == "0":
 		$Sprite2D.flip_h = false

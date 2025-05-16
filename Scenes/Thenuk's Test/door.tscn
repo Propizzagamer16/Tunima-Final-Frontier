@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://4ctc0rmmx2y4"]
+
+[ext_resource type="Texture2D" uid="uid://6jga3jb8so1k" path="res://Tiles/platformer tiles/door for now.png" id="1_06wto"]
+[ext_resource type="Script" uid="uid://ccewmr4dkb6l0" path="res://Scenes/Thenuk's Test/door.gd" id="1_isotk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isotk"]
+size = Vector2(127, 254)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_isotk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_06wto")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_isotk")
