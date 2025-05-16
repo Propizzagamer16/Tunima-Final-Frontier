@@ -127,7 +127,7 @@ func _on_attack_cooldown_timeout() -> void:
 func attack():
 	var dir = current_dir
 	if Input.is_action_just_pressed("attack"):
-		Global.current_attack = true
+		Global.player_current_attack = true
 		attack_ip = true
 		if dir == "right":
 			$AnimatedSprite2D.flip_h = false
@@ -145,7 +145,7 @@ func attack():
 			$deal_attack.start()
 
 func _on_deal_attack_timeout() -> void:
-	Global.current_attack = false
+	Global.player_current_attack = false
 	attack_ip = false
 
 

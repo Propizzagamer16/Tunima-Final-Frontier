@@ -13,6 +13,7 @@ var player_attack_cooldown = true
 
 func _physics_process(delta):
 	deal_with_damage()
+	attack_player()
 
 	if player_chase:
 		var direction = sign(player.position.x - position.x)
@@ -26,8 +27,9 @@ func _physics_process(delta):
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	player = body
-	player_chase = true
+	if body.has_method("player"):
+		player = body
+		player_chase = true
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	player = null
@@ -41,16 +43,14 @@ func enemy():
 func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_inattack_zone = true
-		player_inattack_range = true
 
 
 func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_inattack_zone = false
-		player_inattack_range = false
 
 func deal_with_damage():
-	if player_inattack_zone and Global.current_attack == true:
+	if player_inattack_zone and Global.player_current_attack == true:
 		if can_take_damage == true:
 			health -= 20
 			$take_damage_cooldown.start()
@@ -61,3 +61,15 @@ func deal_with_damage():
 
 func _on_take_damage_cooldown_timeout() -> void:
 	can_take_damage = true
+
+func attack_player():
+	if player_inattack_zone and player_attack_cooldown and player != null:
+		if player.has_method("take_damage"):
+			player.call("take_damage")
+			player_attack_cooldown = false
+			$do_attack.start()
+
+	
+func _on_do_attack_timeout() -> void:
+	$do_attack.stop()
+	player_attack_cooldown = true

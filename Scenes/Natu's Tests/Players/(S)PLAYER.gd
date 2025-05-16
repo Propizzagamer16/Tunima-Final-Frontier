@@ -91,18 +91,13 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 		enemy_inattack_range = false
 
 func enemy_attacks(delta):
-	if enemy_inattack_range and enemy_attack_cooldown:
+	if Global.common_enemy_current_attack == true:
 		take_damage()
-		enemy_attack_cooldown = false
-		$attack_cooldown.start()
-
-func _on_attack_cooldown_timeout() -> void:
-	enemy_attack_cooldown = true
 
 func attack():
 	var dir = current_dir
 	if Input.is_action_just_pressed("attack"):
-		Global.current_attack = true
+		Global.player_current_attack = true
 		attack_ip = true
 		if dir == "right":
 			$AnimatedSprite2D.flip_h = false
@@ -115,7 +110,7 @@ func attack():
 
 func _on_deal_attack_timeout() -> void:
 	$deal_attack.stop()
-	Global.current_attack = false
+	Global.player_current_attack = false
 	attack_ip = false
 
 func _on_regen_timer_timeout() -> void:
