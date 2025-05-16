@@ -419,7 +419,7 @@ radius = 26.0
 height = 70.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_biusk"]
-size = Vector2(44, 67)
+size = Vector2(48, 75)
 
 [node name="Player1" type="CharacterBody2D"]
 motion_mode = 1
@@ -439,7 +439,7 @@ shape = SubResource("CapsuleShape2D_8erm5")
 [node name="player_hitbox" type="Area2D" parent="."]
 
 [node name="CollionShape2D" type="CollisionShape2D" parent="player_hitbox"]
-position = Vector2(0, -2)
+position = Vector2(2, -0.5)
 shape = SubResource("RectangleShape2D_biusk")
 
 [node name="attack_cooldown" type="Timer" parent="."]
@@ -491,6 +491,13 @@ layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart2" instance=ExtResource("4_81qc2")]
 position = Vector2(32, 29)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(36, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(6.5, -3)
+zoom = Vector2(0.5, 0.5)
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]

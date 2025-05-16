@@ -9,9 +9,14 @@ var attack_ip = false
 var current_dir = "none"
 const speed = 700
 
+var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
+@onready var muzzle : Marker2D = $Muzzle
+var muzzle_position
+
 var hearts_list : Array[TextureRect]
 #
 func _ready():
+	muzzle_position = muzzle.position
 	var hearts_parent = $health_bar/HBoxContainer
 	for child in hearts_parent.get_children():
 		hearts_list.append(child)
@@ -28,9 +33,10 @@ func _physics_process(delta):
 		health = 0
 		self.queue_free()
 		print("player has been killed")
-	
+		
+	muzzle_position_update()
+	player_shooting()
 	player_movement(delta)
-	enemy_attacks(delta)
 	attack()
 	
 func player_movement(delta):	
@@ -113,14 +119,6 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
 
-func enemy_attacks(delta):
-	if enemy_inattack_range and enemy_attack_cooldown:
-		take_damage()
-		enemy_attack_cooldown = false
-		$attack_cooldown.start()
-		
-
-
 func _on_attack_cooldown_timeout() -> void:
 	enemy_attack_cooldown = true
 
@@ -178,3 +176,35 @@ func update_hearts():
 		hearts_list[0].get_child(0).play("Beating")
 	else:
 		hearts_list[0].get_child(0).play("Idle")
+
+func player_shooting():
+	var xdirection: float = Input.get_axis("ui_A", "ui_D")
+	var ydirection: float = Input.get_axis("ui_W", "ui_S")  # Up is negative
+
+	if Input.is_action_just_pressed("shoot"):
+		var bullet_instance = bullet.instantiate() as Node2D
+		var dir = Vector2(xdirection, ydirection)
+
+		# Default to current_dir if no input held
+		if dir == Vector2.ZERO:
+			match current_dir:
+				"right": dir = Vector2.RIGHT
+				"left": dir = Vector2.LEFT
+				"up": dir = Vector2.UP
+				"down": dir = Vector2.DOWN
+
+		bullet_instance.direction = dir
+		bullet_instance.global_position = muzzle.global_position
+		get_parent().add_child(bullet_instance)
+
+
+func muzzle_position_update():
+	match current_dir:
+		"right":
+			muzzle.position = Vector2(40, 0)
+		"left":
+			muzzle.position = Vector2(-40, 0)
+		"up":
+			muzzle.position = Vector2(0, -50)
+		"down":
+			muzzle.position = Vector2(0, 55)
