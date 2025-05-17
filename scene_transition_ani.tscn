@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpnslhku5ncfk"]
+
+[sub_resource type="Animation" id="Animation_74uik"]
+resource_name = "scene_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0.231373), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ih2t4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7p2k4"]
+_data = {
+&"RESET": SubResource("Animation_ih2t4"),
+&"scene_transition": SubResource("Animation_74uik")
+}
+
+[node name="scene_transition_ani" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -869.0
+offset_top = -886.0
+offset_right = 2976.0
+offset_bottom = 1894.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7p2k4")
+}

@@ -19,6 +19,9 @@ var current_dir = "none"
 var hearts_list : Array[TextureRect]
 
 func _ready():
+	add_to_group("player")
+
+	
 	muzzle_position = muzzle.position
 	var hearts_parent = $health_bar/HBoxContainer
 	for child in hearts_parent.get_children():

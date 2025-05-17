@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://0gdlptesj4vv"]
+[gd_scene load_steps=8 format=4 uid="uid://0gdlptesj4vv"]
 
 [ext_resource type="Texture2D" uid="uid://bqsrd5gjyhi1d" path="res://Tiles/platformer tiles/lab tileset finished transparent(2).png" id="1_3xmi8"]
+[ext_resource type="Script" uid="uid://c6h4seufdyhy6" path="res://Scenes/Thenuk's Test/weapons_lab.gd" id="1_dgrlm"]
 [ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.tscn" id="2_6f1pe"]
+[ext_resource type="PackedScene" uid="uid://bsn73jg2i75mq" path="res://Scenes/Natu's Tests/Enemies/(S)CommonEnemy.tscn" id="2_aqc6x"]
+[ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="5_aqc6x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6f1pe"]
 texture = ExtResource("1_3xmi8")
@@ -329,6 +332,8 @@ physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_6f1pe")
 
 [node name="weapons lab" type="Node2D"]
+script = ExtResource("1_dgrlm")
+enemy_scene = ExtResource("2_aqc6x")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_6f1pe")
@@ -354,3 +359,16 @@ tile_set = SubResource("TileSet_6f1pe")
 [node name="Player" parent="." instance=ExtResource("2_6f1pe")]
 position = Vector2(224, 475)
 scale = Vector2(4, 4)
+
+[node name="EnemySpawnPoint1" type="Marker2D" parent="."]
+position = Vector2(1005, 517)
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="."]
+position = Vector2(1535, 774)
+
+[node name="EnemySpawnPoint3" type="Marker2D" parent="."]
+position = Vector2(1636, 398)
+
+[node name="scene_transition_ani" parent="." instance=ExtResource("5_aqc6x")]
+self_modulate = Color(1, 1, 1, 0)
+visibility_layer = 524288

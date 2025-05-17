@@ -4,13 +4,14 @@ var speed = 350
 var player_chase = false
 var player = null
 
-var health = 20
+var health = 25
 var player_inattack_zone = false
 var can_take_damage = true
 var player_attack_cooldown = true
 
 @export var gravity = 5000.0
 @export var jump_velocity = -1500.0
+var can_jump = true
 
 
 func _physics_process(delta):
@@ -36,13 +37,15 @@ func _physics_process(delta):
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.has_method("player"):
+	if body.is_in_group("player"):
 		player = body
 		player_chase = true
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	player = null
-	player_chase = false
+	if body == player:
+		player = null
+		player_chase = false
+
 
 func enemy():
 	pass
@@ -85,13 +88,33 @@ func _on_do_attack_timeout() -> void:
 		player_attack_cooldown = true
 
 func handle_jumping():
+	
 	var wall_ray_right = $wall_ray_right
 	var ground_ray_right = $ground_ray_right
 	var wall_ray_left = $wall_ray_left
 	var ground_ray_left = $ground_ray_left
 	# Only jump if touching the ground
-	if player_inattack_zone == false:
-		if is_on_floor():
-			# Jump if a wall is in front or a ledge is coming
-			if wall_ray_right.is_colliding() or wall_ray_left.is_colliding() or not ground_ray_right.is_colliding() or not ground_ray_left.is_colliding():
-				velocity.y = jump_velocity
+	if is_on_floor():
+		var jump_needed = false
+		
+		if wall_ray_right.is_colliding():
+			var collider = wall_ray_right.get_collider()
+			if collider and not collider.is_in_group("enemy"):
+				jump_needed = true
+
+		if wall_ray_left.is_colliding():
+			var collider = wall_ray_left.get_collider()
+			if collider and not collider.is_in_group("enemy"):
+				jump_needed = true
+
+		if not ground_ray_right.is_colliding() or not ground_ray_left.is_colliding():
+			jump_needed = true 
+
+		if jump_needed:
+			velocity.y = jump_velocity
+			can_jump = false
+			$jump_cooldown.start()
+
+
+func _on_jump_cooldown_timeout() -> void:
+	can_jump = true
