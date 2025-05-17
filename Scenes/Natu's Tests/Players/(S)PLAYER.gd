@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name character
 
 const speed = 500.0
-const JUMP_VELOCITY = -1300.0
+const JUMP_VELOCITY = -1100.0
 
 var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 @onready var muzzle : Marker2D = $Muzzle
