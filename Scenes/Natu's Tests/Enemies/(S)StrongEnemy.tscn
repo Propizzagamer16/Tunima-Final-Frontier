@@ -1,22 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsn73jg2i75mq"]
+[gd_scene load_steps=9 format=3 uid="uid://cyrecdwyl7nsd"]
 
-[ext_resource type="Script" uid="uid://dbp5u2hjx6mon" path="res://Scenes/Natu's Tests/Enemies/(S)CommonEnemy.gd" id="1_xs0qf"]
-[ext_resource type="Texture2D" uid="uid://0lc7q05ov14n" path="res://Assets/Main Character/Idle/raw desert.png" id="2_r7ugd"]
+[ext_resource type="Script" uid="uid://dagur50cvjoxn" path="res://Scenes/Natu's Tests/Enemies/(S)StrongEnemy.gd" id="1_ur136"]
+[ext_resource type="Texture2D" uid="uid://godqsckmgsgt" path="res://Assets/Misc/Weapons/spritesheet.png" id="2_ur136"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5wil"]
-size = Vector2(2966, 2183)
+size = Vector2(5938.33, 3576.67)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xs0qf"]
 size = Vector2(116, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8ffs"]
+atlas = ExtResource("2_ur136")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acoq0"]
+atlas = ExtResource("2_ur136")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qi2p4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_r7ugd")
+"texture": SubResource("AtlasTexture_j8ffs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acoq0")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"new_animation",
 "speed": 5.0
 }]
 
@@ -25,12 +36,12 @@ size = Vector2(121, 188)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(0.6, 0.6)
-script = ExtResource("1_xs0qf")
+script = ExtResource("1_ur136")
 
 [node name="detection_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(0, 9.5)
+position = Vector2(-20, 16.6667)
 shape = SubResource("RectangleShape2D_i5wil")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -39,21 +50,21 @@ shape = SubResource("RectangleShape2D_xs0qf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.499996, -1.12499)
-scale = Vector2(0.114258, 0.120931)
+scale = Vector2(17, 18.044)
 sprite_frames = SubResource("SpriteFrames_qi2p4")
-animation = &"Idle"
+animation = &"new_animation"
+frame_progress = 0.893644
 
 [node name="enemy_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_frgk7")
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="do_attack" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 
 [node name="wall_ray_right" type="RayCast2D" parent="."]
 target_position = Vector2(83, -70)

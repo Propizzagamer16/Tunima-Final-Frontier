@@ -424,9 +424,6 @@ animations = [{
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_leoo0")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(91, 1)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_crfb6")
 
