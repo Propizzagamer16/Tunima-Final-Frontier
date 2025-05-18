@@ -375,5 +375,4 @@ position = Vector2(1636, 398)
 position = Vector2(958, 190)
 
 [node name="scene_transition_ani" parent="." instance=ExtResource("5_aqc6x")]
-modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)

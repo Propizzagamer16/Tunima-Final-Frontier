@@ -1,22 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpnslhku5ncfk"]
+[gd_scene load_steps=6 format=3 uid="uid://dpnslhku5ncfk"]
 
 [sub_resource type="Animation" id="Animation_ih2t4"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
-[sub_resource type="Animation" id="Animation_74uik"]
-resource_name = "scene_transition"
+[sub_resource type="Animation" id="Animation_k6r3p"]
+resource_name = "death"
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,10 +13,10 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.51, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1.14, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0.231373), Color(0, 0, 0, 0)]
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_7p2k4"]
@@ -46,21 +35,38 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(0, 0.839216, 0, 0.156863), Color(0, 0.839216, 0, 0), Color(0, 0.839216, 0, 0.156863), Color(0, 0.839216, 0, 0), Color(0, 0.839216, 0, 0.156863), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_74uik"]
+resource_name = "scene_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.51, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0.231373), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7p2k4"]
 _data = {
 &"RESET": SubResource("Animation_ih2t4"),
+&"death": SubResource("Animation_k6r3p"),
 &"finished_fight": SubResource("Animation_7p2k4"),
 &"scene_transition": SubResource("Animation_74uik")
 }
 
 [node name="scene_transition_ani" type="Node2D"]
+scale = Vector2(50, 50)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-top_level = true
 offset_left = -219.0
 offset_top = -169.0
 offset_right = 2115.0
 offset_bottom = 1260.0
+color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

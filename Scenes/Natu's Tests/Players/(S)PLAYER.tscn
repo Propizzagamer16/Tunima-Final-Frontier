@@ -496,6 +496,8 @@ animation = &"SideAttack"
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(12, 2)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]
 [connection signal="timeout" from="regen_timer" to="." method="_on_regen_timer_timeout"]
