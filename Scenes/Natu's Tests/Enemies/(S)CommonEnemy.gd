@@ -13,30 +13,22 @@ var player_attack_cooldown = true
 @export var jump_velocity = -1500.0
 var can_jump = true
 
-@export var dude = Node2D
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func _physics_process(delta):
-	if dude != null:
-		nav_agent.target_position = dude.global_position
+	if player:
+		navigation_agent.target_position = player.global_position
 
-	if nav_agent.is_navigation_finished():
+	if navigation_agent.is_navigation_finished():
 		velocity.x = 0
 	else:
-		var next_path_point = nav_agent.get_next_path_position()
-		var direction = (next_path_point - global_position).normalized()
+		var next_point = navigation_agent.get_next_path_position()
+		var direction = (next_point - global_position).normalized()
 		velocity.x = direction.x * speed
-		
 	move_and_slide()
 	#handle_jumping()
 	#deal_with_damage()
 	#attack_player()
-		
-func make_path() -> void:
-	nav_agent.target_position = dude.global_position
-
-func _on_make_path_timeout() -> void:
-	make_path()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
