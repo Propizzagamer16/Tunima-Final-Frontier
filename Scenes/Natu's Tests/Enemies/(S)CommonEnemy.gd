@@ -16,19 +16,25 @@ var can_jump = true
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func _physics_process(delta):
-	if player:
-		navigation_agent.target_position = player.global_position
+	deal_with_damage()
+	attack_player()
 
-	if navigation_agent.is_navigation_finished():
-		velocity.x = 0
+	# Apply gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta
 	else:
-		var next_point = navigation_agent.get_next_path_position()
-		var direction = (next_point - global_position).normalized()
-		velocity.x = direction.x * speed
+		velocity.y = 0  # Reset vertical velocity when grounded
+
+	# Horizontal chase movement
+	if player_chase:
+		var direction = sign(player.position.x - position.x)
+		velocity.x = direction * speed
+	else:
+		velocity.x = 0
+
+	handle_jumping()
+
 	move_and_slide()
-	#handle_jumping()
-	#deal_with_damage()
-	#attack_player()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -77,7 +83,7 @@ func attack_player():
 
 func _on_do_attack_timeout() -> void:
 	if player_inattack_zone and player != null:
-		player.call("take_damage")
+		player.take_damage()
 		$do_attack.stop()
 		player_attack_cooldown = true
 

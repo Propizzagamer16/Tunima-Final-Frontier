@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var SceneTransitionAnimation = $scene_transition_ani/AnimationPlayer
+@onready var player = $Player
+@onready var player_spawn_point = $player_spawnpoint
 
 @export var enemy_scene: PackedScene
 @export var strong_enemy_scene: PackedScene
@@ -12,35 +14,54 @@ extends Node2D
 	$EnemySpawnPoint3
 ]
 
+# Wave control variables
 var current_wave : int = 0
 var wave_spawn_ended := false
 var wave_active := false
 var strong_enemy_spawned := false
 var finished_fight_played := false
+var wave_spawning := false
+var allow_wave_progression := true
+
+# Reset control variables
+var _is_resetting := false
+var _death_processed := false
 
 func _ready():
+	_safe_connect_player_signal()
 	Global.current_wave = current_wave
 	start_next_wave()
 
-
 func _process(delta):
+	if _is_resetting or not allow_wave_progression:
+		return
+		
+	if wave_spawning:
+		return
+
 	if wave_active and get_enemy_count() == 0:
 		wave_active = false
 		wave_spawn_ended = false
 
-		# Special handling for wave 4
 		if current_wave == 4:
 			if not strong_enemy_spawned:
 				strong_enemy_spawned = true
 				spawn_strong_enemy()
-				wave_active = true  # resume tracking for the boss
+				wave_active = true
 			elif not finished_fight_played:
 				finished_fight_played = true
 				await get_tree().create_timer(2).timeout
 				SceneTransitionAnimation.play("finished_fight")
+				
 		else:
 			start_next_wave()
 
+func _safe_connect_player_signal():
+	# Disconnect first to prevent duplicates
+	if player.is_connected("player_died", _on_player_died):
+		player.disconnect("player_died", _on_player_died)
+	# Connect fresh
+	player.connect("player_died", _on_player_died)
 
 func get_enemy_count() -> int:
 	var count = 0
@@ -49,11 +70,11 @@ func get_enemy_count() -> int:
 			count += 1
 	return count
 
-
 func start_next_wave():
-	if wave_spawn_ended or current_wave >= 4:
+	if wave_spawn_ended or current_wave >= 4 or wave_spawning or _is_resetting:
 		return
-
+	print("first wave works after reset")
+	wave_spawning = true
 	SceneTransitionAnimation.play("scene_transition")
 	Global.moving_to_next_wave = true
 
@@ -61,10 +82,14 @@ func start_next_wave():
 	Global.current_wave = current_wave
 
 	await get_tree().create_timer(4).timeout
-	spawn_wave(current_wave)
+	if _is_resetting:  # Don't proceed if reset happened during wait
+		return
+		
+	await spawn_wave(current_wave)
+
 	wave_spawn_ended = true
 	wave_active = true
-
+	wave_spawning = false
 
 func spawn_wave(wave_number: int):
 	var multiplier = 2.0
@@ -75,9 +100,10 @@ func spawn_wave(wave_number: int):
 
 	await spawn_enemies(spawn_rounds, mobs_per_batch, wait_time)
 
-
 func spawn_enemies(spawn_rounds: int, mobs_per_batch: int, wait_time: float):
 	for i in spawn_rounds:
+		if _is_resetting:
+			return
 		for j in mobs_per_batch:
 			var spawn_index = j % enemy_spawn_points.size()
 			var enemy = enemy_scene.instantiate()
@@ -86,9 +112,54 @@ func spawn_enemies(spawn_rounds: int, mobs_per_batch: int, wait_time: float):
 			add_child(enemy)
 		await get_tree().create_timer(wait_time).timeout
 
-
 func spawn_strong_enemy():
 	var strong_enemy = strong_enemy_scene.instantiate()
 	strong_enemy.global_position = enemy_spawn_points[0].global_position
 	strong_enemy.add_to_group("enemy")
 	add_child(strong_enemy)
+
+func _on_player_died():
+	if _is_resetting or _death_processed:
+		return
+	
+	_death_processed = true
+	_is_resetting = true
+	print("Player died - starting reset")
+	
+	await get_tree().create_timer(2.0).timeout
+	await reset_level()
+	
+	_is_resetting = false
+	_death_processed = false
+
+func reset_level():
+	print("Full level reset in progress")
+	
+	# Disconnect signal during reset
+	if player.is_connected("player_died", _on_player_died):
+		player.disconnect("player_died", _on_player_died)
+	
+	# Reset wave state
+	current_wave = 0
+	wave_spawn_ended = false
+	wave_active = false
+	strong_enemy_spawned = false
+	finished_fight_played = false
+	Global.current_wave = current_wave
+	wave_spawning = false
+	allow_wave_progression = false
+
+	# Clear all enemies
+	for child in get_children():
+		if child.is_in_group("enemy"):
+			child.queue_free()
+
+	# Reset player
+	player.reset(player_spawn_point.global_position)
+	await get_tree().create_timer(0.5).timeout
+
+	# Reconnect signal and restart waves
+	_safe_connect_player_signal()
+	allow_wave_progression = true
+	_is_resetting = false
+	start_next_wave()
