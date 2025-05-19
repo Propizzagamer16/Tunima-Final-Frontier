@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://0gdlptesj4vv"]
+[gd_scene load_steps=10 format=4 uid="uid://0gdlptesj4vv"]
 
 [ext_resource type="Texture2D" uid="uid://bqsrd5gjyhi1d" path="res://Tiles/platformer tiles/lab tileset finished transparent(2).png" id="1_3xmi8"]
 [ext_resource type="Script" uid="uid://c6h4seufdyhy6" path="res://Scenes/Thenuk's Test/weapons_lab.gd" id="1_dgrlm"]
@@ -332,6 +332,8 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_6f1pe")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cykik"]
+
 [node name="weapons lab" type="Node2D"]
 script = ExtResource("1_dgrlm")
 enemy_scene = ExtResource("2_aqc6x")
@@ -376,3 +378,13 @@ position = Vector2(958, 190)
 
 [node name="scene_transition_ani" parent="." instance=ExtResource("5_aqc6x")]
 self_modulate = Color(1, 1, 1, 0)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_cykik")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NavigationRegion2D"]
+polygon = PackedVector2Array(72, 523, 435, 520, 715, 321, 1207, 323, 1489, 516, 1849, 518, 1851, 1060, 63, 1059, 265, 896, 507, 896, 580, 708, 1341, 706, 1412, 899, 1658, 897)
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("charcter") instance=ExtResource("2_aqc6x")]
+visible = false
+charcter = NodePath("../Player")
