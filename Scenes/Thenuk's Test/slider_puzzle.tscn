@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d0ycyq0oqywo4" path="res://Tiles/slider puzzle numbers/tile8.png" id="8_fdgp4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t53ln"]
-size = Vector2(1000, 1000)
+size = Vector2(1080, 1080)
 
 [node name="slider puzzle" type="Area2D"]
 
@@ -19,49 +19,49 @@ position = Vector2(960, 540)
 shape = SubResource("RectangleShape2D_t53ln")
 
 [node name="tile1" type="Sprite2D" parent="."]
-position = Vector2(626.67, 206.67)
+position = Vector2(600, 180)
 texture = ExtResource("1_1vo18")
 region_enabled = true
-region_rect = Rect2(-40, -40, 333.333, 333.333)
+region_rect = Rect2(-40, -40, 360, 360)
 
 [node name="tile2" type="Sprite2D" parent="."]
-position = Vector2(960, 206.67)
+position = Vector2(960, 180)
 texture = ExtResource("2_nwmbd")
 region_enabled = true
-region_rect = Rect2(-40, -40, 333.333, 333.333)
+region_rect = Rect2(-40, -40, 360, 360)
 
 [node name="tile3" type="Sprite2D" parent="."]
-position = Vector2(1293.33, 206.67)
+position = Vector2(1320, 180)
 texture = ExtResource("3_v7x1b")
 region_enabled = true
-region_rect = Rect2(-40, -40, 333.333, 333.333)
+region_rect = Rect2(-40, -40, 360, 360)
 
 [node name="tile4" type="Sprite2D" parent="."]
-position = Vector2(629, 540)
+position = Vector2(600, 540)
 texture = ExtResource("4_7ovfd")
 region_enabled = true
-region_rect = Rect2(-40, -40, 333.333, 333.333)
+region_rect = Rect2(-40, -40, 360, 360)
 
 [node name="tile5" type="Sprite2D" parent="."]
-position = Vector2(964, 539)
+position = Vector2(960, 540)
 texture = ExtResource("5_fbt5u")
 region_enabled = true
-region_rect = Rect2(-40, -40, 333.333, 333.333)
+region_rect = Rect2(-40, -40, 360, 360)
 
 [node name="tile6" type="Sprite2D" parent="."]
-position = Vector2(1296, 546)
+position = Vector2(1320, 540)
 texture = ExtResource("6_811gm")
 region_enabled = true
-region_rect = Rect2(-40, -40, 333.333, 333.333)
+region_rect = Rect2(-40, -40, 360, 360)
 
 [node name="tile7" type="Sprite2D" parent="."]
-position = Vector2(625, 868)
+position = Vector2(600, 900)
 texture = ExtResource("7_n72hx")
 region_enabled = true
-region_rect = Rect2(-40, -40, 333.333, 333.333)
+region_rect = Rect2(-40, -40, 360, 360)
 
 [node name="tile8" type="Sprite2D" parent="."]
-position = Vector2(966, 873)
+position = Vector2(960, 900)
 texture = ExtResource("8_fdgp4")
 region_enabled = true
-region_rect = Rect2(-40, -40, 333.333, 333.333)
+region_rect = Rect2(-40, -40, 360, 360)
