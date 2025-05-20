@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=4 uid="uid://bitk0ceuocovb"]
+[gd_scene load_steps=3 format=4 uid="uid://cv8uivhrsrqkj"]
 
 [ext_resource type="TileSet" uid="uid://c8kic8vx3e04a" path="res://Assets/Tiles/new_tile_set.tres" id="1_klxjr"]
 [ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.tscn" id="2_pg3ux"]
