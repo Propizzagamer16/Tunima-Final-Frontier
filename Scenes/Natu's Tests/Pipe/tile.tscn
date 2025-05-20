@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://yqv6c7nbcevi"]
+
+[ext_resource type="Script" uid="uid://dq6cnaumyuf32" path="res://Scenes/Natu's Tests/Pipe/tile.gd" id="1_jgwtc"]
+[ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="2_xhp42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhp42"]
+size = Vector2(166, 152)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55vuc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xhp42")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="tile" type="Area2D"]
+script = ExtResource("1_jgwtc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(96, 88)
+shape = SubResource("RectangleShape2D_xhp42")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(93, 87)
+sprite_frames = SubResource("SpriteFrames_55vuc")
