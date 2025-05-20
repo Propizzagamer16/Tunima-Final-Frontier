@@ -481,8 +481,7 @@ position = Vector2(21, 24.8)
 scale = Vector2(2.5, 2.1)
 
 [node name="regen_timer" type="Timer" parent="."]
-wait_time = 4.966
-autostart = true
+wait_time = 7.0
 
 [node name="player_hitbox" type="Area2D" parent="."]
 

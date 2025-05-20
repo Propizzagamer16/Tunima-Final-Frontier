@@ -118,18 +118,20 @@ func _on_deal_attack_timeout() -> void:
 	Global.player_current_attack = false
 	attack_ip = false
 
-#func _on_regen_timer_timeout() -> void:
-	#if health <= 100:
-		#health += 20
-		#if health > 100:
-			#health = 100
-	#if health <= 0:
-		#health = 0
-
+func _on_regen_timer_timeout() -> void:
+	if health < 100:
+		health += 20
+		if health > 100:
+			health = 100
+	if health <= 0:
+		health = 0
+	update_hearts()
+	
 func take_damage():
 	if health > 0:
 		health -= 20
 		update_hearts()
+	$regen_timer.start()
 
 func update_hearts():
 	var hearts_to_show = int(health / 20)  # Still needed
@@ -185,6 +187,5 @@ func reset(spawn_position: Vector2):
 func die():
 	if not alive: 
 		return
-	print("thats why")
 	alive = false
 	emit_signal("player_died")  # Only emits once now

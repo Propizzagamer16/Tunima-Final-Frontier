@@ -22,7 +22,8 @@ var strong_enemy_spawned := false
 var finished_fight_played := false
 var wave_spawning := false
 var allow_wave_progression := true
-
+var low_health_played := false  
+var low_health_active := false
 # Reset control variables
 var _is_resetting := false
 var _death_processed := false
@@ -39,6 +40,12 @@ func _process(delta):
 	if wave_spawning:
 		return
 
+	if player.health <= 20 and not low_health_active:
+		SceneTransitionAnimation.play("low_health")
+	elif player.health > 20 and low_health_active:
+		low_health_active = false
+		SceneTransitionAnimation.stop()
+		
 	if wave_active and get_enemy_count() == 0:
 		wave_active = false
 		wave_spawn_ended = false
@@ -73,7 +80,6 @@ func get_enemy_count() -> int:
 func start_next_wave():
 	if wave_spawn_ended or current_wave >= 4 or wave_spawning or _is_resetting:
 		return
-	print("first wave works after reset")
 	wave_spawning = true
 	SceneTransitionAnimation.play("scene_transition")
 	Global.moving_to_next_wave = true
@@ -140,6 +146,7 @@ func reset_level():
 		player.disconnect("player_died", _on_player_died)
 	
 	# Reset wave state
+	low_health_played = false
 	current_wave = 0
 	wave_spawn_ended = false
 	wave_active = false

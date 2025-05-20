@@ -1,7 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpnslhku5ncfk"]
+[gd_scene load_steps=7 format=3 uid="uid://dpnslhku5ncfk"]
 
 [sub_resource type="Animation" id="Animation_ih2t4"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_k6r3p"]
 resource_name = "death"
@@ -50,11 +62,27 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0.231373), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_boqsc"]
+resource_name = "low_health"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 0, 0, 0.145098), Color(1, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7p2k4"]
 _data = {
 &"RESET": SubResource("Animation_ih2t4"),
 &"death": SubResource("Animation_k6r3p"),
 &"finished_fight": SubResource("Animation_7p2k4"),
+&"low_health": SubResource("Animation_boqsc"),
 &"scene_transition": SubResource("Animation_74uik")
 }
 
