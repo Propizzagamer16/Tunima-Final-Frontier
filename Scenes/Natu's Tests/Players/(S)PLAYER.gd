@@ -18,6 +18,8 @@ var current_dir = "none"
 
 var hearts_list : Array[TextureRect]
 
+signal player_died
+
 func _ready():
 	add_to_group("player")
 
@@ -32,9 +34,8 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	
 	if health <= 0:
-		alive = false
 		health = 0
-		self.queue_free()
+		die()
 		
 	delta = 0.04
 	# Add the gravity.
@@ -117,19 +118,18 @@ func _on_deal_attack_timeout() -> void:
 	Global.player_current_attack = false
 	attack_ip = false
 
-func _on_regen_timer_timeout() -> void:
-	if health <= 100:
-		health += 20
-		if health > 100:
-			health = 100
-	if health <= 0:
-		health = 0
+#func _on_regen_timer_timeout() -> void:
+	#if health <= 100:
+		#health += 20
+		#if health > 100:
+			#health = 100
+	#if health <= 0:
+		#health = 0
 
 func take_damage():
 	if health > 0:
 		health -= 20
 		update_hearts()
-		
 
 func update_hearts():
 	var hearts_to_show = int(health / 20)  # Still needed
@@ -145,7 +145,11 @@ func update_hearts():
 		hearts_list[0].get_child(0).play("Beating")
 	else:
 		hearts_list[0].get_child(0).play("Idle")
-
+		
+	if health <= 0:
+		hearts_list[0].visible = false
+	else:
+		hearts_list[0].visible = true
 func player_shooting():
 	var direction : float = Input.get_axis("ui_A", "ui_D")
 	
@@ -169,3 +173,18 @@ func muzzle_position_update():
 		muzzle.position.x = -muzzle_position.x
 	elif direction > 0:
 		muzzle.position.x = muzzle_position.x
+
+func reset(spawn_position: Vector2):
+	health = 100
+	alive = true
+	global_position = spawn_position
+	update_hearts()
+	$AnimatedSprite2D.play("SideIdle")
+	
+# In your Player.gd
+func die():
+	if not alive: 
+		return
+	print("thats why")
+	alive = false
+	emit_signal("player_died")  # Only emits once now

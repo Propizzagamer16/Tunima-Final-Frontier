@@ -382,9 +382,5 @@ self_modulate = Color(1, 1, 1, 0)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_cykik")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NavigationRegion2D"]
-polygon = PackedVector2Array(72, 523, 435, 520, 715, 321, 1207, 323, 1489, 516, 1849, 518, 1851, 1060, 63, 1059, 265, 896, 507, 896, 580, 708, 1341, 706, 1412, 899, 1658, 897)
-
-[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("charcter") instance=ExtResource("2_aqc6x")]
-visible = false
-charcter = NodePath("../Player")
+[node name="player_spawnpoint" type="Marker2D" parent="."]
+position = Vector2(967, 982)
