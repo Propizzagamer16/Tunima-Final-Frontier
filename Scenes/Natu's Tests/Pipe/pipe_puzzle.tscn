@@ -4,5 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://yqv6c7nbcevi" path="res://Scenes/Natu's Tests/Pipe/tile.tscn" id="2_x4anm"]
 
 [node name="pipe_puzzle" type="Node2D"]
+position = Vector2(566, 171)
 script = ExtResource("1_y210t")
 tile_scene = ExtResource("2_x4anm")
+grid_size = Vector2i(4, 4)
