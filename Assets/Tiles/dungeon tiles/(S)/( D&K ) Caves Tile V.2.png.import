@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cempwurbivghk"
-path="res://.godot/imported/( D&K ) Caves Tile V.2 (1).png-27d71c036502b013d950fd8dc4b32522.ctex"
+uid="uid://ce7q67a80fxix"
+path="res://.godot/imported/( D&K ) Caves Tile V.2.png-67a44157db8fbfbdac769b3bad8800c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/dungeon tiles/(S)/( D&K ) Caves Tile V.2 (1).png"
-dest_files=["res://.godot/imported/( D&K ) Caves Tile V.2 (1).png-27d71c036502b013d950fd8dc4b32522.ctex"]
+source_file="res://Assets/Tiles/dungeon tiles/(S)/( D&K ) Caves Tile V.2.png"
+dest_files=["res://.godot/imported/( D&K ) Caves Tile V.2.png-67a44157db8fbfbdac769b3bad8800c0.ctex"]
 
 [params]
 
