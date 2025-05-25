@@ -1,14 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://yqv6c7nbcevi"]
+[gd_scene load_steps=11 format=3 uid="uid://yqv6c7nbcevi"]
 
 [ext_resource type="Script" uid="uid://dq6cnaumyuf32" path="res://Scenes/Natu's Tests/Pipe/tile.gd" id="1_jgwtc"]
 [ext_resource type="Texture2D" uid="uid://cqv31vfhdgycg" path="res://Scenes/Natu's Tests/Pipe/pipes.png" id="2_xhp42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhp42"]
-size = Vector2(246, 245)
+size = Vector2(212, 196)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55vuc"]
 atlas = ExtResource("2_xhp42")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(46, 160, 23, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhp42"]
+atlas = ExtResource("2_xhp42")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp542"]
+atlas = ExtResource("2_xhp42")
+region = Rect2(234, 96, 12, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4fpj"]
+atlas = ExtResource("2_xhp42")
+region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q1pal"]
 atlas = ExtResource("2_xhp42")
@@ -26,6 +38,30 @@ animations = [{
 }],
 "loop": true,
 "name": &"elbow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhp42")
+}],
+"loop": true,
+"name": &"end",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp542")
+}],
+"loop": true,
+"name": &"node",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4fpj")
+}],
+"loop": true,
+"name": &"start",
 "speed": 5.0
 }, {
 "frames": [{
@@ -51,11 +87,12 @@ script = ExtResource("1_jgwtc")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 3)
 shape = SubResource("RectangleShape2D_xhp42")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.19209e-07, 0)
-scale = Vector2(1.89844, 1.85938)
+scale = Vector2(6, 5.877)
 sprite_frames = SubResource("SpriteFrames_55vuc")
-animation = &"tee"
+animation = &"node"
 offset = Vector2(0.085, 0)

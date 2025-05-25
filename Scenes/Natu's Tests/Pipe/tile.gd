@@ -2,6 +2,8 @@ extends Area2D
 
 var base_sides: Array[String] = []
 var rotation_index := 0
+var is_connected := false
+var finished = false
 
 func _ready():
 	assign_sides_from_animation()
@@ -15,19 +17,24 @@ func assign_sides_from_animation():
 		"straight":
 			base_sides = ["up", "down"]
 		"elbow":
-			base_sides = ["up", "right"]
+			base_sides = ["down", "left"]
 		"tee":
 			base_sides = ["up", "left", "right"]
-		"cross":
-			base_sides = ["up", "right", "down", "left"]
+		"start":
+			base_sides = ["down", "right"]
 		"end":
-			base_sides = ["up"]
+			base_sides = ["down", "left"]
+		"node":
+			base_sides = ["down"]
 		_:
 			base_sides = []
 
 func _on_input_event(viewport, event, shape_idx):
+	var sprite = $AnimatedSprite2D
+	var anim_name = sprite.animation
 	if event is InputEventMouseButton and event.pressed:
-		rotate_tile()
+		if anim_name != "start" and anim_name != "end" and finished == false:
+			rotate_tile()
 
 func rotate_tile():
 	rotation_index = (rotation_index + 1) % 4
@@ -45,3 +52,10 @@ func get_open_sides() -> Array[String]:
 		rotated.append(directions[rotated_idx])
 
 	return rotated
+
+func set_connected(state: bool):
+	is_connected = state
+	if state:
+		modulate = Color(0.6, 0.6, 1)  
+	else:
+		modulate = Color(1, 1, 1)
