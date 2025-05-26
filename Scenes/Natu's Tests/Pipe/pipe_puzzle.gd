@@ -36,7 +36,7 @@ func _ready():
 
 			if x == 0 and y == 0:
 				start_tile = tile
-			elif x == grid_size.x - 1 and y == 0:
+			elif x == grid_size.x - 1 and y == grid_size.y - 1:
 				end_tile = tile
 
 
@@ -114,6 +114,8 @@ func _unhandled_input(event):
 		if check_connections():
 			print("Puzzle Complete")
 			SceneTransitionAnimation.play("finished_fight")
-			tile_scene.finished = true
+			for row in tiles:
+				for tile in row:
+					tile.finished = true
 		else:
 			print("Path is not valid")

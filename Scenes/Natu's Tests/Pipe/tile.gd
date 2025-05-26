@@ -23,7 +23,7 @@ func assign_sides_from_animation():
 		"start":
 			base_sides = ["down", "right"]
 		"end":
-			base_sides = ["down", "left"]
+			base_sides = ["up", "left"]
 		"node":
 			base_sides = ["down"]
 		_:
