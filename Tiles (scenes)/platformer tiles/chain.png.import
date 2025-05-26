@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6vs4f1xvrq4k"
-path="res://.godot/imported/tile7.png-0c36e203068595d6459f13914a4941d6.ctex"
+uid="uid://d2bua3w8kh6my"
+path="res://.godot/imported/chain.png-a054835ff265d43772ec60288d8443a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/slider puzzle numbers/tile7.png"
-dest_files=["res://.godot/imported/tile7.png-0c36e203068595d6459f13914a4941d6.ctex"]
+source_file="res://Tiles (scenes)/platformer tiles/chain.png"
+dest_files=["res://.godot/imported/chain.png-a054835ff265d43772ec60288d8443a5.ctex"]
 
 [params]
 

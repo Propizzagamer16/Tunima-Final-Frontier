@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3ttnvsm2l0bs"
-path="res://.godot/imported/lab tileset finished transparent(1).png-fbe9fbd61cb57b031036e90d5370c192.ctex"
+uid="uid://b6aruw8vddkxy"
+path="res://.godot/imported/tile4.png-787602582fc5f5c9ffb2f66932f647f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/platformer tiles/lab tileset finished transparent(1).png"
-dest_files=["res://.godot/imported/lab tileset finished transparent(1).png-fbe9fbd61cb57b031036e90d5370c192.ctex"]
+source_file="res://Tiles (scenes)/slider puzzle numbers/tile4.png"
+dest_files=["res://.godot/imported/tile4.png-787602582fc5f5c9ffb2f66932f647f2.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://4ctc0rmmx2y4"]
 
 [ext_resource type="Script" uid="uid://ccewmr4dkb6l0" path="res://Scenes/Thenuk's Test/door.gd" id="1_isotk"]
-[ext_resource type="Texture2D" uid="uid://do8prmtikaxhv" path="res://Tiles/platformer tiles/open.png" id="2_isotk"]
-[ext_resource type="Texture2D" uid="uid://dsfosig7jwlh4" path="res://Tiles/platformer tiles/closed.png" id="3_ghmoq"]
+[ext_resource type="Texture2D" uid="uid://do8prmtikaxhv" path="res://Tiles (scenes)/platformer tiles/open.png" id="2_isotk"]
+[ext_resource type="Texture2D" uid="uid://dsfosig7jwlh4" path="res://Tiles (scenes)/platformer tiles/closed.png" id="3_ghmoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isotk"]
 size = Vector2(127, 254)

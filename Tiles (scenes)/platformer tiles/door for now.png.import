@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c88q1yme2ethq"
-path="res://.godot/imported/tile2.png-10999044af15c484b4b5f6b707fce770.ctex"
+uid="uid://6jga3jb8so1k"
+path="res://.godot/imported/door for now.png-62b4eec51ed4a8cac890254de1916060.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/slider puzzle numbers/tile2.png"
-dest_files=["res://.godot/imported/tile2.png-10999044af15c484b4b5f6b707fce770.ctex"]
+source_file="res://Tiles (scenes)/platformer tiles/door for now.png"
+dest_files=["res://.godot/imported/door for now.png-62b4eec51ed4a8cac890254de1916060.ctex"]
 
 [params]
 
