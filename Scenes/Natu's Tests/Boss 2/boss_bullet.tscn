@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://b02jemknshjq0"]
+
+[ext_resource type="Script" uid="uid://begfhbrpc18y2" path="res://Scenes/Natu's Tests/Boss 2/boss_bullet.gd" id="1_qu1ds"]
+[ext_resource type="Texture2D" uid="uid://cpr5ivareq4he" path="res://Scenes/Natu's Tests/Boss 2/spritesheet.png" id="2_qu1ds"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4anwo"]
+radius = 3.6
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqcfm"]
+atlas = ExtResource("2_qu1ds")
+region = Rect2(0, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fju7"]
+atlas = ExtResource("2_qu1ds")
+region = Rect2(63, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqnhi"]
+atlas = ExtResource("2_qu1ds")
+region = Rect2(126, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eif2x"]
+atlas = ExtResource("2_qu1ds")
+region = Rect2(189, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkg8l"]
+atlas = ExtResource("2_qu1ds")
+region = Rect2(252, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqa05"]
+atlas = ExtResource("2_qu1ds")
+region = Rect2(315, 0, 63, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n8o1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqcfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fju7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqnhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eif2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkg8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqa05")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[node name="bullet" type="Area2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_qu1ds")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.4, 0.6)
+shape = SubResource("CircleShape2D_4anwo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n8o1o")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.151926
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

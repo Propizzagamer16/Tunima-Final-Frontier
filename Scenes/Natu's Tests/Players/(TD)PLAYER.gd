@@ -208,3 +208,4 @@ func muzzle_position_update():
 			muzzle.position = Vector2(0, -50)
 		"down":
 			muzzle.position = Vector2(0, 55)
+			

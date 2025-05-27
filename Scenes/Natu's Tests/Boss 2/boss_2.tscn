@@ -1,13 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://4lgxihbf0udc"]
+[gd_scene load_steps=11 format=3 uid="uid://4lgxihbf0udc"]
 
 [ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="1_4wpdg"]
 [ext_resource type="Script" uid="uid://c3ieq784p6w8i" path="res://Scenes/Natu's Tests/Boss 2/boss_2.gd" id="1_wnlw4"]
-[ext_resource type="Script" uid="uid://b18uuui4v6ou" path="res://Scenes/Natu's Tests/Boss 2/finite_state_node.gd" id="2_7gwg8"]
-[ext_resource type="Script" uid="uid://bq7nvywitrayk" path="res://Scenes/Natu's Tests/Boss 2/state.gd" id="3_jebbx"]
-[ext_resource type="Script" uid="uid://bkidw3iv7uejr" path="res://Scenes/Natu's Tests/Boss 2/idle.gd" id="3_xoil7"]
-[ext_resource type="Script" uid="uid://ci67neoew8uh8" path="res://Scenes/Natu's Tests/Boss 2/attack.gd" id="5_xjnyv"]
-[ext_resource type="Script" uid="uid://clb0uw3irrhy4" path="res://Scenes/Natu's Tests/Boss 2/follow.gd" id="5_xoil7"]
-[ext_resource type="Script" uid="uid://d0ggqowguaal3" path="res://Scenes/Natu's Tests/Boss 2/teleport.gd" id="8_333tt"]
+[ext_resource type="PackedScene" uid="uid://b02jemknshjq0" path="res://Scenes/Natu's Tests/Boss 2/boss_bullet.tscn" id="2_7gwg8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wq37q"]
 atlas = ExtResource("1_4wpdg")
@@ -24,27 +19,40 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jebbx"]
-radius = 62.0
-height = 128.0
+[sub_resource type="Animation" id="Animation_333tt"]
+resource_name = "skill"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_40so6"]
+_data = {
+&"skill": SubResource("Animation_333tt")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gwg8"]
+size = Vector2(121, 122)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xoil7"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jebbx"]
+size = Vector2(141, 142)
+
 [node name="Boss_2" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_wnlw4")
+projectile_scene = ExtResource("2_7gwg8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7gwg8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_40so6")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_jebbx")
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_7gwg8")
 
 [node name="player_detection" type="Area2D" parent="."]
-collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection"]
 scale = Vector2(50, 50)
@@ -66,7 +74,8 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-value = 100.0
+max_value = 500.0
+value = 500.0
 fill_mode = 1
 
 [node name="debug" type="Label" parent="."]
@@ -78,25 +87,21 @@ text = "debug"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FiniteStateNode" type="Node2D" parent="."]
-script = ExtResource("2_7gwg8")
+[node name="attack_cooldown" type="Timer" parent="."]
 
-[node name="Idle" type="Node2D" parent="FiniteStateNode"]
-script = ExtResource("3_xoil7")
+[node name="hitbox" type="Area2D" parent="."]
 
-[node name="Attack" type="Node2D" parent="FiniteStateNode"]
-script = ExtResource("5_xjnyv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_jebbx")
 
-[node name="Follow" type="Node2D" parent="FiniteStateNode"]
-script = ExtResource("5_xoil7")
+[node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.5
 
-[node name="Minon" type="Node2D" parent="FiniteStateNode"]
-script = ExtResource("3_jebbx")
+[node name="teleport_cooldown" type="Timer" parent="."]
+wait_time = 5.0
 
-[node name="Death" type="Node2D" parent="FiniteStateNode"]
-script = ExtResource("3_jebbx")
-
-[node name="Teleport" type="Node2D" parent="FiniteStateNode"]
-script = ExtResource("8_333tt")
-
-[connection signal="body_entered" from="player_detection" to="FiniteStateNode/Idle" method="_on_player_detection_body_entered"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
+[connection signal="timeout" from="teleport_cooldown" to="." method="_on_teleport_cooldown_timeout"]
