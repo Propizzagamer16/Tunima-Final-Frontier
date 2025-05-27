@@ -100,8 +100,11 @@ wait_time = 0.5
 [node name="teleport_cooldown" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="weakpoints_spawns" type="Timer" parent="."]
+
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
 [connection signal="timeout" from="teleport_cooldown" to="." method="_on_teleport_cooldown_timeout"]
+[connection signal="timeout" from="weakpoints_spawns" to="." method="_on_node_spawns_timeout"]

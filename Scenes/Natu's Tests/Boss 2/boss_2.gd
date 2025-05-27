@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var progress_bar = $CanvasLayer/ProgressBar
 @export var projectile_scene: PackedScene
+@export var weakpoints_scene: PackedScene
 
 var direction : Vector2
 var player_inattack_zone = false
@@ -21,6 +22,7 @@ var health: = 500:
 
 func _ready():
 	set_physics_process(false)
+	Global.nodes_broken = 0
 
 func _process(_delta):
 	deal_with_damage()
@@ -36,8 +38,6 @@ func _process(_delta):
 	if dist < 400:
 		if can_teleport:
 			teleport_away()
-			can_teleport = false
-			$teleport_cooldown.start()
 	else:
 		attack_player()
 
@@ -50,7 +50,6 @@ func deal_with_damage():
 	if player_inattack_zone and Global.player_current_attack == true:
 		if can_take_damage == true:
 			health = health - 20
-			print("boss hurt")
 			$take_damage_cooldown.start()
 			can_take_damage = false
 	
@@ -96,3 +95,8 @@ func _on_hitbox_body_exited(body: Node2D) -> void:
 
 func _on_teleport_cooldown_timeout() -> void:
 	can_teleport = true
+	Global.weakpoints_broken = 0
+
+func _on_weakpoints_spawns_timeout() -> void:
+	var weakpoint = weakpoints_scene.instantiate()
+	weakpoint.position = ...

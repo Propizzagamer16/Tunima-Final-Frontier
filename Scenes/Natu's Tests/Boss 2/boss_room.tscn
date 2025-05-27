@@ -5,10 +5,11 @@
 
 [node name="boss_room" type="Node2D"]
 
-[node name="Boss_2" parent="." instance=ExtResource("1_1b56s")]
-position = Vector2(1666, 743)
-scale = Vector2(4, 4)
-
 [node name="player" parent="." instance=ExtResource("2_uwyag")]
 position = Vector2(174, 241)
 scale = Vector2(3, 3)
+collision_priority = 2.0
+
+[node name="Boss_2" parent="." instance=ExtResource("1_1b56s")]
+position = Vector2(1666, 743)
+scale = Vector2(4, 4)
