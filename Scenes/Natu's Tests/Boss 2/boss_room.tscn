@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://37ksorojgtrc"]
+
+[ext_resource type="PackedScene" uid="uid://4lgxihbf0udc" path="res://Scenes/Natu's Tests/Boss 2/boss_2.tscn" id="1_1b56s"]
+[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/(TD)PLAYER.tscn" id="2_uwyag"]
+
+[node name="boss_room" type="Node2D"]
+
+[node name="Boss_2" parent="." instance=ExtResource("1_1b56s")]
+position = Vector2(1666, 743)
+scale = Vector2(4, 4)
+
+[node name="player" parent="." instance=ExtResource("2_uwyag")]
+position = Vector2(-534, -573)
+scale = Vector2(3, 3)
