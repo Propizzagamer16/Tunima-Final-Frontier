@@ -32,7 +32,6 @@ func _ready():
 	get_node("AnimatedSprite2D").play("SideIdle")
 
 func _physics_process(delta: float) -> void:
-	
 	if health <= 0:
 		health = 0
 		die()
