@@ -5,12 +5,14 @@ extends CharacterBody2D
 @onready var progress_bar = $CanvasLayer/ProgressBar
 @export var projectile_scene: PackedScene
 @export var weakpoints_scene: PackedScene
+var current_weakpoint: Node2D = null
 
 var direction : Vector2
 var player_inattack_zone = false
 var can_take_damage = true
 var can_attack = true
 var can_teleport = true
+var is_vulnerable = false
 
 var health: = 500:
 	set(value):
@@ -22,24 +24,32 @@ var health: = 500:
 
 func _ready():
 	set_physics_process(false)
-	Global.nodes_broken = 0
+	Global.weakpoints_broken = 0
+	$weakpoints_spawns.start()
+
 
 func _process(_delta):
-	deal_with_damage()
-	direction = player.position - position
+	if Global.weakpoints_broken >= 3 and not is_vulnerable:
+		is_vulnerable = true
+		can_attack = false
+		can_teleport = false
+		$vulnerable_timer.start()
 
-	if direction.x < 0:
-		animated_sprite.flip_h = true
-	else:
-		animated_sprite.flip_h = false
+	if not is_vulnerable:
+		direction = player.position - position
+		if direction.x < 0:
+			animated_sprite.flip_h = true
+		else:
+			animated_sprite.flip_h = false
 
-	var dist = position.distance_to(player.position)
-	
-	if dist < 400:
-		if can_teleport:
+		var dist = position.distance_to(player.position)
+		if dist < 400 and can_teleport:
 			teleport_away()
-	else:
-		attack_player()
+		elif can_attack:
+			attack_player()
+
+	deal_with_damage()
+
 
 
 func _physics_process(delta: float) -> void:
@@ -92,11 +102,32 @@ func _on_hitbox_body_exited(body: Node2D) -> void:
 	if body.name == "player":
 		player_inattack_zone = false
 
+func _on_weakpoints_spawns_timeout():
+	if current_weakpoint != null and current_weakpoint.is_inside_tree():
+		return
 
-func _on_teleport_cooldown_timeout() -> void:
-	can_teleport = true
+	current_weakpoint = weakpoints_scene.instantiate()
+
+	var arena_rect = Rect2(Vector2(150, 150), Vector2(1620, 780))
+	current_weakpoint.position = arena_rect.position + Vector2(
+		randf() * arena_rect.size.x,
+		randf() * arena_rect.size.y
+	)
+	
+	current_weakpoint.connect("tree_exited", Callable(self, "_on_weakpoint_destroyed"))
+	get_parent().add_child(current_weakpoint)
+
+func _on_weakpoint_destroyed():
+	print("Weakpoint destroyed, starting cooldown timer...")
+	current_weakpoint = null
+	if Global.weakpoints_broken <= 2:
+		$weakpoints_spawns.start()
+
+
+func _on_vulnerable_timer_timeout():
 	Global.weakpoints_broken = 0
-
-func _on_weakpoints_spawns_timeout() -> void:
-	var weakpoint = weakpoints_scene.instantiate()
-	weakpoint.position = ...
+	can_attack = true
+	can_teleport = true
+	is_vulnerable = false
+	current_weakpoint = null
+	$weakpoints_spawns.start()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://4lgxihbf0udc"]
+[gd_scene load_steps=12 format=3 uid="uid://4lgxihbf0udc"]
 
 [ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="1_4wpdg"]
 [ext_resource type="Script" uid="uid://c3ieq784p6w8i" path="res://Scenes/Natu's Tests/Boss 2/boss_2.gd" id="1_wnlw4"]
 [ext_resource type="PackedScene" uid="uid://b02jemknshjq0" path="res://Scenes/Natu's Tests/Boss 2/boss_bullet.tscn" id="2_7gwg8"]
+[ext_resource type="PackedScene" uid="uid://bx56vnutkqrxg" path="res://Scenes/Natu's Tests/Boss 2/boss_weakpoints.tscn" id="3_jebbx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wq37q"]
 atlas = ExtResource("1_4wpdg")
@@ -38,6 +39,7 @@ size = Vector2(141, 142)
 [node name="Boss_2" type="CharacterBody2D"]
 script = ExtResource("1_wnlw4")
 projectile_scene = ExtResource("2_7gwg8")
+weakpoints_scene = ExtResource("3_jebbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7gwg8")
@@ -97,14 +99,17 @@ shape = SubResource("RectangleShape2D_jebbx")
 [node name="take_damage_cooldown" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="teleport_cooldown" type="Timer" parent="."]
+[node name="vulnerable_timer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
 
 [node name="weakpoints_spawns" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
 
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
-[connection signal="timeout" from="teleport_cooldown" to="." method="_on_teleport_cooldown_timeout"]
-[connection signal="timeout" from="weakpoints_spawns" to="." method="_on_node_spawns_timeout"]
+[connection signal="timeout" from="vulnerable_timer" to="." method="_on_vulnerable_timer_timeout"]
+[connection signal="timeout" from="weakpoints_spawns" to="." method="_on_weakpoints_spawns_timeout"]
