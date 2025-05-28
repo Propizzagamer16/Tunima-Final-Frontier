@@ -18,7 +18,6 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _process(_delta):
 	if player_inside and Global.player_current_attack and can_take_damage:
-		print("damage taken")
 		health -= 20
 		can_take_damage = false
 		$take_damage_cooldown.start()
@@ -29,5 +28,4 @@ func _process(_delta):
 
 
 func _on_take_damage_cooldown_timeout() -> void:
-	print("cooldown in play")
 	can_take_damage = true

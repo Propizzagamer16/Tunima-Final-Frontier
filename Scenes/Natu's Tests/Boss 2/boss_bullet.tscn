@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://begfhbrpc18y2" path="res://Scenes/Natu's Tests/Boss 2/boss_bullet.gd" id="1_qu1ds"]
 [ext_resource type="Texture2D" uid="uid://cpr5ivareq4he" path="res://Scenes/Natu's Tests/Boss 2/spritesheet.png" id="2_qu1ds"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4anwo"]
-radius = 3.6
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qu1ds"]
+size = Vector2(39.2, 27)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqcfm"]
 atlas = ExtResource("2_qu1ds")
@@ -66,14 +66,15 @@ one_shot = true
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.4, 0.6)
-shape = SubResource("CircleShape2D_4anwo")
+position = Vector2(9.2, 0.3)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_qu1ds")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n8o1o")
 animation = &"fly"
 autoplay = "fly"
-frame_progress = 0.151926
+frame_progress = 0.174133
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
