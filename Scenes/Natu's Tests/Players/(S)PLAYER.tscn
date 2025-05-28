@@ -9,7 +9,7 @@ radius = 6.0
 height = 18.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7663"]
-size = Vector2(16, 18)
+size = Vector2(17, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkc1m"]
 atlas = ExtResource("3_x7663")
@@ -435,49 +435,53 @@ wait_time = 0.502
 [node name="health_bar" type="CanvasLayer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="health_bar"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 181.0
-offset_bottom = 41.0
+offset_right = 180.0
+offset_bottom = 40.0
 
 [node name="heart" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart" instance=ExtResource("4_6ramj")]
-scale = Vector2(1.05, 0.95)
+position = Vector2(27, 26)
+scale = Vector2(2.5, 2.45)
+offset = Vector2(0.385, 0.65)
 
 [node name="heart2" type="TextureRect" parent="health_bar/HBoxContainer"]
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart2" instance=ExtResource("4_6ramj")]
-position = Vector2(3, 16)
-scale = Vector2(2.5, 2.1)
+position = Vector2(26, 26)
+scale = Vector2(2.5, 2.45)
+offset = Vector2(0.385, 0.65)
 
 [node name="heart3" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart3" instance=ExtResource("4_6ramj")]
-position = Vector2(15, 16)
-scale = Vector2(2.5, 2.1)
+position = Vector2(66, 26)
+scale = Vector2(2.5, 2.45)
 animation = &"Beating"
+offset = Vector2(0.385, 0.65)
 
 [node name="heart4" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart4" instance=ExtResource("4_6ramj")]
-position = Vector2(11, 16)
-scale = Vector2(2.5, 2.1)
+position = Vector2(65, 26)
+scale = Vector2(2.5, 2.45)
+offset = Vector2(0.385, 0.65)
 
 [node name="heart5" type="TextureRect" parent="health_bar/HBoxContainer"]
 custom_minimum_size = Vector2(41, 0)
 layout_mode = 2
 
 [node name="Hearts" parent="health_bar/HBoxContainer/heart5" instance=ExtResource("4_6ramj")]
-position = Vector2(7, 16)
-scale = Vector2(2.5, 2.1)
+position = Vector2(64, 26)
+scale = Vector2(2.5, 2.45)
+offset = Vector2(0.385, 0.65)
 
 [node name="regen_timer" type="Timer" parent="."]
 wait_time = 7.0
@@ -485,11 +489,12 @@ wait_time = 7.0
 [node name="player_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
-position = Vector2(1, 0)
+position = Vector2(10, 24)
 shape = SubResource("RectangleShape2D_x7663")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -8)
+position = Vector2(-3, -8)
+scale = Vector2(0.854167, 0.885417)
 sprite_frames = SubResource("SpriteFrames_6n4wj")
 animation = &"SideAttack"
 
