@@ -22,6 +22,7 @@ signal player_died
 
 func _ready():
 	add_to_group("player")
+	ChainGlobal.ChainOverlap.connect(chainOver)
 
 	
 	muzzle_position = muzzle.position
@@ -189,3 +190,9 @@ func die():
 		return
 	alive = false
 	emit_signal("player_died")  # Only emits once now
+	
+func chainOver():
+	if ChainGlobal.ChainOverlap:
+		velocity.y = -400
+		print("yo")
+		

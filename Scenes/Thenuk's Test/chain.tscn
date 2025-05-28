@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dawt5unn61wjh"]
+
+[ext_resource type="Script" uid="uid://buq4q2yj8w322" path="res://Scenes/Thenuk's Test/chain.gd" id="1_4h1al"]
+[ext_resource type="Texture2D" uid="uid://d2bua3w8kh6my" path="res://Tiles (scenes)/platformer tiles/chain.png" id="2_mf8vd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h1al"]
+size = Vector2(37, 254)
+
+[node name="chain" type="Node2D"]
+script = ExtResource("1_4h1al")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mf8vd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4h1al")
