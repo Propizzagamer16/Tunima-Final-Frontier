@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx56vnutkqrxg"]
+[gd_scene load_steps=9 format=3 uid="uid://bx56vnutkqrxg"]
 
 [ext_resource type="Script" uid="uid://cej2bbnhg77pp" path="res://Scenes/Natu's Tests/Boss 2/boss_weakpoints.gd" id="1_dws73"]
 [ext_resource type="Texture2D" uid="uid://crbov28ht1ere" path="res://Scenes/Natu's Tests/Boss 2/hit.png" id="1_h7i61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dws73"]
-size = Vector2(24, 30)
+size = Vector2(40.4, 40.2)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_igkqb"]
 atlas = ExtResource("1_h7i61")
@@ -35,22 +35,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igkqb"]
+size = Vector2(26.2, 30.4)
+
 [node name="boss_weakpoints" type="Area2D"]
-position = Vector2(-1, -1)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-1, -5.96046e-08)
+scale = Vector2(5, 5)
 script = ExtResource("1_dws73")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0.4, -0.1)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dws73")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.5, 0)
 sprite_frames = SubResource("SpriteFrames_6tfor")
-frame_progress = 0.938624
+frame_progress = 0.934858
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.299998, -0.399999)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_igkqb")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
