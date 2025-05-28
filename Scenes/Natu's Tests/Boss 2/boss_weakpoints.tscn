@@ -46,7 +46,6 @@ metadata/_edit_group_ = true
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.4, -0.1)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dws73")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -55,12 +54,12 @@ sprite_frames = SubResource("SpriteFrames_6tfor")
 frame_progress = 0.934858
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0.299998, -0.399999)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_igkqb")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
