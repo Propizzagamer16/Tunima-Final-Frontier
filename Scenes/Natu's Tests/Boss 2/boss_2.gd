@@ -36,7 +36,7 @@ func _process(_delta):
 		$vulnerable_timer.start()
 
 	if not is_vulnerable:
-		direction = player.position - position
+ 		direction = player.position - position
 		if direction.x < 0:
 			animated_sprite.flip_h = true
 		else:

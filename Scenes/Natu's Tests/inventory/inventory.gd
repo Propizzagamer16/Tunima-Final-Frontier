@@ -15,7 +15,7 @@ func _unhandled_input(event):
 			if hotbar and index < hotbar.get_child_count():
 				var slot = hotbar.get_child(index)
 				if slot.item and slot.item.has_method("use"):
-					var player = get_tree().get_first_node_in_group("Player")
+					var player = get_parent()
 					if player:
 						slot.item.use(player)
 						slot.set_amount(slot.amount - 1)

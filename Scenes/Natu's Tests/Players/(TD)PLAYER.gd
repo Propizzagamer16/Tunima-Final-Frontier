@@ -15,8 +15,11 @@ var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 var muzzle_position
 
 var hearts_list : Array[TextureRect]
+
 #
 func _ready():
+	var hotbar_ui = get_node("Inventory/UI/Hotbar")
+	hotbar_ui.visible = true
 	muzzle_position = muzzle.position
 	var hearts_parent = $health_bar/HBoxContainer
 	for child in hearts_parent.get_children():
@@ -213,6 +216,11 @@ func muzzle_position_update():
 			muzzle.position = Vector2(0, -50)
 		"down":
 			muzzle.position = Vector2(0, 55)
+
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("inventory"):
+		var inventory_ui = get_node("Inventory/UI/InventoryUI")
+		inventory_ui.visible = not inventory_ui.visible
 
 func heal(amount: int):
 	print("it gets here")
