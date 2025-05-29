@@ -160,6 +160,10 @@ func take_damage():
 		health -= 20
 		update_hearts()
 		
+func take_ten_damage():
+	if health > 0:
+		health -= 10
+		update_hearts()
 
 func update_hearts():
 	var hearts_to_show = int(health / 20)  # Still needed

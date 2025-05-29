@@ -68,12 +68,25 @@ func _on_take_damage_cooldown_timeout() -> void:
 	can_take_damage = true
 		
 func teleport_away():
-	var offset = (position - player.position).normalized() * 900
-	global_position += offset
-	
-	## Optional FX or cooldown
-	#$TeleportCooldown.start()
-	#set_physics_process(false)  # Optional if you want to "pause" briefly
+	var arena_rect = Rect2(Vector2(150, 150), Vector2(1620, 780))
+	var attempts = 8
+	var best_pos = global_position
+	var max_distance = 0.0
+
+	for i in range(attempts):
+		var angle = TAU * i / attempts #gets 8 diff angles
+		var offset = Vector2.RIGHT.rotated(angle) * 900
+		var candidate = global_position + offset
+
+		candidate.x = clamp(candidate.x, arena_rect.position.x, arena_rect.position.x + arena_rect.size.x)
+		candidate.y = clamp(candidate.y, arena_rect.position.y, arena_rect.position.y + arena_rect.size.y)
+
+		var dist = candidate.distance_to(player.global_position)
+		if dist > max_distance:
+			max_distance = dist
+			best_pos = candidate
+
+	global_position = best_pos
 
 func shoot_projectile_at_player():
 	var bullet = projectile_scene.instantiate()
@@ -92,8 +105,7 @@ func attack_player():
 
 func _on_attack_cooldown_timeout():
 	can_attack = true
-
-
+	
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		player_inattack_zone = true
@@ -118,7 +130,6 @@ func _on_weakpoints_spawns_timeout():
 	get_parent().add_child(current_weakpoint)
 
 func _on_weakpoint_destroyed():
-	print("Weakpoint destroyed, starting cooldown timer...")
 	current_weakpoint = null
 	if Global.weakpoints_broken <= 2:
 		$weakpoints_spawns.start()
