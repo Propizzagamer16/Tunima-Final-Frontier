@@ -36,7 +36,7 @@ func _process(_delta):
 		$vulnerable_timer.start()
 
 	if not is_vulnerable:
- 		direction = player.position - position
+		direction = player.position - position
 		if direction.x < 0:
 			animated_sprite.flip_h = true
 		else:
@@ -48,21 +48,16 @@ func _process(_delta):
 		elif can_attack:
 			attack_player()
 
-	deal_with_damage()
-
-
-
 func _physics_process(delta: float) -> void:
 	velocity = direction.normalized() * 40
 	move_and_collide(velocity * delta)
 	
-func deal_with_damage():
-	if player_inattack_zone and Global.player_current_attack == true:
+func take_damage(current_damage):
+	if player_inattack_zone:
 		if can_take_damage == true:
-			health = health - 20
+			health = health - current_damage
 			$take_damage_cooldown.start()
 			can_take_damage = false
-	
 
 func _on_take_damage_cooldown_timeout() -> void:
 	can_take_damage = true
