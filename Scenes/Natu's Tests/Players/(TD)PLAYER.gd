@@ -5,10 +5,14 @@ var enemy_attack_cooldown = true
 var health = 100
 var max_health = 100
 var alive = true
+var base_damage: int = 20
+var current_damage: int = base_damage
+
 
 var attack_ip = false
 var current_dir = "none"
-const speed = 700
+var speed = 700
+var active_boosts = {}
 
 var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 @onready var muzzle : Marker2D = $Muzzle
@@ -28,7 +32,6 @@ func _ready():
 	get_node("AnimatedSprite2D").play("Idle")
 
 ###4D MOVEMENT
-@export var movement_speed: float = 500
 var character_direction := Vector2.ZERO
 
 func _physics_process(delta):
@@ -40,10 +43,10 @@ func _physics_process(delta):
 		
 	muzzle_position_update()
 	player_shooting()
-	player_movement(delta)
+	player_movement()
 	attack()
 	
-func player_movement(delta):	
+func player_movement():	
 	
 	if Input.is_action_pressed("ui_D"):
 		current_dir = "right"
@@ -146,18 +149,14 @@ func attack():
 			$AnimatedSprite2D.play("UpAttack")
 			$deal_attack.start()
 
+func deal_damage(enemy: Node):
+	if enemy.has_method("take_damage") and Global.player_current_attack:
+		enemy.take_damage(current_damage)
+
+
 func _on_deal_attack_timeout() -> void:
 	Global.player_current_attack = false
 	attack_ip = false
-
-
-func _on_regen_timer_timeout() -> void:
-	if health < 100:
-		health = health + 20
-		if health > 100:
-			health = 100
-	if health <= 0:
-		health = 0
 
 func take_damage():
 	if health > 0:
@@ -170,7 +169,7 @@ func take_ten_damage():
 		update_hearts()
 
 func update_hearts():
-	var hearts_to_show = int(health / 20)  # Still needed
+	var hearts_to_show = int(health / 20) 
 
 	# Hide or show each heart manually
 	hearts_list[0].visible = hearts_to_show >= 1
@@ -179,7 +178,6 @@ func update_hearts():
 	hearts_list[3].visible = hearts_to_show >= 4
 	hearts_list[4].visible = hearts_to_show >= 5
 
-	# Optional: heartbeat animation on last heart
 	if hearts_to_show == 1:
 		hearts_list[0].get_child(0).play("Beating")
 	else:
@@ -187,13 +185,12 @@ func update_hearts():
 
 func player_shooting():
 	var xdirection: float = Input.get_axis("ui_A", "ui_D")
-	var ydirection: float = Input.get_axis("ui_W", "ui_S")  # Up is negative
+	var ydirection: float = Input.get_axis("ui_W", "ui_S")
 
 	if Input.is_action_just_pressed("shoot"):
 		var bullet_instance = bullet.instantiate() as Node2D
 		var dir = Vector2(xdirection, ydirection)
-
-		# Default to current_dir if no input held
+		
 		if dir == Vector2.ZERO:
 			match current_dir:
 				"right": dir = Vector2.RIGHT
@@ -221,8 +218,34 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("inventory"):
 		var inventory_ui = get_node("Inventory/UI/InventoryUI")
 		inventory_ui.visible = not inventory_ui.visible
+		var weapon_ui = get_node("Inventory/UI/weapon_upgrade")
+		weapon_ui.visible = not weapon_ui.visible
 
 func heal(amount: int):
-	print("it gets here")
 	health = min(health + amount, max_health)
 	update_hearts()
+
+
+func apply_power_up(stat: String, amount: float, duration: float) -> void:
+	if stat == "speed":
+		speed += amount
+		active_boosts[stat] = amount
+		await get_tree().create_timer(duration).timeout
+		speed -= amount
+		active_boosts.erase(stat)
+		
+	elif stat == "firerate":
+		active_boosts[stat] = amount
+		$deal_attack.wait_time = 0.25
+		$AnimatedSprite2D.speed_scale = 1.5
+		await get_tree().create_timer(duration).timeout
+		$deal_attack.wait_time = 0.5
+		$AnimatedSprite2D.speed_scale = 1.0
+		active_boosts.erase(stat)
+		
+	elif stat == "damage":
+		current_damage += amount
+		active_boosts[stat] = amount
+		await get_tree().create_timer(duration).timeout
+		current_damage -= amount
+		active_boosts.erase(stat)

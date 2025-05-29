@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	$UI/InventoryUI.hide()
+	$UI/weapon_upgrade.hide()
 	
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:

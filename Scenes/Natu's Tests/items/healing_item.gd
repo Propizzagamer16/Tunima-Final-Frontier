@@ -1,4 +1,4 @@
-extends Item
+extends GameItem
 class_name HealingItem
 
 @export var heal_amount: int = 20

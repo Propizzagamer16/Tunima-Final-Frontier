@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FireRate" load_steps=3 format=3 uid="uid://cbo34mrkdikaq"]
+
+[ext_resource type="Texture2D" uid="uid://cpr5ivareq4he" path="res://Scenes/Natu's Tests/Boss 2/spritesheet.png" id="1_xvj0o"]
+[ext_resource type="Script" uid="uid://osuumdpjqk1q" path="res://Scenes/Natu's Tests/items/powerups/firerate_boost.gd" id="1_ysvum"]
+
+[resource]
+script = ExtResource("1_ysvum")
+name = "firerate_boost"
+icon = ExtResource("1_xvj0o")
+description = ""
+metadata/_custom_type_script = "uid://osuumdpjqk1q"

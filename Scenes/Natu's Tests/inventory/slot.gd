@@ -1,6 +1,6 @@
 extends Panel
 
-@export var item : Item = null:
+@export var item : GameItem = null:
 	set(value):
 		item = value
 		
@@ -28,8 +28,9 @@ func add_amount(value:int):
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if "item" in data:
-		return is_instance_of(data.item, Item)
+		return is_instance_of(data.item, GameItem)
 	return false
+	
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var temp = item
 	item = data.item
@@ -38,5 +39,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	temp = amount
 	amount = data.amount
 	data.amount = temp
+	
 func _get_drag_data(at_position: Vector2) -> Variant:
 	return self
