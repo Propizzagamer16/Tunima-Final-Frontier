@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HealingItem" load_steps=2 format=3 uid="uid://bcgeyqg04d48u"]
+
+[ext_resource type="Script" uid="uid://b27bvljqjrpq8" path="res://Scenes/Natu's Tests/items/healing_item.gd" id="1_0nr63"]
+
+[resource]
+script = ExtResource("1_0nr63")
+heal_amount = 20
+name = ""
+description = ""
+metadata/_custom_type_script = "uid://b27bvljqjrpq8"

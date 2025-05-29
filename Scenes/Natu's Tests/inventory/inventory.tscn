@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://0v47rdwgcw8g"]
+
+[ext_resource type="Script" uid="uid://bnv7jsfslagw1" path="res://Scenes/Natu's Tests/inventory/inventory.gd" id="1_83pgt"]
+[ext_resource type="PackedScene" uid="uid://c3a5oicp5jblc" path="res://Scenes/Natu's Tests/inventory/slot.tscn" id="1_nc84u"]
+[ext_resource type="Texture2D" uid="uid://godqsckmgsgt" path="res://Assets/Misc/Weapons/spritesheet.png" id="3_m6jwj"]
+[ext_resource type="Script" uid="uid://b27bvljqjrpq8" path="res://Scenes/Natu's Tests/items/healing_item.gd" id="4_hpnjs"]
+
+[sub_resource type="Resource" id="Resource_h4iws"]
+script = ExtResource("4_hpnjs")
+heal_amount = 20
+name = "HealingItem"
+icon = ExtResource("3_m6jwj")
+description = "heals 20 hp"
+metadata/_custom_type_script = "uid://b27bvljqjrpq8"
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_83pgt")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" type="GridContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Slot" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot2" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot3" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot4" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot5" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot6" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot7" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot8" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot9" parent="UI/InventoryUI" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Hotbar" type="HBoxContainer" parent="UI"]
+custom_minimum_size = Vector2(80, 80)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Slot" parent="UI/Hotbar" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+item = SubResource("Resource_h4iws")
+amount = 4
+
+[node name="Slot2" parent="UI/Hotbar" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot3" parent="UI/Hotbar" instance=ExtResource("1_nc84u")]
+layout_mode = 2
+
+[node name="Slot4" parent="UI/Hotbar" instance=ExtResource("1_nc84u")]
+layout_mode = 2

@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://37ksorojgtrc"]
+[gd_scene load_steps=5 format=3 uid="uid://37ksorojgtrc"]
 
 [ext_resource type="PackedScene" uid="uid://4lgxihbf0udc" path="res://Scenes/Natu's Tests/Boss 2/boss_2.tscn" id="1_1b56s"]
+[ext_resource type="Script" uid="uid://dvuh6ojwkenbi" path="res://Scenes/Natu's Tests/Boss 2/boss_room.gd" id="1_11nuu"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/(TD)PLAYER.tscn" id="2_uwyag"]
+[ext_resource type="PackedScene" uid="uid://0v47rdwgcw8g" path="res://Scenes/Natu's Tests/inventory/inventory.tscn" id="3_8eayd"]
 
 [node name="boss_room" type="Node2D"]
+script = ExtResource("1_11nuu")
 
-[node name="player" parent="." instance=ExtResource("2_uwyag")]
+[node name="player" parent="." groups=["Player"] instance=ExtResource("2_uwyag")]
 position = Vector2(174, 241)
 scale = Vector2(3, 3)
 collision_priority = 2.0
@@ -13,3 +16,5 @@ collision_priority = 2.0
 [node name="Boss_2" parent="." instance=ExtResource("1_1b56s")]
 position = Vector2(1666, 743)
 scale = Vector2(4, 4)
+
+[node name="Inventory" parent="." instance=ExtResource("3_8eayd")]

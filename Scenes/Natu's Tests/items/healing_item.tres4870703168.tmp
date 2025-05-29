@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cy3kjedkqs8rm"]
+
+[ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="1_m1tmt"]
+[ext_resource type="Script" uid="uid://beeqjmdtwc1lm" path="res://Scenes/Natu's Tests/items/items.gd" id="2_txi7s"]
+
+[resource]
+script = ExtResource("2_txi7s")
+name = "Healing Potion"
+icon = ExtResource("1_m1tmt")
+description = "restores 20 hp"
+metadata/_custom_type_script = "uid://beeqjmdtwc1lm"

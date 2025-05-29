@@ -3,6 +3,7 @@ extends CharacterBody2D
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var health = 100
+var max_health = 100
 var alive = true
 
 var attack_ip = false
@@ -212,4 +213,8 @@ func muzzle_position_update():
 			muzzle.position = Vector2(0, -50)
 		"down":
 			muzzle.position = Vector2(0, 55)
-			
+
+func heal(amount: int):
+	print("it gets here")
+	health = min(health + amount, max_health)
+	update_hearts()
