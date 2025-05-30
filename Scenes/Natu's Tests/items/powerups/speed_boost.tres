@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("1_iw756")
 stat_to_boost = "speed"
-boost_amount = 50.0
+boost_amount = 300.0
 duration = 8.0
 name = "SpeedBoost"
 icon = ExtResource("1_st213")
 description = "speeedboost for 8 sec"
+stat = "speed"
 metadata/_custom_type_script = "uid://b87reqo0tugs6"

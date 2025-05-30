@@ -23,6 +23,7 @@ var health: = 500:
 			self.queue_free()
 
 func _ready():
+	add_to_group("enemies")
 	set_physics_process(false)
 	Global.weakpoints_broken = 0
 	$weakpoints_spawns.start()

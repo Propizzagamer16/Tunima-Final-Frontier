@@ -13,6 +13,13 @@ var attack_ip = false
 var current_dir = "none"
 var speed = 700
 var active_boosts = {}
+var powerup_cooldowns: Dictionary = {
+	"speed": 0.0,
+	"strength": 0.0,
+	"firerate": 0.0,
+	"health": 0.0
+}
+
 
 var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 @onready var muzzle : Marker2D = $Muzzle
@@ -34,7 +41,17 @@ func _ready():
 ###4D MOVEMENT
 var character_direction := Vector2.ZERO
 
+
+func _process(delta):
+	for key in powerup_cooldowns.keys():
+		if powerup_cooldowns[key] > 0:
+			powerup_cooldowns[key] -= delta
+
 func _physics_process(delta):
+	for key in powerup_cooldowns.keys():
+		if powerup_cooldowns[key] > 0:
+			powerup_cooldowns[key] = max(0, powerup_cooldowns[key] - delta)
+			
 	if health <= 0:
 		alive = false
 		health = 0
@@ -45,6 +62,7 @@ func _physics_process(delta):
 	player_shooting()
 	player_movement()
 	attack()
+	deal_damage()
 	
 func player_movement():	
 	
@@ -149,10 +167,10 @@ func attack():
 			$AnimatedSprite2D.play("UpAttack")
 			$deal_attack.start()
 
-func deal_damage(enemy: Node):
-	if enemy.has_method("take_damage") and Global.player_current_attack:
-		enemy.take_damage(current_damage)
-
+func deal_damage():
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy.has_method("take_damage") and Global.player_current_attack:
+			enemy.take_damage(current_damage)
 
 func _on_deal_attack_timeout() -> void:
 	Global.player_current_attack = false
@@ -221,31 +239,39 @@ func _unhandled_input(event):
 		var weapon_ui = get_node("Inventory/UI/weapon_upgrade")
 		weapon_ui.visible = not weapon_ui.visible
 
-func heal(amount: int):
-	health = min(health + amount, max_health)
-	update_hearts()
 
+func apply_power_up(stat: String, amount: float, duration: float, cooldown: float) -> void:
+	if powerup_cooldowns[stat] > 0 or active_boosts.has(stat):
+		return
 
-func apply_power_up(stat: String, amount: float, duration: float) -> void:
-	if stat == "speed":
-		speed += amount
-		active_boosts[stat] = amount
-		await get_tree().create_timer(duration).timeout
-		speed -= amount
-		active_boosts.erase(stat)
-		
-	elif stat == "firerate":
-		active_boosts[stat] = amount
-		$deal_attack.wait_time = 0.25
-		$AnimatedSprite2D.speed_scale = 1.5
-		await get_tree().create_timer(duration).timeout
-		$deal_attack.wait_time = 0.5
-		$AnimatedSprite2D.speed_scale = 1.0
-		active_boosts.erase(stat)
-		
-	elif stat == "damage":
-		current_damage += amount
-		active_boosts[stat] = amount
-		await get_tree().create_timer(duration).timeout
-		current_damage -= amount
-		active_boosts.erase(stat)
+	powerup_cooldowns[stat] = cooldown 
+
+	match stat:
+		"speed":
+			print("speed acitvated")
+			speed += amount
+			active_boosts["speed"] = amount
+			await get_tree().create_timer(duration).timeout
+			speed -= amount
+			active_boosts.erase("speed")
+
+		"firerate":
+			print("firerate acitvated")
+			active_boosts["firerate"] = amount
+			$deal_attack.wait_time = 0.25
+			await get_tree().create_timer(duration).timeout
+			$deal_attack.wait_time = 0.5
+			active_boosts.erase("firerate")
+
+		"strength":
+			print("strength acitvated")
+			current_damage += amount
+			active_boosts["strength"] = amount
+			await get_tree().create_timer(duration).timeout
+			current_damage -= amount
+			active_boosts.erase("strength")
+
+		"health":
+			print("health acitvated")
+			health = min(health + amount, max_health)
+			update_hearts()

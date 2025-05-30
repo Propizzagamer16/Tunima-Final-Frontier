@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StrengthBoost" load_steps=3 format=3 uid="uid://2q08xwsvdb8e"]
+
+[ext_resource type="Script" uid="uid://cbmrc2252kb8s" path="res://Scenes/Natu's Tests/items/powerups/strength_boost.gd" id="1_skcxl"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_skcxl"]
+
+[resource]
+script = ExtResource("1_skcxl")
+name = "StrengthBoost"
+icon = SubResource("PlaceholderTexture2D_skcxl")
+description = ""
+stat = "strength"
+metadata/_custom_type_script = "uid://cbmrc2252kb8s"
