@@ -36,7 +36,7 @@ func _process(_delta):
 		can_teleport = false
 		$vulnerable_timer.start()
 
-	if not is_vulnerable:
+	if not is_vulnerable and player:
 		direction = player.position - position
 		if direction.x < 0:
 			animated_sprite.flip_h = true
@@ -127,7 +127,7 @@ func _on_weakpoints_spawns_timeout():
 
 func _on_weakpoint_destroyed():
 	current_weakpoint = null
-	if Global.weakpoints_broken <= 2:
+	if Global.weakpoints_broken <= 2 and self:
 		$weakpoints_spawns.start()
 
 

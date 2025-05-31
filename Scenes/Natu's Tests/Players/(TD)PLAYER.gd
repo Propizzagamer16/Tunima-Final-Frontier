@@ -26,7 +26,7 @@ var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 var muzzle_position
 
 var hearts_list : Array[TextureRect]
-
+signal player_died
 #
 func _ready():
 	var hotbar_ui = get_node("Inventory/UI/Hotbar")
@@ -51,13 +51,14 @@ func _physics_process(delta):
 	for key in powerup_cooldowns.keys():
 		if powerup_cooldowns[key] > 0:
 			powerup_cooldowns[key] = max(0, powerup_cooldowns[key] - delta)
-			
-	if health <= 0:
+
+	if health <= 0 and alive:
 		alive = false
 		health = 0
-		self.queue_free()
-		print("player has been killed")
-		
+		hide()
+		set_physics_process(false)
+		emit_signal("player_died")
+
 	muzzle_position_update()
 	player_shooting()
 	player_movement()
@@ -177,12 +178,12 @@ func _on_deal_attack_timeout() -> void:
 	attack_ip = false
 
 func take_damage():
-	if health > 0:
+	if health >= 0:
 		health -= 20
 		update_hearts()
 		
 func take_ten_damage():
-	if health > 0:
+	if health >= 0:
 		health -= 10
 		update_hearts()
 
@@ -190,12 +191,11 @@ func update_hearts():
 	var hearts_to_show = int(health / 20) 
 
 	# Hide or show each heart manually
-	hearts_list[0].visible = hearts_to_show >= 1
+	hearts_list[0].visible = hearts_to_show >= 0.5
 	hearts_list[1].visible = hearts_to_show >= 2
 	hearts_list[2].visible = hearts_to_show >= 3
 	hearts_list[3].visible = hearts_to_show >= 4
 	hearts_list[4].visible = hearts_to_show >= 5
-
 	if hearts_to_show == 1:
 		hearts_list[0].get_child(0).play("Beating")
 	else:
@@ -275,3 +275,12 @@ func apply_power_up(stat: String, amount: float, duration: float, cooldown: floa
 			print("health acitvated")
 			health = min(health + amount, max_health)
 			update_hearts()
+
+func reset(spawn_position: Vector2):
+	health = 100
+	alive = true
+	global_position = spawn_position
+	update_hearts()
+	$AnimatedSprite2D.play("SideIdle")
+	show()
+	set_physics_process(true)

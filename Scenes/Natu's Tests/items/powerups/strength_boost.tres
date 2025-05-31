@@ -6,6 +6,10 @@
 
 [resource]
 script = ExtResource("1_skcxl")
+stat_to_boost = "strength"
+boost_amount = 10.0
+duration = 8.0
+cooldown = 15.0
 name = "StrengthBoost"
 icon = SubResource("PlaceholderTexture2D_skcxl")
 description = ""

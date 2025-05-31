@@ -38,11 +38,9 @@ func _physics_process(delta: float) -> void:
 		die()
 		
 	delta = 0.04
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed("ui_W") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
@@ -193,5 +191,3 @@ func die():
 func chainOver():
 	if ChainGlobal.ChainOverlap:
 		velocity.y = -400
-		print("yo")
-		
