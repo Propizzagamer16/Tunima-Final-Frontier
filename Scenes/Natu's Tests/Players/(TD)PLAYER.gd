@@ -156,18 +156,15 @@ func attack():
 		if dir == "right":
 			$AnimatedSprite2D.flip_h = false
 			$AnimatedSprite2D.play("SideAttack")
-			$deal_attack.start()
 		if dir == "left":
 			$AnimatedSprite2D.flip_h = true
 			$AnimatedSprite2D.play("SideAttack")
-			$deal_attack.start()
 		if dir == "down":
 			$AnimatedSprite2D.play("DownAttack")
-			$deal_attack.start()
 		if dir == "up":
 			$AnimatedSprite2D.play("UpAttack")
-			$deal_attack.start()
-
+		$deal_attack.start()
+		
 func deal_damage():
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if enemy.has_method("take_damage") and Global.player_current_attack:
@@ -258,8 +255,10 @@ func apply_power_up(stat: String, amount: float, duration: float, cooldown: floa
 		"firerate":
 			print("firerate acitvated")
 			active_boosts["firerate"] = amount
-			$deal_attack.wait_time = 0.25
+			$deal_attack.wait_time = 0.1
+			$AnimatedSprite2D.speed_scale = 2.0
 			await get_tree().create_timer(duration).timeout
+			$AnimatedSprite2D.speed_scale = 1.0
 			$deal_attack.wait_time = 0.5
 			active_boosts.erase("firerate")
 

@@ -310,7 +310,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7bobt")
 }],
-"loop": true,
+"loop": false,
 "name": &"SideIdle",
 "speed": 5.0
 }, {

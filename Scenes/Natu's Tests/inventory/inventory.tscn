@@ -5,14 +5,14 @@
 [ext_resource type="Resource" uid="uid://c73jun13epdpq" path="res://Scenes/Natu's Tests/items/powerups/speed_boost.tres" id="3_hpnjs"]
 [ext_resource type="Texture2D" uid="uid://godqsckmgsgt" path="res://Assets/Misc/Weapons/spritesheet.png" id="3_m6jwj"]
 [ext_resource type="Script" uid="uid://b27bvljqjrpq8" path="res://Scenes/Natu's Tests/items/healing_item.gd" id="4_hpnjs"]
-[ext_resource type="Resource" uid="uid://cbo34mrkdikaq" path="res://Scenes/Natu's Tests/firerate_boost.tres" id="6_h4iws"]
+[ext_resource type="Resource" uid="uid://cbo34mrkdikaq" path="res://Scenes/Natu's Tests/items/powerups/firerate_boost.tres" id="6_h4iws"]
 [ext_resource type="Resource" uid="uid://2q08xwsvdb8e" path="res://Scenes/Natu's Tests/items/powerups/strength_boost.tres" id="7_j3m35"]
 
 [sub_resource type="Resource" id="Resource_h4iws"]
 script = ExtResource("4_hpnjs")
 stat_to_boost = "health"
 boost_amount = 20.0
-duration = 0.0
+duration = 1.0
 cooldown = 5.0
 name = ""
 icon = ExtResource("3_m6jwj")
