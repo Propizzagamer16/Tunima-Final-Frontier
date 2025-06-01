@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq20x1kd55xtu"]
+[gd_scene load_steps=12 format=3 uid="uid://dq20x1kd55xtu"]
 
 [ext_resource type="Texture2D" uid="uid://cjeap5tohuvtw" path="res://Assets/Main Character/Hearts/HeartsBeat.png" id="1_qbydv"]
 
@@ -18,6 +18,26 @@ region = Rect2(32, 80, 16, 16)
 atlas = ExtResource("1_qbydv")
 region = Rect2(48, 80, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5pv8"]
+atlas = ExtResource("1_qbydv")
+region = Rect2(0, 80, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ha56"]
+atlas = ExtResource("1_qbydv")
+region = Rect2(0, 80, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mor53"]
+atlas = ExtResource("1_qbydv")
+region = Rect2(16, 80, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_log2w"]
+atlas = ExtResource("1_qbydv")
+region = Rect2(32, 80, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xgr8"]
+atlas = ExtResource("1_qbydv")
+region = Rect2(48, 80, 8, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xbpan"]
 animations = [{
 "frames": [{
@@ -35,19 +55,45 @@ animations = [{
 }],
 "loop": true,
 "name": &"Beating",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3ffj4")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"Full",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5pv8")
+}],
+"loop": true,
+"name": &"Half",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ha56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mor53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_log2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xgr8")
+}],
+"loop": true,
+"name": &"Half_beating",
+"speed": 10.0
 }]
 
 [node name="Hearts" type="AnimatedSprite2D"]
 texture_filter = 1
+position = Vector2(-10.185, 0)
 scale = Vector2(2.5, 2.25)
 sprite_frames = SubResource("SpriteFrames_xbpan")
-animation = &"Idle"
+animation = &"Half"

@@ -160,6 +160,6 @@ func low_health():
 		$attack_cooldown.wait_time = 0.75
 		$vulnerable_timer.wait_time = 3
 	else:
-		dist_before_teleporting = 420
+		dist_before_teleporting = 450
 		$attack_cooldown.wait_time = 1
 		$vulnerable_timer.wait_time = 4
