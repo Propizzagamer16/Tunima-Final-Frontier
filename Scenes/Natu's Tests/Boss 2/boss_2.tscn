@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://4lgxihbf0udc"]
+[gd_scene load_steps=11 format=3 uid="uid://4lgxihbf0udc"]
 
 [ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="1_4wpdg"]
 [ext_resource type="Script" uid="uid://c3ieq784p6w8i" path="res://Scenes/Natu's Tests/Boss 2/boss_2.gd" id="1_wnlw4"]
@@ -29,9 +29,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7gwg8"]
-size = Vector2(128, 130)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xoil7"]
+size = Vector2(134, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jebbx"]
 size = Vector2(141, 142)
@@ -52,16 +50,10 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7gwg8")
 
-[node name="player_detection" type="Area2D" parent="."]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection"]
-scale = Vector2(50, 50)
-shape = SubResource("RectangleShape2D_xoil7")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color(0, 0.62, 0.113667, 1)
 custom_minimum_size = Vector2(1000, 50)
 anchors_preset = 1
 anchor_left = 1.0
@@ -75,15 +67,6 @@ max_value = 500.0
 value = 500.0
 fill_mode = 1
 
-[node name="debug" type="Label" parent="."]
-offset_left = -19.0
-offset_top = -90.0
-offset_right = 30.0
-offset_bottom = -67.0
-text = "debug"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="attack_cooldown" type="Timer" parent="."]
 
 [node name="hitbox" type="Area2D" parent="."]
@@ -95,12 +78,15 @@ shape = SubResource("RectangleShape2D_jebbx")
 wait_time = 0.5
 
 [node name="vulnerable_timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="weakpoints_spawns" type="Timer" parent="."]
 wait_time = 6.0
 one_shot = true
+
+[node name="starting_timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
@@ -108,3 +94,4 @@ one_shot = true
 [connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
 [connection signal="timeout" from="vulnerable_timer" to="." method="_on_vulnerable_timer_timeout"]
 [connection signal="timeout" from="weakpoints_spawns" to="." method="_on_weakpoints_spawns_timeout"]
+[connection signal="timeout" from="starting_timer" to="." method="_on_starting_timer_timeout"]

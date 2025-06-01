@@ -255,7 +255,7 @@ func apply_power_up(stat: String, amount: float, duration: float, cooldown: floa
 		"firerate":
 			print("firerate acitvated")
 			active_boosts["firerate"] = amount
-			$deal_attack.wait_time = 0.1
+			$deal_attack.wait_time = 0.2
 			$AnimatedSprite2D.speed_scale = 2.0
 			await get_tree().create_timer(duration).timeout
 			$AnimatedSprite2D.speed_scale = 1.0

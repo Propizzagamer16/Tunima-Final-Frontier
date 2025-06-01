@@ -10,9 +10,10 @@ var current_weakpoint: Node2D = null
 var direction : Vector2
 var player_inattack_zone = false
 var can_take_damage = true
-var can_attack = true
+var can_attack = false
 var can_teleport = true
 var is_vulnerable = false
+var dist_before_teleporting : float = 450
 
 var health: = 500:
 	set(value):
@@ -27,9 +28,13 @@ func _ready():
 	set_physics_process(false)
 	Global.weakpoints_broken = 0
 	$weakpoints_spawns.start()
+	$starting_timer.start()
 
 
 func _process(_delta):
+	player_firerate()
+	low_health()
+		
 	if Global.weakpoints_broken >= 3 and not is_vulnerable:
 		is_vulnerable = true
 		can_attack = false
@@ -44,7 +49,7 @@ func _process(_delta):
 			animated_sprite.flip_h = false
 
 		var dist = position.distance_to(player.position)
-		if dist < 400 and can_teleport:
+		if dist < dist_before_teleporting and can_teleport:
 			teleport_away()
 		elif can_attack:
 			attack_player()
@@ -87,7 +92,7 @@ func teleport_away():
 func shoot_projectile_at_player():
 	var bullet = projectile_scene.instantiate()
 	var shoot_dir = (player.position - position).normalized()
-	var spawn_offset = shoot_dir * 350 
+	var spawn_offset = shoot_dir * 420 
 	bullet.global_position = global_position + spawn_offset
 	bullet.direction = shoot_dir
 	get_parent().add_child(bullet)
@@ -138,3 +143,23 @@ func _on_vulnerable_timer_timeout():
 	is_vulnerable = false
 	current_weakpoint = null
 	$weakpoints_spawns.start()
+
+
+func _on_starting_timer_timeout() -> void:
+	can_attack = true
+	
+func player_firerate():
+	if player.active_boosts.has("firerate"):
+		$take_damage_cooldown.wait_time = 0.3
+	else:
+		$take_damage_cooldown.wait_time = 0.5
+	
+func low_health():
+	if health < 150:
+		dist_before_teleporting = 800
+		$attack_cooldown.wait_time = 0.75
+		$vulnerable_timer.wait_time = 3
+	else:
+		dist_before_teleporting = 420
+		$attack_cooldown.wait_time = 1
+		$vulnerable_timer.wait_time = 4

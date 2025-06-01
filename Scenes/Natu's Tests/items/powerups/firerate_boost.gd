@@ -2,9 +2,9 @@ extends GameItem
 class_name FireRate
 
 @export var stat_to_boost: String = "firerate"
-@export var boost_amount: float = 0.1
-@export var duration: float = 8.0
-@export var cooldown : float = 15
+@export var boost_amount: float = 0.3
+@export var duration: float = 4.0
+@export var cooldown : float = 10
 
 func use(player):
 	if player.powerup_cooldowns["firerate"] > 0:
