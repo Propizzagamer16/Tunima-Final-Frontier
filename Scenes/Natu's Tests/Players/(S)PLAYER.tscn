@@ -1,7 +1,11 @@
 [gd_scene load_steps=58 format=3 uid="uid://c3f8rvfo7a0hk"]
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://dkhd2j6njig8v" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.gd" id="1_leoo0"]
+=======
+[ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/MainPLAYERCode.gd" id="1_x7663"]
+>>>>>>> Stashed changes
 =======
 [ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/MainPLAYERCode.gd" id="1_x7663"]
 >>>>>>> Stashed changes
