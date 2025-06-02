@@ -65,7 +65,7 @@ func _physics_process(delta):
 	player_shooting()
 	player_movement()
 	attack()
-	deal_damage()
+	#deal_damage()
 
 
 func set_mode_from_global():
@@ -160,15 +160,6 @@ func play_anim(movement):
 func player():
 	pass
 
-func _on_player_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("enemy"):
-		enemy_inattack_range = true
-
-
-func _on_player_hitbox_body_exited(body: Node2D) -> void:
-	if body.has_method("enemy"):
-		enemy_inattack_range = false
-
 func _on_attack_cooldown_timeout() -> void:
 	enemy_attack_cooldown = true
 
@@ -189,10 +180,32 @@ func attack():
 			$AnimatedSprite2D.play("UpAttack")
 		$deal_attack.start()
 		
-func deal_damage():
-	for enemy in get_tree().get_nodes_in_group("enemies"):
-		if enemy.has_method("take_damage") and Global.player_current_attack:
-			enemy.take_damage(current_damage)
+#func deal_damage():
+	#for enemy in get_tree().get_nodes_in_group("enemies"):
+		#if enemy.has_method("take_damage") and Global.player_current_attack:
+			#enemy.take_damage(current_damage)
+
+func _on_attack_range_hori_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		body.can_take_damage = true
+		if body.has_method("take_melee_damage") and Global.player_current_attack:
+			body.take_melee_damage(current_damage)
+
+
+func _on_attack_range_hori_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		body.can_take_damage = false
+
+func _on_attack_range_vert_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		body.can_take_damage = true
+		if body.has_method("take_melee_damage") and Global.player_current_attack:
+			body.take_melee_damage(current_damage)
+
+
+func _on_attack_range_vert_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		body.can_take_damage = false
 
 func _on_deal_attack_timeout() -> void:
 	Global.player_current_attack = false

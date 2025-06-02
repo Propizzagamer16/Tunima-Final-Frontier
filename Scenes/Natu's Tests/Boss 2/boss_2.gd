@@ -9,7 +9,7 @@ var current_weakpoint: Node2D = null
 
 var direction : Vector2
 var player_inattack_zone = false
-var can_take_damage = true
+var can_take_damage = false
 var can_attack = false
 var can_teleport = true
 var is_vulnerable = false
@@ -58,12 +58,11 @@ func _physics_process(delta: float) -> void:
 	velocity = direction.normalized() * 40
 	move_and_collide(velocity * delta)
 	
-func take_damage(current_damage):
-	if player_inattack_zone:
-		if can_take_damage == true:
-			health = health - current_damage
-			$take_damage_cooldown.start()
-			can_take_damage = false
+func take_melee_damage(current_damage):
+	if can_take_damage == true:
+		health = health - current_damage
+		$take_damage_cooldown.start()
+		can_take_damage = false
 
 func _on_take_damage_cooldown_timeout() -> void:
 	can_take_damage = true
@@ -107,13 +106,13 @@ func attack_player():
 func _on_attack_cooldown_timeout():
 	can_attack = true
 	
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.name == "player":
-		player_inattack_zone = true
-
-func _on_hitbox_body_exited(body: Node2D) -> void:
-	if body.name == "player":
-		player_inattack_zone = false
+#func _on_hitbox_body_entered(body: Node2D) -> void:
+	#if body.name == "player":
+		#player_inattack_zone = true
+#
+#func _on_hitbox_body_exited(body: Node2D) -> void:
+	#if body.name == "player":
+		#player_inattack_zone = false
 
 func _on_weakpoints_spawns_timeout():
 	if current_weakpoint != null and current_weakpoint.is_inside_tree():
