@@ -9,7 +9,7 @@ var current_weakpoint: Node2D = null
 
 var direction : Vector2
 var player_inattack_zone = false
-var can_take_damage = false
+var can_take_damage = true
 var can_attack = false
 var can_teleport = true
 var is_vulnerable = false
@@ -65,6 +65,7 @@ func take_melee_damage(current_damage):
 		can_take_damage = false
 
 func _on_take_damage_cooldown_timeout() -> void:
+	print("cooldown")
 	can_take_damage = true
 		
 func teleport_away():

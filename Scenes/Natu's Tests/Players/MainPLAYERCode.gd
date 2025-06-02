@@ -22,6 +22,8 @@ var powerup_cooldowns: Dictionary = {
 	"health": 0.0
 }
 
+@onready var attack_hitbox := $attack_range_hori
+
 var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 @onready var muzzle : Marker2D = $Muzzle
 var muzzle_position
@@ -33,6 +35,8 @@ signal player_died
 func _ready():
 	set_mode_from_global()
 	add_to_group("player")
+	attack_hitbox.add_to_group("player_attacks")
+
 	ChainGlobal.ChainOverlap.connect(chainOver)
 	var hotbar_ui = get_node("Inventory/UI/Hotbar")
 	hotbar_ui.visible = true
@@ -166,7 +170,6 @@ func _on_attack_cooldown_timeout() -> void:
 func attack():
 	var dir = current_dir
 	if Input.is_action_just_pressed("attack"):
-		Global.player_current_attack = true
 		attack_ip = true
 		if dir == "right":
 			$AnimatedSprite2D.flip_h = false
@@ -178,38 +181,35 @@ func attack():
 			$AnimatedSprite2D.play("DownAttack")
 		if dir == "up" and top_down:
 			$AnimatedSprite2D.play("UpAttack")
-		$deal_attack.start()
 		
-#func deal_damage():
-	#for enemy in get_tree().get_nodes_in_group("enemies"):
-		#if enemy.has_method("take_damage") and Global.player_current_attack:
-			#enemy.take_damage(current_damage)
+		update_attack_hitbox_position(dir)
+
+		attack_hitbox.monitoring = true
+		$deal_attack.start() 
+
+		
+func update_attack_hitbox_position(dir: String):
+	match dir:
+		"right": attack_hitbox.position = Vector2(40, 0)
+		"left": attack_hitbox.position = Vector2(-40, 0)
+		"up": attack_hitbox.position = Vector2(0, -60)
+		"down": attack_hitbox.position = Vector2(0, 60)
+
 
 func _on_attack_range_hori_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		body.can_take_damage = true
-		if body.has_method("take_melee_damage") and Global.player_current_attack:
+	if body.is_in_group("enemies") and attack_hitbox.monitoring:
+		if body.has_method("take_melee_damage"):
 			body.take_melee_damage(current_damage)
-
-
-func _on_attack_range_hori_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		body.can_take_damage = false
 
 func _on_attack_range_vert_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		body.can_take_damage = true
-		if body.has_method("take_melee_damage") and Global.player_current_attack:
+	if body.is_in_group("enemies") and attack_hitbox.monitoring:
+		if body.has_method("take_melee_damage"):
 			body.take_melee_damage(current_damage)
 
-
-func _on_attack_range_vert_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		body.can_take_damage = false
-
 func _on_deal_attack_timeout() -> void:
-	Global.player_current_attack = false
 	attack_ip = false
+	attack_hitbox.monitoring = false
+
 
 func take_damage():
 	if health >= 0:

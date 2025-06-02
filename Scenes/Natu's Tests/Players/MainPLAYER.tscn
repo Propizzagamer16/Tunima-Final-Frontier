@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://b4n67g67bltt8"]
+[gd_scene load_steps=60 format=3 uid="uid://botjx0e8asnn4"]
 
 [ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/MainPLAYERCode.gd" id="1_rkc1m"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="2_biusk"]
@@ -500,7 +500,7 @@ position = Vector2(36, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(6.5, -3)
-zoom = Vector2(8, 8)
+zoom = Vector2(0.5, 0.5)
 
 [node name="attack_range_hori" type="Area2D" parent="."]
 monitoring = false

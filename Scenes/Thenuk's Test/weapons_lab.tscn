@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bsn73jg2i75mq" path="res://Scenes/Natu's Tests/Enemies/(S)CommonEnemy.tscn" id="2_aqc6x"]
 [ext_resource type="PackedScene" uid="uid://cyrecdwyl7nsd" path="res://Scenes/Natu's Tests/Enemies/(S)StrongEnemy.tscn" id="3_cykik"]
 [ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="5_aqc6x"]
-[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Imaad's Tests/Dungeon/MainPLAYER.tscn" id="6_cykik"]
+[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="6_cykik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6f1pe"]
 texture = ExtResource("1_3xmi8")

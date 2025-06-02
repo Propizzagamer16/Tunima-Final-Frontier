@@ -62,6 +62,7 @@ wait_time = 0.5
 position = Vector2(0.299998, -0.399999)
 shape = SubResource("RectangleShape2D_igkqb")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
