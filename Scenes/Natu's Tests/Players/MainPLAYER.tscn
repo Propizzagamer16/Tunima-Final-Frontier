@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://botjx0e8asnn4"]
+[gd_scene load_steps=60 format=3 uid="uid://cw7i2h2kplrs5"]
 
 [ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/MainPLAYERCode.gd" id="1_rkc1m"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="2_biusk"]
