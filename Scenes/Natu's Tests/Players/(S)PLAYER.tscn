@@ -1,6 +1,10 @@
 [gd_scene load_steps=58 format=3 uid="uid://c3f8rvfo7a0hk"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://dkhd2j6njig8v" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.gd" id="1_leoo0"]
+=======
+[ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/MainPLAYERCode.gd" id="1_x7663"]
+>>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="3_x7663"]
 [ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="4_6ramj"]
 
@@ -422,7 +426,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_leoo0")
+script = ExtResource("1_x7663")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_crfb6")
@@ -502,7 +506,8 @@ animation = &"SideAttack"
 position = Vector2(12, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(7.75, 7.75)
+zoom = Vector2(2, 2)
+process_callback = 0
 
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]

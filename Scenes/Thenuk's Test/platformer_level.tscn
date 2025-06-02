@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b1nqo5dxo84wc" path="res://Scenes/Thenuk's Test/respawn things/death_zones.gd" id="5_cqtj6"]
 [ext_resource type="Script" uid="uid://djfrvbfmgxvdf" path="res://Scenes/Thenuk's Test/respawn things/checkpoint_manager.gd" id="6_10qgq"]
 [ext_resource type="PackedScene" uid="uid://cv0jw3cery743" path="res://Scenes/Thenuk's Test/respawn things/checkpoint.tscn" id="7_pwcve"]
-[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="8_1k0v1"]
+[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Imaad's Tests/Dungeon/MainPLAYER.tscn" id="8_1k0v1"]
 [ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="8_c3slm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10qgq"]

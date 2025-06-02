@@ -22,16 +22,15 @@ var powerup_cooldowns: Dictionary = {
 	"health": 0.0
 }
 
-
 var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 @onready var muzzle : Marker2D = $Muzzle
 var muzzle_position
 
 var hearts_list : Array[TextureRect]
 signal player_died
-#
-func _ready():
 
+
+func _ready():
 	set_mode_from_global()
 	add_to_group("player")
 	ChainGlobal.ChainOverlap.connect(chainOver)
@@ -44,10 +43,12 @@ func _ready():
 		
 	get_node("AnimatedSprite2D").play("Idle")
 
+
 func _process(delta):
 	for key in powerup_cooldowns.keys():
 		if powerup_cooldowns[key] > 0:
 			powerup_cooldowns[key] -= delta
+
 
 func _physics_process(delta):
 	for key in powerup_cooldowns.keys():
@@ -80,7 +81,6 @@ func set_mode_from_global():
 
 
 func player_movement():	
-	
 	if side_view:
 		var delta = 0.04
 		if not is_on_floor():
