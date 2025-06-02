@@ -1,6 +1,6 @@
 [gd_scene load_steps=58 format=3 uid="uid://c3f8rvfo7a0hk"]
 
-[ext_resource type="Script" uid="uid://c8uixw3lw0min" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.gd" id="1_leoo0"]
+[ext_resource type="Script" uid="uid://dkhd2j6njig8v" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.gd" id="1_leoo0"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="3_x7663"]
 [ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="4_6ramj"]
 
