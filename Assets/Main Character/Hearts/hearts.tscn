@@ -93,7 +93,6 @@ animations = [{
 
 [node name="Hearts" type="AnimatedSprite2D"]
 texture_filter = 1
-position = Vector2(-10.185, 0)
 scale = Vector2(2.5, 2.25)
 sprite_frames = SubResource("SpriteFrames_xbpan")
 animation = &"Half"

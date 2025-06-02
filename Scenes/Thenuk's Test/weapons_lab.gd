@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var SceneTransitionAnimation = $scene_transition_ani/AnimationPlayer
-@onready var player = $Player
+@onready var player = get_node("player")
 @onready var player_spawn_point = $player_spawnpoint
 
 @export var enemy_scene: PackedScene
@@ -29,6 +29,8 @@ var _is_resetting := false
 var _death_processed := false
 
 func _ready():
+	Global.player_type = "Side"
+	player.set_mode_from_global()
 	_safe_connect_player_signal()
 	Global.current_wave = current_wave
 	start_next_wave()

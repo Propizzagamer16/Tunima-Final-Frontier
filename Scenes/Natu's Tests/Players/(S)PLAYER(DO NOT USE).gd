@@ -132,24 +132,30 @@ func take_damage():
 	$regen_timer.start()
 
 func update_hearts():
-	var hearts_to_show = int(health / 20)  # Still needed
+	var hearts_full = int(health / 20)
+	var remainder = int(health) % 20
+	var has_half_heart = remainder >= 10
 
-	# Hide or show each heart manually
-	hearts_list[1].visible = hearts_to_show >= 2
-	hearts_list[2].visible = hearts_to_show >= 3
-	hearts_list[3].visible = hearts_to_show >= 4
-	hearts_list[4].visible = hearts_to_show >= 5
+	for i in range(hearts_list.size()):
+		var heart_sprite = hearts_list[i].get_child(0)
 
-	 #Optional: heartbeat animation on last heart
-	if hearts_to_show == 1:
+		if i < hearts_full:
+			heart_sprite.visible = true
+			heart_sprite.play("Full")
+		elif i == hearts_full and has_half_heart:
+			heart_sprite.visible = true
+			heart_sprite.play("Half")
+		else:
+			heart_sprite.visible = false
+
+
+	if hearts_full == 1 and not has_half_heart:
 		hearts_list[0].get_child(0).play("Beating")
+	elif hearts_full == 0 and has_half_heart:
+		hearts_list[0].get_child(0).play("Half_beating")
 	else:
-		hearts_list[0].get_child(0).play("Idle")
+		hearts_list[0].get_child(0).play("Full")
 		
-	if health <= 0:
-		hearts_list[0].visible = false
-	else:
-		hearts_list[0].visible = true
 func player_shooting():
 	var direction : float = Input.get_axis("ui_A", "ui_D")
 	
@@ -161,14 +167,12 @@ func player_shooting():
 			elif current_dir == "left":
 				direction = -1
 		
-		bullet_instance.direction = Vector2(direction, 0) 
-		bullet_instance.is_sideview = true                 
+		bullet_instance.direction = Vector2(direction, 0)            
 		bullet_instance.global_position = muzzle.global_position
 		get_parent().add_child(bullet_instance)
 
 func muzzle_position_update():
 	var direction : float = Input.get_axis("ui_A", "ui_D")
-	
 	if direction < 0:
 		muzzle.position.x = -muzzle_position.x
 	elif direction > 0:

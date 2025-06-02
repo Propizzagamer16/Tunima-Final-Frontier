@@ -1,6 +1,6 @@
 [gd_scene load_steps=59 format=3 uid="uid://botjx0e8asnn4"]
 
-[ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/(TD)PLAYER.gd" id="1_rkc1m"]
+[ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/MainPLAYERCode.gd" id="1_rkc1m"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="2_biusk"]
 [ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="4_81qc2"]
 [ext_resource type="PackedScene" uid="uid://0v47rdwgcw8g" path="res://Scenes/Natu's Tests/inventory/inventory.tscn" id="4_rkc1m"]
@@ -423,7 +423,6 @@ height = 70.0
 size = Vector2(48, 75)
 
 [node name="Player1" type="CharacterBody2D"]
-motion_mode = 1
 script = ExtResource("1_rkc1m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

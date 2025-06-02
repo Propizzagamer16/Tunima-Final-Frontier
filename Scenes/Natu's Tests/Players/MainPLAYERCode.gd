@@ -7,11 +7,13 @@ var max_health = 100
 var alive = true
 var base_damage: int = 20
 var current_damage: int = base_damage
-
+var side_view = false
+var top_down = false
 
 var attack_ip = false
 var current_dir = "none"
 var speed = 700
+const JUMP_VELOCITY = -1100.0
 var active_boosts = {}
 var powerup_cooldowns: Dictionary = {
 	"speed": 0.0,
@@ -29,6 +31,10 @@ var hearts_list : Array[TextureRect]
 signal player_died
 #
 func _ready():
+
+	set_mode_from_global()
+	add_to_group("player")
+	ChainGlobal.ChainOverlap.connect(chainOver)
 	var hotbar_ui = get_node("Inventory/UI/Hotbar")
 	hotbar_ui.visible = true
 	muzzle_position = muzzle.position
@@ -37,10 +43,6 @@ func _ready():
 		hearts_list.append(child)
 		
 	get_node("AnimatedSprite2D").play("Idle")
-
-###4D MOVEMENT
-var character_direction := Vector2.ZERO
-
 
 func _process(delta):
 	for key in powerup_cooldowns.keys():
@@ -64,25 +66,46 @@ func _physics_process(delta):
 	player_movement()
 	attack()
 	deal_damage()
-	
+
+
+func set_mode_from_global():
+	if Global.player_type == "Top Down":
+		motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+		top_down = true
+		side_view = false
+	elif Global.player_type == "Side":
+		motion_mode = CharacterBody2D.MOTION_MODE_GROUNDED
+		top_down = false
+		side_view = true
+
+
 func player_movement():	
+	
+	if side_view:
+		var delta = 0.04
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		if Input.is_action_just_pressed("ui_W") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_pressed("ui_D"):
 		current_dir = "right"
 		play_anim(1)
 		velocity.x = speed
-		velocity.y = 0
+		if top_down:
+			velocity.y = 0
 	elif Input.is_action_pressed("ui_A"):
 		play_anim(1)
 		current_dir = "left"
 		velocity.x = -speed
-		velocity.y = 0
-	elif Input.is_action_pressed("ui_S"):
+		if top_down:
+			velocity.y = 0
+	elif Input.is_action_pressed("ui_S") and top_down:
 		play_anim(1)
 		current_dir = "down"
 		velocity.x = 0
 		velocity.y = speed
-	elif Input.is_action_pressed("ui_W"):
+	elif Input.is_action_pressed("ui_W") and top_down:
 		play_anim(1)
 		current_dir = "up"
 		velocity.x = 0
@@ -90,7 +113,8 @@ func player_movement():
 	else:
 		play_anim(0)
 		velocity.x = 0
-		velocity.y = 0
+		if top_down:
+			velocity.y = 0
 
 	move_and_slide()
 
@@ -116,7 +140,7 @@ func play_anim(movement):
 				if attack_ip == false:
 					anim.play("SideIdle")
 			
-	if dir == "up":
+	if dir == "up" and top_down:
 		if attack_ip == false:
 			if movement == 1:
 				anim.play("UpWalk")
@@ -124,7 +148,7 @@ func play_anim(movement):
 				if attack_ip == false:
 					anim.play("UpIdle")
 			
-	if dir == "down":
+	if dir == "down" and top_down:
 		if attack_ip == false:
 			if movement == 1:
 				anim.play("DownWalk")
@@ -159,9 +183,9 @@ func attack():
 		if dir == "left":
 			$AnimatedSprite2D.flip_h = true
 			$AnimatedSprite2D.play("SideAttack")
-		if dir == "down":
+		if dir == "down" and top_down:
 			$AnimatedSprite2D.play("DownAttack")
-		if dir == "up":
+		if dir == "up" and top_down:
 			$AnimatedSprite2D.play("UpAttack")
 		$deal_attack.start()
 		
@@ -215,30 +239,45 @@ func player_shooting():
 
 	if Input.is_action_just_pressed("shoot"):
 		var bullet_instance = bullet.instantiate() as Node2D
-		var dir = Vector2(xdirection, ydirection)
-		
-		if dir == Vector2.ZERO:
-			match current_dir:
-				"right": dir = Vector2.RIGHT
-				"left": dir = Vector2.LEFT
-				"up": dir = Vector2.UP
-				"down": dir = Vector2.DOWN
-
-		bullet_instance.direction = dir
+		if top_down:
+			var dir = Vector2(xdirection, ydirection)
+			if dir == Vector2.ZERO:
+				match current_dir:
+					"right": dir = Vector2.RIGHT
+					"left": dir = Vector2.LEFT
+					"up": dir = Vector2.UP
+					"down": dir = Vector2.DOWN
+			bullet_instance.direction = Vector2(xdirection, ydirection)
+			
+		elif side_view:
+			if xdirection == 0:
+				if current_dir == "right":
+					xdirection = 1
+				elif current_dir == "left":
+					xdirection = -1
+			bullet_instance.direction = Vector2(xdirection, 0)   
+ 
 		bullet_instance.global_position = muzzle.global_position
 		get_parent().add_child(bullet_instance)
 
 
 func muzzle_position_update():
-	match current_dir:
-		"right":
-			muzzle.position = Vector2(40, 0)
-		"left":
-			muzzle.position = Vector2(-40, 0)
-		"up":
-			muzzle.position = Vector2(0, -50)
-		"down":
-			muzzle.position = Vector2(0, 55)
+	if top_down:
+		match current_dir:
+			"right":
+				muzzle.position = Vector2(40, 0)
+			"left":
+				muzzle.position = Vector2(-40, 0)
+			"up":
+				muzzle.position = Vector2(0, -50)
+			"down":
+				muzzle.position = Vector2(0, 55)
+	elif side_view:
+		var direction : float = Input.get_axis("ui_A", "ui_D")
+		if direction < 0:
+			muzzle.position.x = -muzzle_position.x
+		elif direction > 0:
+			muzzle.position.x = muzzle_position.x
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("inventory"):
@@ -294,3 +333,7 @@ func reset(spawn_position: Vector2):
 	$AnimatedSprite2D.play("SideIdle")
 	show()
 	set_physics_process(true)
+
+func chainOver():
+	if ChainGlobal.ChainOverlap:
+		velocity.y = -400
