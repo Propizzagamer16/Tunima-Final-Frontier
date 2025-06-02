@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://6nym00uj3eqc"]
+
+[ext_resource type="Script" uid="uid://cr1j5l2q4lixh" path="res://Scenes/Thenuk's Test/Platformer/jump_pad.gd" id="1_0bpm2"]
+[ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="2_tfqk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sevyv"]
+size = Vector2(121.5, 54)
+
+[node name="Jump pad" type="Node2D"]
+script = ExtResource("1_0bpm2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(124, 189.5)
+scale = Vector2(1, 0.414063)
+texture = ExtResource("2_tfqk0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(123.25, 189)
+shape = SubResource("RectangleShape2D_sevyv")

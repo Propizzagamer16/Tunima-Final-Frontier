@@ -18,9 +18,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://global.gd"
-LeverGobal="*res://LeverGobal.gd"
-ChainGlobal="*res://chain_global.gd"
+Global="*res://Scenes/Thenuk's Test/globals/global.gd"
+LeverGobal="*res://Scenes/Thenuk's Test/globals/LeverGobal.gd"
+ChainGlobal="*res://Scenes/Thenuk's Test/globals/chain_global.gd"
+JumpPadGlobal="*res://Scenes/Thenuk's Test/globals/JumpPadGlobal.gd"
 
 [display]
 

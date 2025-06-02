@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfep2hlwti326"]
 
-[ext_resource type="Script" uid="uid://cxn5jf2iv6awh" path="res://Scenes/Thenuk's Test/lever.gd" id="1_2a475"]
+[ext_resource type="Script" uid="uid://cxn5jf2iv6awh" path="res://Scenes/Thenuk's Test/Platformer/lever.gd" id="1_2a475"]
 [ext_resource type="Texture2D" uid="uid://b6juv2ud5mlwt" path="res://Tiles (scenes)/platformer tiles/lever.png.png" id="2_b821t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1btnt"]

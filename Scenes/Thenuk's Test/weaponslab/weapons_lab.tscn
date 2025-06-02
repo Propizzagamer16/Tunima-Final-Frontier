@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://0gdlptesj4vv"]
 
 [ext_resource type="Texture2D" uid="uid://bqsrd5gjyhi1d" path="res://Tiles (scenes)/platformer tiles/lab tileset finished transparent(2).png" id="1_3xmi8"]
-[ext_resource type="Script" uid="uid://c6h4seufdyhy6" path="res://Scenes/Thenuk's Test/weapons_lab.gd" id="1_dgrlm"]
+[ext_resource type="Script" uid="uid://c6h4seufdyhy6" path="res://Scenes/Thenuk's Test/weaponslab/weapons_lab.gd" id="1_dgrlm"]
 [ext_resource type="PackedScene" uid="uid://bsn73jg2i75mq" path="res://Scenes/Natu's Tests/Enemies/(S)CommonEnemy.tscn" id="2_aqc6x"]
 [ext_resource type="PackedScene" uid="uid://cyrecdwyl7nsd" path="res://Scenes/Natu's Tests/Enemies/(S)StrongEnemy.tscn" id="3_cykik"]
 [ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="5_aqc6x"]

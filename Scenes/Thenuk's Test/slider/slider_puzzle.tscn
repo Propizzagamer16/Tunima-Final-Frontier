@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dnmyhjquji7sn"]
 
 [ext_resource type="Texture2D" uid="uid://cmvv33qo04f0t" path="res://Tiles (scenes)/slider puzzle numbers/tile1.png" id="1_1vo18"]
-[ext_resource type="Script" uid="uid://bjrf3tggjsxpy" path="res://Scenes/Thenuk's Test/slider_puzzle.gd" id="1_nwmbd"]
+[ext_resource type="Script" uid="uid://bjrf3tggjsxpy" path="res://Scenes/Thenuk's Test/slider/slider_puzzle.gd" id="1_nwmbd"]
 [ext_resource type="Texture2D" uid="uid://c88q1yme2ethq" path="res://Tiles (scenes)/slider puzzle numbers/tile2.png" id="2_nwmbd"]
 [ext_resource type="Texture2D" uid="uid://cifvv1154a2pt" path="res://Tiles (scenes)/slider puzzle numbers/tile3.png" id="3_v7x1b"]
 [ext_resource type="Texture2D" uid="uid://b6aruw8vddkxy" path="res://Tiles (scenes)/slider puzzle numbers/tile4.png" id="4_7ovfd"]

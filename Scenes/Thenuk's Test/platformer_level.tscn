@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=4 uid="uid://bitk0ceuocovb"]
 
 [ext_resource type="TileSet" uid="uid://bep85a2b5tdi6" path="res://Scenes/Thenuk's Test/platformer_level.tres" id="1_rdmv5"]
-[ext_resource type="PackedScene" uid="uid://bfep2hlwti326" path="res://Scenes/Thenuk's Test/lever.tscn" id="2_lth3x"]
-[ext_resource type="PackedScene" uid="uid://4ctc0rmmx2y4" path="res://Scenes/Thenuk's Test/door.tscn" id="3_my1fh"]
+[ext_resource type="PackedScene" uid="uid://bfep2hlwti326" path="res://Scenes/Thenuk's Test/Platformer/lever.tscn" id="2_lth3x"]
+[ext_resource type="PackedScene" uid="uid://4ctc0rmmx2y4" path="res://Scenes/Thenuk's Test/Platformer/door.tscn" id="3_my1fh"]
 [ext_resource type="Script" uid="uid://b1nqo5dxo84wc" path="res://Scenes/Thenuk's Test/respawn things/death_zones.gd" id="5_cqtj6"]
 [ext_resource type="Script" uid="uid://djfrvbfmgxvdf" path="res://Scenes/Thenuk's Test/respawn things/checkpoint_manager.gd" id="6_10qgq"]
 [ext_resource type="PackedScene" uid="uid://cv0jw3cery743" path="res://Scenes/Thenuk's Test/respawn things/checkpoint.tscn" id="7_pwcve"]

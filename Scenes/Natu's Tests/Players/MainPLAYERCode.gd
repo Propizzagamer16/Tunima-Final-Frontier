@@ -350,3 +350,7 @@ func reset(spawn_position: Vector2):
 func chainOver():
 	if ChainGlobal.ChainOverlap:
 		velocity.y = -400
+
+func jumpPad():
+	if JumpPadGlobal.jumpOverlap:
+		velocity.y = -5000
