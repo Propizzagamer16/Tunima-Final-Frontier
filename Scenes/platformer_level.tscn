@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=4 uid="uid://c17l3c60daiqd"]
 
-[ext_resource type="Script" uid="uid://uubwouif7j2" path="res://Scenes/Thenuk's Test/platformer_level.gd" id="1_p1qp4"]
+[ext_resource type="Script" uid="uid://uubwouif7j2" path="res://Scenes/platformer_level.gd" id="1_p1qp4"]
 [ext_resource type="TileSet" uid="uid://bep85a2b5tdi6" path="res://Scenes/Thenuk's Test/platformer_level.tres" id="1_rdmv5"]
 [ext_resource type="PackedScene" path="res://Scenes/Thenuk's Test/lever.tscn" id="2_lth3x"]
-[ext_resource type="PackedScene" uid="uid://cjwsywgisca7c" path="res://Scenes/Natu's Tests/Players/(S)PLAYER.tscn" id="2_rq4i2"]
 [ext_resource type="PackedScene" uid="uid://4ctc0rmmx2y4" path="res://Scenes/Thenuk's Test/door.tscn" id="3_my1fh"]
 [ext_resource type="PackedScene" uid="uid://dawt5unn61wjh" path="res://Scenes/Thenuk's Test/chain.tscn" id="4_o5n5x"]
 [ext_resource type="Script" uid="uid://b1nqo5dxo84wc" path="res://Scenes/Thenuk's Test/respawn things/death_zones.gd" id="5_cqtj6"]
 [ext_resource type="Script" uid="uid://djfrvbfmgxvdf" path="res://Scenes/Thenuk's Test/respawn things/checkpoint_manager.gd" id="6_10qgq"]
 [ext_resource type="PackedScene" uid="uid://cv0jw3cery743" path="res://Scenes/Thenuk's Test/respawn things/checkpoint.tscn" id="7_pwcve"]
 [ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="8_c3slm"]
+[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="10_p1qp4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10qgq"]
 size = Vector2(1019, 100)
@@ -84,10 +84,6 @@ position = Vector2(2365, -1652)
 [node name="chain6" parent="Chains" instance=ExtResource("4_o5n5x")]
 position = Vector2(5309, -994)
 
-[node name="player" parent="." instance=ExtResource("2_rq4i2")]
-position = Vector2(154, 978)
-scale = Vector2(5, 5)
-
 [node name="death_zones" type="Area2D" parent="."]
 script = ExtResource("5_cqtj6")
 
@@ -115,5 +111,9 @@ position = Vector2(1751, 480)
 
 [node name="scene_transition_ani" parent="." instance=ExtResource("8_c3slm")]
 position = Vector2(2, 7)
+
+[node name="player" parent="." instance=ExtResource("10_p1qp4")]
+position = Vector2(167, 990)
+motion_mode = 1
 
 [connection signal="body_entered" from="death_zones" to="death_zones" method="_on_body_entered"]

@@ -5,8 +5,11 @@ extends Node2D
 var SceneTransitionAnimation
 
 func _ready():
+	Global.player_type = "Top Down"
+	player.set_mode_from_global()
 	_safe_connect_player_signal()
 	SceneTransitionAnimation = get_node("scene_transition_ani/AnimationPlayer")
+
 
 func _safe_connect_player_signal():
 	# Disconnect first to prevent duplicates
