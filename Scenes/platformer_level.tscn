@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://djfrvbfmgxvdf" path="res://Scenes/Thenuk's Test/respawn things/checkpoint_manager.gd" id="6_10qgq"]
 [ext_resource type="PackedScene" uid="uid://cv0jw3cery743" path="res://Scenes/Thenuk's Test/respawn things/checkpoint.tscn" id="7_pwcve"]
 [ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="8_c3slm"]
-[ext_resource type="PackedScene" uid="uid://cw7i2h2kplrs5" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="10_p1qp4"]
+[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="10_p1qp4"]
 [ext_resource type="PackedScene" uid="uid://6nym00uj3eqc" path="res://Scenes/Thenuk's Test/Platformer/jump_pad.tscn" id="11_hv84o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10qgq"]
@@ -123,10 +123,13 @@ script = ExtResource("6_10qgq")
 position = Vector2(1751, 480)
 
 [node name="scene_transition_ani" parent="." instance=ExtResource("8_c3slm")]
-position = Vector2(-4, 131)
+position = Vector2(-102, 132)
 
 [node name="player" parent="." instance=ExtResource("10_p1qp4")]
 position = Vector2(167, 990)
 motion_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2784, -2716)
 
 [connection signal="body_entered" from="death_zones" to="death_zones" method="_on_body_entered"]
