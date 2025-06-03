@@ -141,7 +141,13 @@ position = Vector2(11201, 786)
 position = Vector2(2367, -1148)
 
 [node name="Jump pad" parent="jumppads" instance=ExtResource("11_hv84o")]
-position = Vector2(6166, -1276)
+position = Vector2(18707, 2713)
+
+[node name="Jump pad2" parent="jumppads" instance=ExtResource("11_hv84o")]
+position = Vector2(19857, 1186)
+
+[node name="Jump pad3" parent="jumppads" instance=ExtResource("11_hv84o")]
+position = Vector2(18976, -335)
 
 [node name="death_zones" type="Area2D" parent="."]
 script = ExtResource("5_cqtj6")
