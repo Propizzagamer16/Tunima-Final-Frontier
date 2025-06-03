@@ -96,6 +96,14 @@ func set_camera(current_scene):
 		$Camera2D.limit_right = 1910.0
 		$Camera2D.limit_top = 0
 		$Camera2D.limit_bottom = 1152.0
+	elif current_scene == "boss_2":
+		$Camera2D.zoom = Vector2(0.5, 0.5)
+		$Camera2D.drag_horizontal_enabled = false
+		$Camera2D.drag_vertical_enabled = false
+		$Camera2D.limit_left = -10000000
+		$Camera2D.limit_right = 1000000
+		$Camera2D.limit_top = -1000000
+		$Camera2D.limit_bottom = 10000000
 	#ILL ADD MORE WHEN WE MAKE MORE/WHEN IMAAD FINISHES DUNGEON
 	
 func player_movement():	
@@ -287,6 +295,8 @@ func player_shooting():
 		bullet_instance.global_position = muzzle.global_position
 		get_parent().add_child(bullet_instance)
 
+#func heavy_bullet():
+	
 
 func muzzle_position_update():
 	if top_down:

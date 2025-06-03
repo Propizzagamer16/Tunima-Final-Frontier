@@ -5,6 +5,7 @@ extends Node2D
 var SceneTransitionAnimation
 
 func _ready():
+	player.set_camera("boss_2")
 	Global.player_type = "Top Down"
 	player.set_mode_from_global()
 	_safe_connect_player_signal()
