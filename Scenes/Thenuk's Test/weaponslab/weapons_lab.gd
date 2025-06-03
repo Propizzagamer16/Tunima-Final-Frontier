@@ -29,6 +29,7 @@ var _is_resetting := false
 var _death_processed := false
 
 func _ready():
+	player.set_camera("weapons_lab")
 	Global.player_type = "Side"
 	player.set_mode_from_global()
 	_safe_connect_player_signal()

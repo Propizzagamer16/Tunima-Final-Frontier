@@ -85,7 +85,19 @@ func set_mode_from_global():
 		top_down = false
 		side_view = true
 
-
+func set_camera(current_scene):	
+	if current_scene == "platformer":
+		$Camera2D.limit_left = -128
+		$Camera2D.limit_right = 26111
+		$Camera2D.limit_top = -2716.0
+		$Camera2D.limit_bottom = 1790
+	elif current_scene == "weapons_lab":
+		$Camera2D.limit_left = 0
+		$Camera2D.limit_right = 1910.0
+		$Camera2D.limit_top = 0
+		$Camera2D.limit_bottom = 1152.0
+	#ILL ADD MORE WHEN WE MAKE MORE/WHEN IMAAD FINISHES DUNGEON
+	
 func player_movement():	
 	if side_view:
 		var delta = 0.04
