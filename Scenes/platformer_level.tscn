@@ -93,6 +93,7 @@ position = Vector2(5309, -490)
 position = Vector2(5309, -739)
 
 [node name="moving platform" parent="." instance=ExtResource("7_86ghn")]
+position = Vector2(18092, -2352)
 
 [node name="jumppads" type="Node2D" parent="."]
 position = Vector2(2367, -1148)
