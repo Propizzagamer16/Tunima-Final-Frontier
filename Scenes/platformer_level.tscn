@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cv0jw3cery743" path="res://Scenes/Thenuk's Test/respawn things/checkpoint.tscn" id="7_pwcve"]
 [ext_resource type="PackedScene" uid="uid://bah42kgjhhlny" path="res://Scenes/Thenuk's Test/Platformer/one_way_platform.tscn" id="7_uwlpp"]
 [ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="8_c3slm"]
-[ext_resource type="PackedScene" uid="uid://dg4nkao1p8hkc" path="res://Scenes/Thenuk's Test/Platformer/moveable_block.tscn" id="8_g1880"]
+[ext_resource type="PackedScene" path="res://Scenes/Thenuk's Test/Platformer/moveable_block.tscn" id="8_g1880"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="10_p1qp4"]
 [ext_resource type="PackedScene" uid="uid://6nym00uj3eqc" path="res://Scenes/Thenuk's Test/Platformer/jump_pad.tscn" id="11_hv84o"]
 
@@ -189,8 +189,12 @@ position = Vector2(7341, 1141)
 [node name="checkpoint3" parent="checkpoint_manager" instance=ExtResource("7_pwcve")]
 position = Vector2(12487, -702)
 
+[node name="checkpoint4" parent="checkpoint_manager" instance=ExtResource("7_pwcve")]
+position = Vector2(19181, -2354)
+
 [node name="scene_transition_ani" parent="." instance=ExtResource("8_c3slm")]
-position = Vector2(-152, 210)
+visible = false
+position = Vector2(2196, -1184)
 
 [node name="player" parent="." instance=ExtResource("10_p1qp4")]
 position = Vector2(505, 637)
