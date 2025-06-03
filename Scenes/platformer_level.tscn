@@ -114,7 +114,7 @@ position = Vector2(17855, 256)
 position = Vector2(11077, 920)
 
 [node name="moving platform" parent="." instance=ExtResource("7_86ghn")]
-position = Vector2(18092, -2352)
+position = Vector2(14329, -2333)
 
 [node name="one way platfromsss" type="Node2D" parent="."]
 
@@ -193,7 +193,7 @@ position = Vector2(12487, -702)
 position = Vector2(-152, 210)
 
 [node name="player" parent="." instance=ExtResource("10_p1qp4")]
-position = Vector2(20083, -2415)
+position = Vector2(505, 637)
 motion_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
