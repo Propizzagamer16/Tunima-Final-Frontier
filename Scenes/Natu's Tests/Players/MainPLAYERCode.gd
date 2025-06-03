@@ -355,4 +355,4 @@ func chainOver():
 
 func jumpPad():
 	if JumpPadGlobal.jumpOverlap:
-		velocity.y = -5000
+		velocity.y = -3000
