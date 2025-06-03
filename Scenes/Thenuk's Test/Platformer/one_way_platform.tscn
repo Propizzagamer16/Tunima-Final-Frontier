@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq10mvgjmrt8h"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fgag7"]
-load_path = "res://.godot/imported/pixil-frame-0.png-97f64ee19692d77f2d4cb9ce10f4892d.ctex"
-
-[node name="moving platform" type="AnimatableBody2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("CompressedTexture2D_fgag7")

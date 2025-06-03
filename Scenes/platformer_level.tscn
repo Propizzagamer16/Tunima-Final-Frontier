@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://c17l3c60daiqd"]
+[gd_scene load_steps=17 format=4 uid="uid://c17l3c60daiqd"]
 
 [ext_resource type="Script" uid="uid://uubwouif7j2" path="res://Scenes/platformer_level.gd" id="1_p1qp4"]
 [ext_resource type="TileSet" uid="uid://bep85a2b5tdi6" path="res://Scenes/Thenuk's Test/platformer_level.tres" id="1_rdmv5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dawt5unn61wjh" path="res://Scenes/Thenuk's Test/Platformer/chain.tscn" id="4_o5n5x"]
 [ext_resource type="Script" uid="uid://b1nqo5dxo84wc" path="res://Scenes/Thenuk's Test/respawn things/death_zones.gd" id="5_cqtj6"]
 [ext_resource type="Script" uid="uid://djfrvbfmgxvdf" path="res://Scenes/Thenuk's Test/respawn things/checkpoint_manager.gd" id="6_10qgq"]
+[ext_resource type="PackedScene" uid="uid://bq10mvgjmrt8h" path="res://Scenes/Thenuk's Test/Platformer/movingplatform.tscn" id="7_86ghn"]
 [ext_resource type="PackedScene" uid="uid://cv0jw3cery743" path="res://Scenes/Thenuk's Test/respawn things/checkpoint.tscn" id="7_pwcve"]
 [ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="8_c3slm"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="10_p1qp4"]
@@ -91,11 +92,13 @@ position = Vector2(5309, -490)
 [node name="chain8" parent="Chains" instance=ExtResource("4_o5n5x")]
 position = Vector2(5309, -739)
 
+[node name="moving platform" parent="." instance=ExtResource("7_86ghn")]
+
 [node name="jumppads" type="Node2D" parent="."]
 position = Vector2(2367, -1148)
 
 [node name="Jump pad" parent="jumppads" instance=ExtResource("11_hv84o")]
-position = Vector2(-1974, 1958)
+position = Vector2(6166, -1276)
 
 [node name="death_zones" type="Area2D" parent="."]
 script = ExtResource("5_cqtj6")

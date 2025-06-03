@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq10mvgjmrt8h"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fgag7"]
+load_path = "res://.godot/imported/pixil-frame-0.png-97f64ee19692d77f2d4cb9ce10f4892d.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7v8wx"]
+size = Vector2(256, 35)
+
+[sub_resource type="Animation" id="Animation_2ken5"]
+resource_name = "move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(400, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qso0v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcjrl"]
+_data = {
+&"RESET": SubResource("Animation_qso0v"),
+&"move": SubResource("Animation_2ken5")
+}
+
+[node name="moving platform" type="AnimatableBody2D"]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(54, 4)
+texture = SubResource("CompressedTexture2D_fgag7")
+region_enabled = true
+region_rect = Rect2(514.121, 512.018, 127.995, 35.9215)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(128, 0)
+texture = SubResource("CompressedTexture2D_fgag7")
+region_enabled = true
+region_rect = Rect2(514.121, 512.018, 127.995, 35.9215)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(118, 3.5)
+shape = SubResource("RectangleShape2D_7v8wx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fcjrl")
+}
+autoplay = "move"
