@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg4nkao1p8hkc"]
+
+[ext_resource type="Texture2D" uid="uid://cxlxphvuwgdfv" path="res://Tiles (scenes)/platformer tiles/pixil-frame-0.png" id="1_0wi4u"]
+[ext_resource type="Script" uid="uid://8dgadbo8a6i3" path="res://Scenes/Thenuk's Test/Platformer/moveable_block.gd" id="1_kvqwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wi4u"]
+size = Vector2(125, 126)
+
+[node name="moveable block" type="RigidBody2D"]
+script = ExtResource("1_kvqwo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0wi4u")
+region_enabled = true
+region_rect = Rect2(127, 767, 130, 129)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_0wi4u")
