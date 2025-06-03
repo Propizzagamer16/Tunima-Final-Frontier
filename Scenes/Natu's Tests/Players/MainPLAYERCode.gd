@@ -38,6 +38,8 @@ func _ready():
 	attack_hitbox.add_to_group("player_attacks")
 
 	ChainGlobal.ChainOverlap.connect(chainOver)
+	JumpPadGlobal.jumpOverlap.connect(jumpPad)
+	
 	var hotbar_ui = get_node("Inventory/UI/Hotbar")
 	hotbar_ui.visible = true
 	muzzle_position = muzzle.position
