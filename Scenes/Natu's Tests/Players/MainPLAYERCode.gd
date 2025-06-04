@@ -7,13 +7,15 @@ var max_health = 100
 var alive = true
 var base_damage: int = 20
 var current_damage: int = base_damage
+var power_shot = true
+var can_shoot_bullet = true
 var side_view = false
 var top_down = false
-
+var gravitydelta = 0.04
 var attack_ip = false
 var current_dir = "none"
 var speed = 700
-const JUMP_VELOCITY = -1100.0
+var JUMP_VELOCITY = -1100.0
 var active_boosts = {}
 var powerup_cooldowns: Dictionary = {
 	"speed": 0.0,
@@ -68,12 +70,14 @@ func _physics_process(delta):
 		hide()
 		set_physics_process(false)
 		emit_signal("player_died")
-
+	
+	if power_shot:
+		heavy_bullet()
+		power_shot = false
+	
 	muzzle_position_update()
-	player_shooting()
-	player_movement()
+	player_movement(gravitydelta)
 	attack()
-	#deal_damage()
 
 
 func set_mode_from_global():
@@ -107,11 +111,10 @@ func set_camera(current_scene):
 		$Camera2D.limit_bottom = 10000000
 	#ILL ADD MORE WHEN WE MAKE MORE/WHEN IMAAD FINISHES DUNGEON
 	
-func player_movement():	
+func player_movement(gravity):	
 	if side_view:
-		var delta = 0.04
 		if not is_on_floor():
-			velocity += get_gravity() * delta
+			velocity += get_gravity() * gravity
 		if Input.is_action_just_pressed("ui_W") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 	
@@ -268,7 +271,7 @@ func player_shooting():
 	var xdirection: float = Input.get_axis("ui_A", "ui_D")
 	var ydirection: float = Input.get_axis("ui_W", "ui_S")
 
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and can_shoot_bullet:
 		var bullet_instance = bullet.instantiate() as Node2D
 		if top_down:
 			var dir = Vector2(xdirection, ydirection)
@@ -291,6 +294,11 @@ func player_shooting():
 
 		bullet_instance.global_position = muzzle.global_position
 		get_parent().add_child(bullet_instance)
+		can_shoot_bullet = false
+		$bullet_cooldown.start()
+
+func _on_bullet_cooldown_timeout() -> void:
+	can_shoot_bullet = true
 
 func heavy_bullet():
 	var xdirection: float = Input.get_axis("ui_A", "ui_D")
@@ -339,11 +347,15 @@ func muzzle_position_update():
 			muzzle.position.x = muzzle_position.x
 
 func _unhandled_input(event):
+	if Input.is_action_just_pressed("shoot") and can_shoot_bullet:
+		player_shooting()
+
 	if Input.is_action_just_pressed("inventory"):
 		var inventory_ui = get_node("Inventory/UI/InventoryUI")
 		inventory_ui.visible = not inventory_ui.visible
 		var weapon_ui = get_node("Inventory/UI/weapon_upgrade")
 		weapon_ui.visible = not weapon_ui.visible
+
 
 
 func apply_power_up(stat: String, amount: float, duration: float, cooldown: float) -> void:

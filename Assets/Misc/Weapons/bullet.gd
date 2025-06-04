@@ -5,6 +5,9 @@ extends Area2D
 var direction := Vector2.ZERO
 var damage = 10
 
+func _ready():
+	add_to_group("player_bullet")
+
 func _process(delta):
 	if is_sideview:
 		position.x += direction.x * speed * delta

@@ -149,10 +149,11 @@ func _on_starting_timer_timeout() -> void:
 	can_attack = true
 	
 func player_firerate():
-	if player.active_boosts.has("firerate"):
+	if player != null and player.active_boosts.has("firerate"):
 		$take_damage_cooldown.wait_time = 0.3
 	else:
 		$take_damage_cooldown.wait_time = 0.5
+
 	
 func low_health():
 	if health < 150:
