@@ -512,9 +512,13 @@ shape = SubResource("RectangleShape2D_2n14f")
 
 [node name="Inventory" parent="." instance=ExtResource("4_rkc1m")]
 
+[node name="bullet_cooldown" type="Timer" parent="."]
+wait_time = 0.3
+
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]
 [connection signal="body_entered" from="attack_range_hori" to="." method="_on_attack_range_hori_body_entered"]
 [connection signal="body_exited" from="attack_range_hori" to="." method="_on_attack_range_hori_body_exited"]
+[connection signal="timeout" from="bullet_cooldown" to="." method="_on_bullet_cooldown_timeout"]
