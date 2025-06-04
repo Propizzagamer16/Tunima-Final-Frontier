@@ -37,6 +37,8 @@ window/size/mode=3
 
 folder_colors={
 "res://Assets/Misc/Weapons/": "red",
+"res://Assets/Tiles/dungeon tiles/(S)/": "purple",
+"res://Assets/Tiles/dungeon tiles/(TD)/": "pink",
 "res://Scenes/Natu's Tests/items/": "green"
 }
 
