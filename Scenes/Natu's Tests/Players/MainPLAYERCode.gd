@@ -25,6 +25,7 @@ var powerup_cooldowns: Dictionary = {
 @onready var attack_hitbox := $attack_range_hori
 
 var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
+var power = preload("res://Assets/Misc/Weapons/Ult_Bullet.tscn")
 @onready var muzzle : Marker2D = $Muzzle
 var muzzle_position
 
@@ -220,13 +221,8 @@ func update_attack_hitbox_position(dir: String):
 
 func _on_attack_range_hori_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies") and attack_hitbox.monitoring:
-		if body.has_method("take_melee_damage"):
-			body.take_melee_damage(current_damage)
-
-func _on_attack_range_vert_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies") and attack_hitbox.monitoring:
-		if body.has_method("take_melee_damage"):
-			body.take_melee_damage(current_damage)
+		if body.has_method("take_damage"):
+			body.take_damage(current_damage)
 
 func _on_deal_attack_timeout() -> void:
 	attack_ip = false
@@ -282,21 +278,47 @@ func player_shooting():
 					"left": dir = Vector2.LEFT
 					"up": dir = Vector2.UP
 					"down": dir = Vector2.DOWN
-			bullet_instance.direction = Vector2(xdirection, ydirection)
-			
+			bullet_instance.direction = dir
+			bullet_instance.is_sideview = false
 		elif side_view:
 			if xdirection == 0:
 				if current_dir == "right":
 					xdirection = 1
 				elif current_dir == "left":
 					xdirection = -1
-			bullet_instance.direction = Vector2(xdirection, 0)   
- 
+			bullet_instance.direction = Vector2(xdirection, 0)
+			bullet_instance.is_sideview = true
+
 		bullet_instance.global_position = muzzle.global_position
 		get_parent().add_child(bullet_instance)
 
-#func heavy_bullet():
-	
+func heavy_bullet():
+	var xdirection: float = Input.get_axis("ui_A", "ui_D")
+	var ydirection: float = Input.get_axis("ui_W", "ui_S")
+
+	if Input.is_action_just_pressed("power_shot"):
+		var power_instance = power.instantiate() as Node2D
+		if top_down:
+			var dir = Vector2(xdirection, ydirection)
+			if dir == Vector2.ZERO:
+				match current_dir:
+					"right": dir = Vector2.RIGHT
+					"left": dir = Vector2.LEFT
+					"up": dir = Vector2.UP
+					"down": dir = Vector2.DOWN
+			power_instance.direction = dir
+			power_instance.is_sideview = false
+		elif side_view:
+			if xdirection == 0:
+				if current_dir == "right":
+					xdirection = 1
+				elif current_dir == "left":
+					xdirection = -1
+			power_instance.direction = Vector2(xdirection, 0)
+			power_instance.is_sideview = true
+
+		power_instance.global_position = muzzle.global_position
+		get_parent().add_child(power_instance)
 
 func muzzle_position_update():
 	if top_down:

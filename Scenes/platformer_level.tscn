@@ -193,7 +193,6 @@ position = Vector2(12487, -702)
 position = Vector2(19181, -2354)
 
 [node name="scene_transition_ani" parent="." instance=ExtResource("8_c3slm")]
-visible = false
 position = Vector2(2196, -1184)
 
 [node name="player" parent="." instance=ExtResource("10_p1qp4")]

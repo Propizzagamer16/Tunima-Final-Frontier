@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction.normalized() * 40
 	move_and_collide(velocity * delta)
 	
-func take_melee_damage(current_damage):
+func take_damage(current_damage):
 	if can_take_damage == true:
 		health = health - current_damage
 		$take_damage_cooldown.start()
