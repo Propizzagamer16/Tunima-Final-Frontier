@@ -9,11 +9,11 @@ var base_damage: int = 20
 var current_damage: int = base_damage
 var side_view = false
 var top_down = false
-
+var gravitydelta = 0.04
 var attack_ip = false
 var current_dir = "none"
 var speed = 700
-const JUMP_VELOCITY = -1100.0
+var JUMP_VELOCITY = -1100.0
 var active_boosts = {}
 var powerup_cooldowns: Dictionary = {
 	"speed": 0.0,
@@ -71,7 +71,7 @@ func _physics_process(delta):
 
 	muzzle_position_update()
 	player_shooting()
-	player_movement()
+	player_movement(gravitydelta)
 	attack()
 	#deal_damage()
 
@@ -107,11 +107,10 @@ func set_camera(current_scene):
 		$Camera2D.limit_bottom = 10000000
 	#ILL ADD MORE WHEN WE MAKE MORE/WHEN IMAAD FINISHES DUNGEON
 	
-func player_movement():	
+func player_movement(gravity):	
 	if side_view:
-		var delta = 0.04
 		if not is_on_floor():
-			velocity += get_gravity() * delta
+			velocity += get_gravity() * gravity
 		if Input.is_action_just_pressed("ui_W") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 	
