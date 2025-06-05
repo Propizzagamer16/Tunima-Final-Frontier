@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 			queue_free()
 			
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("player_attacks") or area.is_in_group("player_bullet"):
+	if area.is_in_group("player_bullet"):
 		if can_take_damage:
 			var damage = 20
 			health -= damage

@@ -54,6 +54,7 @@ sprite_frames = SubResource("SpriteFrames_6tfor")
 frame_progress = 0.934858
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.3
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

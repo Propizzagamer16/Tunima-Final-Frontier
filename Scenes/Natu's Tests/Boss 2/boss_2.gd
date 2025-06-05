@@ -25,6 +25,7 @@ var health: = 500:
 
 func _ready():
 	add_to_group("enemies")
+	add_to_group("boss_2")
 	set_physics_process(false)
 	Global.weakpoints_broken = 0
 	$weakpoints_spawns.start()
@@ -65,7 +66,6 @@ func take_damage(current_damage):
 		can_take_damage = false
 
 func _on_take_damage_cooldown_timeout() -> void:
-	print("cooldown")
 	can_take_damage = true
 		
 func teleport_away():
