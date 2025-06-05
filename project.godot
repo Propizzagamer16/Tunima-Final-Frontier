@@ -11,10 +11,15 @@ config_version=5
 [application]
 
 config/name="Tunima Final Frontier"
+<<<<<<< Updated upstream
 run/main_scene="uid://37ksorojgtrc"
+=======
+run/main_scene="uid://bqgoerdkrwxa0"
+>>>>>>> Stashed changes
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="uid://0gdlptesj4vv"
+<<<<<<<HEADrun/main_scene="uid://4lgxihbf0udc"
 
 [autoload]
 
