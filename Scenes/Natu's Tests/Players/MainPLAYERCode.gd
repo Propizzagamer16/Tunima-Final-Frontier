@@ -336,13 +336,13 @@ func muzzle_position_update():
 	if top_down:
 		match current_dir:
 			"right":
-				muzzle.position = Vector2(40, 0)
+				muzzle.position = Vector2(100, 0)
 			"left":
-				muzzle.position = Vector2(-40, 0)
+				muzzle.position = Vector2(-100, 0)
 			"up":
-				muzzle.position = Vector2(0, -50)
+				muzzle.position = Vector2(0, -100)
 			"down":
-				muzzle.position = Vector2(0, 55)
+				muzzle.position = Vector2(0, 100)
 	elif side_view:
 		var direction : float = Input.get_axis("ui_A", "ui_D")
 		if direction < 0:

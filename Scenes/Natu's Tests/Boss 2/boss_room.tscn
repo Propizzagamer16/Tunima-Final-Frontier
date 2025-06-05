@@ -2425,16 +2425,16 @@ script = ExtResource("1_11nuu")
 
 [node name="player" parent="boss_room" groups=["Player"] instance=ExtResource("2_uwyag")]
 position = Vector2(174, 241)
-scale = Vector2(3, 3)
+scale = Vector2(1.5, 1.5)
 collision_priority = 2.0
 
 [node name="Boss_2" parent="boss_room" instance=ExtResource("1_1b56s")]
 position = Vector2(957, 533)
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 
 [node name="player_spawnpoint" type="Marker2D" parent="boss_room"]
 position = Vector2(173, 244)
 
 [node name="scene_transition_ani" parent="boss_room" instance=ExtResource("4_11nuu")]
 self_modulate = Color(1, 1, 1, 0)
-position = Vector2(0, 3)
+position = Vector2(-132, -28)

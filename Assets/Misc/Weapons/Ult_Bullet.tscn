@@ -64,6 +64,7 @@ shape = SubResource("RectangleShape2D_pv2m7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_orcwf")
+autoplay = "default"
 frame_progress = 0.477506
 
 [node name="delete_bullet" type="Timer" parent="."]

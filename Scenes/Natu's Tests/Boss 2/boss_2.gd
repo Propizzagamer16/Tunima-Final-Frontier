@@ -92,7 +92,7 @@ func teleport_away():
 func shoot_projectile_at_player():
 	var bullet = projectile_scene.instantiate()
 	var shoot_dir = (player.position - position).normalized()
-	var spawn_offset = shoot_dir * 420 
+	var spawn_offset = shoot_dir * 250 
 	bullet.global_position = global_position + spawn_offset
 	bullet.direction = shoot_dir
 	get_parent().add_child(bullet)
