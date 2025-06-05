@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c17l3c60daiqd"]
+[gd_scene load_steps=20 format=4 uid="uid://c17l3c60daiqd"]
 
 [ext_resource type="Script" uid="uid://uubwouif7j2" path="res://Scenes/platformer_level.gd" id="1_p1qp4"]
 [ext_resource type="TileSet" uid="uid://bep85a2b5tdi6" path="res://Scenes/Thenuk's Test/platformer_level.tres" id="1_rdmv5"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dg4nkao1p8hkc" path="res://Scenes/Thenuk's Test/Platformer/moveable_block.tscn" id="8_g1880"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="10_p1qp4"]
 [ext_resource type="PackedScene" uid="uid://6nym00uj3eqc" path="res://Scenes/Thenuk's Test/Platformer/jump_pad.tscn" id="11_hv84o"]
+[ext_resource type="PackedScene" uid="uid://b14okggqbkawx" path="res://Scenes/Natu's Tests/chests/chest.tscn" id="15_67wup"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10qgq"]
 size = Vector2(1019, 100)
@@ -201,5 +202,8 @@ motion_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2784, -2716)
+
+[node name="Chest" parent="." instance=ExtResource("15_67wup")]
+position = Vector2(64, -2107)
 
 [connection signal="body_entered" from="death_zones" to="death_zones" method="_on_body_entered"]

@@ -32,6 +32,7 @@ var power = preload("res://Assets/Misc/Weapons/Ult_Bullet.tscn")
 @onready var muzzle : Marker2D = $Muzzle
 var muzzle_position
 
+var current_chest: Area2D = null
 var hearts_list : Array[TextureRect]
 signal player_died
 
@@ -375,6 +376,10 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("shoot") and can_shoot_bullet:
 		player_shooting()
 
+	if Input.is_action_just_pressed("interact") and current_chest:
+		pass
+		#open_chest_ui(current_chest)
+		
 	if Input.is_action_just_pressed("inventory"):
 		var inventory_ui = get_node("Inventory/UI/InventoryUI")
 		inventory_ui.visible = not inventory_ui.visible
@@ -437,3 +442,9 @@ func chainOver():
 func jumpPad():
 	if JumpPadGlobal.jumpOverlap:
 		velocity.y = -3000
+
+func open_chest_ui(chest: Area2D):
+	var chest_ui = preload("res://Scenes/Natu's Tests/chests/chest_UI.tscn").instantiate()
+	chest_ui.chest_inventory = chest.chest_inventory
+	chest_ui.player_inventory = $InventoryManager.inventory
+	get_tree().current_scene.add_child(chest_ui)

@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://b14okggqbkawx"]
+
+[ext_resource type="Script" uid="uid://cg2iue8syt7x0" path="res://Scenes/Natu's Tests/chests/chest.gd" id="1_y7eyl"]
+[ext_resource type="PackedScene" uid="uid://c0rcybm285pnq" path="res://Scenes/Natu's Tests/chests/chest_UI.tscn" id="2_0abfp"]
+[ext_resource type="Texture2D" uid="uid://myy6pthbu76d" path="res://Scenes/Natu's Tests/chests/chest_01.png" id="2_ur5cv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_laa7j"]
+atlas = ExtResource("2_ur5cv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj5ax"]
+atlas = ExtResource("2_ur5cv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svmjv"]
+atlas = ExtResource("2_ur5cv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhe4g"]
+atlas = ExtResource("2_ur5cv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmm2w"]
+atlas = ExtResource("2_ur5cv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnhm8"]
+atlas = ExtResource("2_ur5cv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ur5cv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_laa7j")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj5ax")
+}],
+"loop": true,
+"name": &"opened",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svmjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhe4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmm2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnhm8")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0abfp"]
+
+[node name="Chest" type="Area2D"]
+scale = Vector2(8, 8)
+script = ExtResource("1_y7eyl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ur5cv")
+animation = &"opening"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0abfp")
+
+[node name="ChestUi" parent="." instance=ExtResource("2_0abfp")]

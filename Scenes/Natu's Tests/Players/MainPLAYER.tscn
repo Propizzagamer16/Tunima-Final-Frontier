@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://botjx0e8asnn4"]
+[gd_scene load_steps=59 format=3 uid="uid://botjx0e8asnn4"]
 
 [ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/MainPLAYERCode.gd" id="1_rkc1m"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="2_biusk"]
@@ -419,9 +419,6 @@ animations = [{
 radius = 26.0
 height = 70.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_biusk"]
-size = Vector2(48, 75)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n14f"]
 size = Vector2(48, 42)
 
@@ -438,12 +435,6 @@ animation = &"SideIdle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_8erm5")
-
-[node name="player_hitbox" type="Area2D" parent="."]
-
-[node name="CollionShape2D" type="CollisionShape2D" parent="player_hitbox"]
-position = Vector2(2, -0.5)
-shape = SubResource("RectangleShape2D_biusk")
 
 [node name="attack_cooldown" type="Timer" parent="."]
 wait_time = 1.5
@@ -518,8 +509,6 @@ wait_time = 0.3
 [node name="power_cooldown" type="Timer" parent="."]
 wait_time = 3.0
 
-[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
-[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack" to="." method="_on_deal_attack_timeout"]
 [connection signal="body_entered" from="attack_range_hori" to="." method="_on_attack_range_hori_body_entered"]
