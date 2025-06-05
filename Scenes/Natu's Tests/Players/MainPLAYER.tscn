@@ -449,7 +449,7 @@ shape = SubResource("RectangleShape2D_biusk")
 wait_time = 1.5
 
 [node name="deal_attack" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 
 [node name="health_bar" type="CanvasLayer" parent="."]
 

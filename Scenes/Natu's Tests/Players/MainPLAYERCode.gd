@@ -9,6 +9,7 @@ var base_damage: int = 20
 var current_damage: int = base_damage
 var power_shot = true
 var can_shoot_bullet = true
+var attack_buffered = false
 var side_view = false
 var top_down = false
 var gravitydelta = 0.04
@@ -75,7 +76,6 @@ func _physics_process(delta):
 	
 	muzzle_position_update()
 	player_movement(gravitydelta)
-	attack()
 
 
 func set_mode_from_global():
@@ -192,6 +192,18 @@ func _on_attack_cooldown_timeout() -> void:
 	enemy_attack_cooldown = true
 
 func attack():
+	if Input.is_action_just_pressed("attack"):
+		if not attack_ip:
+			start_attack()
+		else:
+			# Save a buffered attack to trigger right after the current one ends
+			attack_buffered = true
+
+
+func start_attack():
+	attack_ip = true
+	attack_hitbox.monitoring = true
+	$deal_attack.start()
 	var dir = current_dir
 	if Input.is_action_just_pressed("attack"):
 		attack_ip = true
@@ -207,7 +219,6 @@ func attack():
 			$AnimatedSprite2D.play("UpAttack")
 		
 		update_attack_hitbox_position(dir)
-
 		attack_hitbox.monitoring = true
 		$deal_attack.start() 
 
@@ -226,9 +237,12 @@ func _on_attack_range_hori_body_entered(body: Node2D) -> void:
 			body.take_damage(current_damage)
 
 func _on_deal_attack_timeout() -> void:
-	attack_ip = false
 	attack_hitbox.monitoring = false
+	attack_ip = false
 
+	if attack_buffered:
+		attack_buffered = false
+		start_attack()
 
 func take_damage():
 	if health >= 0:
@@ -351,6 +365,8 @@ func muzzle_position_update():
 			muzzle.position.x = muzzle_position.x
 
 func _unhandled_input(event):
+	if Input.is_action_just_pressed("attack"):
+		attack()
 	
 	if Input.is_action_just_pressed("power_shot") and power_shot:
 		heavy_bullet()

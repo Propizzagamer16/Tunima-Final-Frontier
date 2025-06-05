@@ -12,7 +12,7 @@ var player_inattack_zone = false
 var can_take_damage = true
 var can_attack = false
 var can_teleport = true
-var is_vulnerable = false
+var is_vulnerable = true
 var dist_before_teleporting : float = 450
 
 var health: = 500:
