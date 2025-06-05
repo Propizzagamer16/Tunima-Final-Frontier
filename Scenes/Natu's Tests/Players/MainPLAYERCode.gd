@@ -71,9 +71,7 @@ func _physics_process(delta):
 		set_physics_process(false)
 		emit_signal("player_died")
 	
-	if power_shot:
-		heavy_bullet()
-		power_shot = false
+	
 	
 	muzzle_position_update()
 	player_movement(gravitydelta)
@@ -316,6 +314,7 @@ func heavy_bullet():
 					"down": dir = Vector2.DOWN
 			power_instance.direction = dir
 			power_instance.is_sideview = false
+			
 		elif side_view:
 			if xdirection == 0:
 				if current_dir == "right":
@@ -327,7 +326,12 @@ func heavy_bullet():
 
 		power_instance.global_position = muzzle.global_position
 		get_parent().add_child(power_instance)
-
+		power_shot = false
+		$power_cooldown.start()
+		
+func _on_power_cooldown_timeout() -> void:
+	power_shot = true
+	
 func muzzle_position_update():
 	if top_down:
 		match current_dir:
@@ -347,6 +351,11 @@ func muzzle_position_update():
 			muzzle.position.x = muzzle_position.x
 
 func _unhandled_input(event):
+	
+	if Input.is_action_just_pressed("power_shot") and power_shot:
+		heavy_bullet()
+		
+		
 	if Input.is_action_just_pressed("shoot") and can_shoot_bullet:
 		player_shooting()
 

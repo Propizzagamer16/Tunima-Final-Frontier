@@ -515,6 +515,9 @@ shape = SubResource("RectangleShape2D_2n14f")
 [node name="bullet_cooldown" type="Timer" parent="."]
 wait_time = 0.3
 
+[node name="power_cooldown" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
@@ -522,3 +525,4 @@ wait_time = 0.3
 [connection signal="body_entered" from="attack_range_hori" to="." method="_on_attack_range_hori_body_entered"]
 [connection signal="body_exited" from="attack_range_hori" to="." method="_on_attack_range_hori_body_exited"]
 [connection signal="timeout" from="bullet_cooldown" to="." method="_on_bullet_cooldown_timeout"]
+[connection signal="timeout" from="power_cooldown" to="." method="_on_power_cooldown_timeout"]

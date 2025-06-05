@@ -11,11 +11,7 @@ config_version=5
 [application]
 
 config/name="Tunima Final Frontier"
-<<<<<<< HEAD
-run/main_scene="uid://4lgxihbf0udc"
-=======
 run/main_scene="uid://37ksorojgtrc"
->>>>>>> 500f5bcafe875f403aec9da9bf5def32d2c71bdd
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="uid://0gdlptesj4vv"

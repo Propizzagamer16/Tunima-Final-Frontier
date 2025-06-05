@@ -1,15 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://yj566r2avmsj"]
+[gd_scene load_steps=11 format=3 uid="uid://yj566r2avmsj"]
 
 [ext_resource type="Script" uid="uid://m1ssgk6q4vik" path="res://Assets/Misc/Weapons/ult_bullet.gd" id="1_g04de"]
+[ext_resource type="Texture2D" uid="uid://c1vbrn6c60dj3" path="res://Assets/Misc/Weapons/heavy_bullet_attack.png" id="2_cp258"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pv2m7"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xenug"]
+atlas = ExtResource("2_cp258")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7ewr"]
+atlas = ExtResource("2_cp258")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1hif"]
+atlas = ExtResource("2_cp258")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpwoa"]
+atlas = ExtResource("2_cp258")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d1as"]
+atlas = ExtResource("2_cp258")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17wpa"]
+atlas = ExtResource("2_cp258")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orcwf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xenug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7ewr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1hif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpwoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d1as")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17wpa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
 [node name="UltBullet" type="Area2D"]
+scale = Vector2(6, 6)
 script = ExtResource("1_g04de")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pv2m7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_orcwf")
+frame_progress = 0.477506
 
 [node name="delete_bullet" type="Timer" parent="."]
