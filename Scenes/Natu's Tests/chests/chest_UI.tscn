@@ -1,44 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0rcybm285pnq"]
+[gd_scene load_steps=3 format=3 uid="uid://c0rcybm285pnq"]
 
 [ext_resource type="Script" uid="uid://d3tkx4lnj55am" path="res://Scenes/Natu's Tests/chests/chest_ui.gd" id="1_wf2ys"]
 [ext_resource type="PackedScene" uid="uid://c3a5oicp5jblc" path="res://Scenes/Natu's Tests/inventory/slot.tscn" id="2_c1boe"]
-[ext_resource type="Script" uid="uid://beeqjmdtwc1lm" path="res://Scenes/Natu's Tests/items/game_item.gd" id="2_k08tc"]
-[ext_resource type="Script" uid="uid://b27bvljqjrpq8" path="res://Scenes/Natu's Tests/items/healing_item.gd" id="4_r75s8"]
-[ext_resource type="Script" uid="uid://cbmrc2252kb8s" path="res://Scenes/Natu's Tests/items/powerups/strength_boost.gd" id="5_jq3ch"]
-[ext_resource type="Script" uid="uid://b87reqo0tugs6" path="res://Scenes/Natu's Tests/items/powerups/speed_boost.gd" id="6_e8l2g"]
-
-[sub_resource type="Resource" id="Resource_pbv6p"]
-script = ExtResource("4_r75s8")
-stat_to_boost = "health"
-boost_amount = 20.0
-duration = 1.0
-cooldown = 5.0
-name = ""
-description = ""
-stat = ""
-metadata/_custom_type_script = "uid://b27bvljqjrpq8"
-
-[sub_resource type="Resource" id="Resource_tdevu"]
-script = ExtResource("5_jq3ch")
-stat_to_boost = "strength"
-boost_amount = 10.0
-duration = 8.0
-cooldown = 15.0
-name = ""
-description = ""
-stat = ""
-metadata/_custom_type_script = "uid://cbmrc2252kb8s"
-
-[sub_resource type="Resource" id="Resource_bvdh2"]
-script = ExtResource("6_e8l2g")
-stat_to_boost = "speed"
-boost_amount = 300.0
-duration = 8.0
-cooldown = 15.0
-name = ""
-description = ""
-stat = ""
-metadata/_custom_type_script = "uid://b87reqo0tugs6"
 
 [node name="ChestUi" type="Control"]
 layout_mode = 3
@@ -47,30 +10,19 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 grow_vertical = 2
 script = ExtResource("1_wf2ys")
-predefined_items = Array[ExtResource("2_k08tc")]([null, null, null])
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(0.25, 0.25)
 columns = 3
 
 [node name="Slot" parent="GridContainer" instance=ExtResource("2_c1boe")]
 layout_mode = 2
-item = SubResource("Resource_pbv6p")
-amount = 3
 
 [node name="Slot2" parent="GridContainer" instance=ExtResource("2_c1boe")]
 layout_mode = 2
-item = SubResource("Resource_tdevu")
-amount = 1
 
 [node name="Slot3" parent="GridContainer" instance=ExtResource("2_c1boe")]
 layout_mode = 2
-item = SubResource("Resource_bvdh2")
-amount = 2
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0

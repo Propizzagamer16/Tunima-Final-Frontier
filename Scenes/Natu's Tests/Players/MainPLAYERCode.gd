@@ -375,10 +375,6 @@ func _unhandled_input(event):
 		
 	if Input.is_action_just_pressed("shoot") and can_shoot_bullet:
 		player_shooting()
-
-	if Input.is_action_just_pressed("interact") and current_chest:
-		pass
-		#open_chest_ui(current_chest)
 		
 	if Input.is_action_just_pressed("inventory"):
 		var inventory_ui = get_node("Inventory/UI/InventoryUI")

@@ -69,6 +69,7 @@ animations = [{
 [node name="Chest" type="Area2D"]
 scale = Vector2(8, 8)
 script = ExtResource("1_y7eyl")
+chest_contents = Array[Dictionary]([{}, {}, {}, {}])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ur5cv")
@@ -77,4 +78,4 @@ animation = &"opening"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0abfp")
 
-[node name="ChestUi" parent="." instance=ExtResource("2_0abfp")]
+[node name="ChestUI" parent="." instance=ExtResource("2_0abfp")]
