@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://c17l3c60daiqd"]
+[gd_scene load_steps=23 format=4 uid="uid://c17l3c60daiqd"]
 
 [ext_resource type="Script" uid="uid://uubwouif7j2" path="res://Scenes/platformer_level.gd" id="1_p1qp4"]
 [ext_resource type="TileSet" uid="uid://bep85a2b5tdi6" path="res://Scenes/Thenuk's Test/platformer_level.tres" id="1_rdmv5"]
@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="10_p1qp4"]
 [ext_resource type="PackedScene" uid="uid://6nym00uj3eqc" path="res://Scenes/Thenuk's Test/Platformer/jump_pad.tscn" id="11_hv84o"]
 [ext_resource type="PackedScene" uid="uid://b14okggqbkawx" path="res://Scenes/Natu's Tests/chests/chest.tscn" id="15_67wup"]
-[ext_resource type="Script" uid="uid://cbmrc2252kb8s" path="res://Scenes/Natu's Tests/items/powerups/strength_boost.gd" id="16_inf85"]
+[ext_resource type="Resource" uid="uid://bcgeyqg04d48u" path="res://Scenes/Natu's Tests/items/healing_item.tres" id="16_inf85"]
+[ext_resource type="Script" uid="uid://b87reqo0tugs6" path="res://Scenes/Natu's Tests/items/powerups/speed_boost.gd" id="17_qsb3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10qgq"]
 size = Vector2(1019, 100)
@@ -29,16 +30,16 @@ size = Vector2(1681, 77.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5n5x"]
 size = Vector2(8514.75, 28.5613)
 
-[sub_resource type="Resource" id="Resource_inf85"]
-script = ExtResource("16_inf85")
-stat_to_boost = "strength"
-boost_amount = 10.0
+[sub_resource type="Resource" id="Resource_go8es"]
+script = ExtResource("17_qsb3w")
+stat_to_boost = "speed"
+boost_amount = 300.0
 duration = 8.0
 cooldown = 15.0
 name = ""
 description = ""
 stat = ""
-metadata/_custom_type_script = "uid://cbmrc2252kb8s"
+metadata/_custom_type_script = "uid://b87reqo0tugs6"
 
 [node name="Platformer Game" type="Node2D"]
 script = ExtResource("1_p1qp4")
@@ -219,7 +220,11 @@ position = Vector2(2784, -2716)
 [node name="Chest" parent="." instance=ExtResource("15_67wup")]
 position = Vector2(60, -2078)
 chest_contents = Array[Dictionary]([{
-SubResource("Resource_inf85"): 2
+"amount": 5,
+"item": ExtResource("16_inf85")
+}, {
+"amount": 2,
+"item": SubResource("Resource_go8es")
 }])
 
 [connection signal="body_entered" from="death_zones" to="death_zones" method="_on_body_entered"]

@@ -1,21 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0rcybm285pnq"]
+[gd_scene load_steps=4 format=3 uid="uid://c0rcybm285pnq"]
 
-[ext_resource type="Script" uid="uid://d3tkx4lnj55am" path="res://Scenes/Natu's Tests/chests/chest_ui.gd" id="1_wf2ys"]
 [ext_resource type="PackedScene" uid="uid://c3a5oicp5jblc" path="res://Scenes/Natu's Tests/inventory/slot.tscn" id="2_c1boe"]
+
+[sub_resource type="SystemFont" id="SystemFont_wf2ys"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1boe"]
+bg_color = Color(0.6, 0.6, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="ChestUi" type="Control"]
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = 13.92
+offset_top = 1.35498
+offset_right = 13.92
+offset_bottom = 1.35498
 grow_vertical = 2
-script = ExtResource("1_wf2ys")
+scale = Vector2(0.25, 0.25)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(0.25, 0.25)
 columns = 3
 
 [node name="Slot" parent="GridContainer" instance=ExtResource("2_c1boe")]
@@ -26,3 +37,13 @@ layout_mode = 2
 
 [node name="Slot3" parent="GridContainer" instance=ExtResource("2_c1boe")]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 68.32
+offset_top = -33.4199
+offset_right = 191.32
+offset_bottom = -10.4199
+theme_override_fonts/font = SubResource("SystemFont_wf2ys")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c1boe")
+text = " Chest Contents: "

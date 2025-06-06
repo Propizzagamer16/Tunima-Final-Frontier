@@ -3,12 +3,15 @@ extends Panel
 @export var item : GameItem = null:
 	set(value):
 		item = value
+		print("Setting item: ", item)
 		if value == null:
 			$Icon.texture = null
 			$Amount.text = ""
 			$CooldownOverlay.visible = false
 			return
+		print("Item icon: ", value.icon)
 		$Icon.texture = value.icon
+
 
 @export var amount : int = 0:
 	set(value):
@@ -20,7 +23,6 @@ extends Panel
 
 var powerup_time := 0.0
 var powerup_duration := 0.0
-
 var cooldown_time := 0.0
 var cooldown_duration := 0.0
 
@@ -41,7 +43,6 @@ func _process(delta):
 		$CooldownOverlay.visible = true
 		$CooldownOverlay.anchor_top = 1.0 - ratio
 		$CooldownOverlay.anchor_bottom = 1.0
-
 	else:
 		$CooldownOverlay.visible = false
 
@@ -61,13 +62,20 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return false
 	
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	var temp = item
-	item = data.item
-	data.item = temp
-	
-	temp = amount
-	amount = data.amount
-	data.amount = temp
+	if item != null and data.item == item:
+		amount += data.amount
+		data.item = null
+		data.amount = 0
+	else:
+		var temp_item = item
+		var temp_amount = amount
+
+		item = data.item
+		amount = data.amount
+
+		data.item = temp_item
+		data.amount = temp_amount
+
 	
 func _get_drag_data(at_position: Vector2) -> Variant:
 	return self
