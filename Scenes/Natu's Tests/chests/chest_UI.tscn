@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c3a5oicp5jblc" path="res://Scenes/Natu's Tests/inventory/slot.tscn" id="2_c1boe"]
 
 [sub_resource type="SystemFont" id="SystemFont_wf2ys"]
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1boe"]
 bg_color = Color(0.6, 0.6, 0, 1)

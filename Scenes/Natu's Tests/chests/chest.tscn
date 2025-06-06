@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://b14okggqbkawx"]
+[gd_scene load_steps=11 format=3 uid="uid://b14okggqbkawx"]
 
 [ext_resource type="Script" uid="uid://cg2iue8syt7x0" path="res://Scenes/Natu's Tests/chests/chest.gd" id="1_y7eyl"]
-[ext_resource type="PackedScene" uid="uid://c0rcybm285pnq" path="res://Scenes/Natu's Tests/chests/chest_UI.tscn" id="2_0abfp"]
 [ext_resource type="Texture2D" uid="uid://myy6pthbu76d" path="res://Scenes/Natu's Tests/chests/chest_01.png" id="2_ur5cv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_laa7j"]
@@ -59,7 +58,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xnhm8")
 }],
-"loop": true,
+"loop": false,
 "name": &"opening",
 "speed": 5.0
 }]
@@ -77,5 +76,3 @@ animation = &"opening"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0abfp")
-
-[node name="ChestUI" parent="." instance=ExtResource("2_0abfp")]

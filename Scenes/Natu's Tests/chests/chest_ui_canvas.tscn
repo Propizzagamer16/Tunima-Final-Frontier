@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ovnb4nfrlf4"]
+
+[ext_resource type="PackedScene" uid="uid://c0rcybm285pnq" path="res://Scenes/Natu's Tests/chests/chest_UI.tscn" id="1_05co5"]
+[ext_resource type="Script" uid="uid://dixqg4e26sp3x" path="res://Scenes/Natu's Tests/chests/chest_ui_popup.gd" id="2_d86ay"]
+
+[node name="ChestUICanvas" type="CanvasLayer"]
+
+[node name="ChestUIPopup" parent="." instance=ExtResource("1_05co5")]
+offset_left = 250.0
+offset_top = -103.915
+offset_right = 250.0
+offset_bottom = -103.915
+scale = Vector2(2, 2)
+script = ExtResource("2_d86ay")
