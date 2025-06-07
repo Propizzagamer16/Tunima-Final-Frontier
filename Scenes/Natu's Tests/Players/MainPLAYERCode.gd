@@ -27,6 +27,12 @@ var powerup_cooldowns: Dictionary = {
 
 @onready var attack_hitbox := $attack_range_hori
 
+#variable jump stuff
+var is_jumping = false
+var jump_hold_time = 0.0
+const MAX_JUMP_HOLD_TIME = 0.7
+const JUMP_RELEASE_GRAVITY_MULTIPLIER = 1.1
+
 var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 var power = preload("res://Assets/Misc/Weapons/Ult_Bullet.tscn")
 @onready var muzzle : Marker2D = $Muzzle
@@ -35,7 +41,6 @@ var muzzle_position
 var current_chest: Area2D = null
 var hearts_list : Array[TextureRect]
 signal player_died
-
 
 func _ready():
 	set_mode_from_global()
@@ -73,11 +78,8 @@ func _physics_process(delta):
 		set_physics_process(false)
 		emit_signal("player_died")
 	
-	
-	
 	muzzle_position_update()
 	player_movement(gravitydelta)
-
 
 func set_mode_from_global():
 	if Global.player_type == "Top Down":
@@ -113,10 +115,21 @@ func set_camera(current_scene):
 func player_movement(gravity):	
 	if side_view:
 		if not is_on_floor():
-			velocity += get_gravity() * gravity
+			var gravity_force = get_gravity() * gravity
+			if !is_jumping and velocity.y < 0:
+				gravity_force *= JUMP_RELEASE_GRAVITY_MULTIPLIER
+			velocity += gravity_force
+
 		if Input.is_action_just_pressed("ui_W") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
-	
+			is_jumping = true
+			jump_hold_time = 0.0
+			
+		if is_jumping:
+			jump_hold_time += gravity
+			if Input.is_action_just_released("ui_W") or jump_hold_time >= MAX_JUMP_HOLD_TIME:
+				is_jumping = false
+
 	if Input.is_action_pressed("ui_D"):
 		current_dir = "right"
 		play_anim(1)
