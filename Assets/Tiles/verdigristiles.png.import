@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cahmy432sxa8k"
-path="res://.godot/imported/imageedit_2_4219252741.png-e061580f647b39f822ddd07077148d2d.ctex"
+uid="uid://cwgkep2p82x33"
+path="res://.godot/imported/verdigristiles.png-450b4a0c4431b3bf1c67da190826daba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/imageedit_2_4219252741.png"
-dest_files=["res://.godot/imported/imageedit_2_4219252741.png-e061580f647b39f822ddd07077148d2d.ctex"]
+source_file="res://Assets/Tiles/verdigristiles.png"
+dest_files=["res://.godot/imported/verdigristiles.png-450b4a0c4431b3bf1c67da190826daba.ctex"]
 
 [params]
 
