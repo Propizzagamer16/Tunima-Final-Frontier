@@ -69,21 +69,23 @@ tile_map_data = PackedByteArray("AAAAAAgAAAABAAAAAAABAAgAAAABAAAAAAACAAgAAAABAAA
 tile_set = ExtResource("1_rdmv5")
 
 [node name="Door" parent="." instance=ExtResource("3_my1fh")]
-position = Vector2(4726, -2324)
+position = Vector2(4634.47, -2371.75)
 
 [node name="Levers" type="Node2D" parent="Door"]
+scale = Vector2(0.7, 0.7)
 
 [node name="lever" parent="Door/Levers" instance=ExtResource("2_lth3x")]
-position = Vector2(469, 594)
+position = Vector2(478.596, 540.966)
 
 [node name="Door2" parent="." instance=ExtResource("3_my1fh")]
-position = Vector2(12098, -634)
+position = Vector2(12108, -729)
 
 [node name="Levers" type="Node2D" parent="Door2"]
 position = Vector2(0, 2)
 
 [node name="lever" parent="Door2/Levers" instance=ExtResource("2_lth3x")]
-position = Vector2(-3584, 570)
+position = Vector2(-2151.18, 383.294)
+scale = Vector2(0.7, 0.7)
 
 [node name="Chains" type="Node2D" parent="."]
 
@@ -210,11 +212,11 @@ position = Vector2(12487, -702)
 position = Vector2(19181, -2354)
 
 [node name="scene_transition_ani" parent="." instance=ExtResource("8_c3slm")]
-position = Vector2(2782, -1646)
+position = Vector2(2786, -1685)
 
 [node name="player" parent="." instance=ExtResource("10_p1qp4")]
 z_index = 1
-position = Vector2(746, -2021)
+position = Vector2(61, 933)
 motion_mode = 1
 
 [node name="Chest" parent="." instance=ExtResource("15_67wup")]

@@ -30,8 +30,14 @@ var powerup_cooldowns: Dictionary = {
 #variable jump stuff
 var is_jumping = false
 var jump_hold_time = 0.0
-const MAX_JUMP_HOLD_TIME = 0.7
-const JUMP_RELEASE_GRAVITY_MULTIPLIER = 1.1
+const MAX_JUMP_HOLD_TIME = 10
+
+#dashing stuff
+var can_dash = true
+var is_dashing = false
+var dash_speed = 15000
+var dash_duration = 0.1
+var dash_cooldown = 1.0
 
 var bullet = preload("res://Assets/Misc/Weapons/bullet.tscn")
 var power = preload("res://Assets/Misc/Weapons/Ult_Bullet.tscn")
@@ -79,7 +85,9 @@ func _physics_process(delta):
 		emit_signal("player_died")
 	
 	muzzle_position_update()
-	player_movement(gravitydelta)
+	
+	if not is_dashing:
+		player_movement(gravitydelta)
 
 func set_mode_from_global():
 	if Global.player_type == "Top Down":
@@ -116,8 +124,6 @@ func player_movement(gravity):
 	if side_view:
 		if not is_on_floor():
 			var gravity_force = get_gravity() * gravity
-			if !is_jumping and velocity.y < 0:
-				gravity_force *= JUMP_RELEASE_GRAVITY_MULTIPLIER
 			velocity += gravity_force
 
 		if Input.is_action_just_pressed("ui_W") and is_on_floor():
@@ -159,6 +165,27 @@ func player_movement(gravity):
 			velocity.y = 0
 
 	move_and_slide()
+
+func start_dash():
+	is_dashing = true
+	can_dash = false
+
+	var dash_direction = Vector2.ZERO
+	match current_dir:
+		"right": dash_direction = Vector2.RIGHT
+		"left": dash_direction = Vector2.LEFT
+		"up": dash_direction = Vector2.UP
+		"down": dash_direction = Vector2.DOWN
+
+	if side_view:
+		dash_direction.y = 0
+
+	velocity = dash_direction * dash_speed
+	move_and_slide()
+	await get_tree().create_timer(dash_duration).timeout
+	is_dashing = false
+	await get_tree().create_timer(dash_cooldown).timeout
+	can_dash = true
 
 func play_anim(movement):
 	var dir = current_dir
@@ -388,7 +415,10 @@ func _unhandled_input(event):
 		
 	if Input.is_action_just_pressed("shoot") and can_shoot_bullet:
 		player_shooting()
-		
+	
+	if Input.is_action_just_pressed("dash") and can_dash and not is_dashing:
+		start_dash()
+
 	if Input.is_action_just_pressed("inventory"):
 		var inventory_ui = get_node("Inventory/UI/InventoryUI")
 		inventory_ui.visible = not inventory_ui.visible
@@ -446,7 +476,7 @@ func reset(spawn_position: Vector2):
 
 func chainOver():
 	if ChainGlobal.ChainOverlap:
-		velocity.y = -400
+		velocity.y = -450
 
 func jumpPad():
 	if JumpPadGlobal.jumpOverlap:
