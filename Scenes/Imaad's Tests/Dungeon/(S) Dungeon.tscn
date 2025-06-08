@@ -4676,7 +4676,13 @@ tile_set = SubResource("TileSet_vl6md")
 
 [node name="Interactables" type="Node" parent="Tiles"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Tiles/Interactables"]
+[node name="Indestructables" type="StaticBody2D" parent="Tiles/Interactables"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Interactables/Indestructables"]
+
+[node name="Destructables" type="StaticBody2D" parent="Tiles/Interactables"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Interactables/Destructables"]
 
 [node name="Interactables" type="TileMapLayer" parent="Tiles/Interactables"]
 modulate = Color(1, 1, 1, 0.411765)
