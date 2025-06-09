@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 1000
+@export var speed = 400
 @export var direction = Vector2.RIGHT
 @export var is_sideview := false
 @export var damage = 100
