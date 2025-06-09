@@ -119,6 +119,12 @@ func set_camera(current_scene):
 		$Camera2D.limit_top = 0
 		$Camera2D.limit_bottom = 1080
 	#ILL ADD MORE WHEN WE MAKE MORE/WHEN IMAAD FINISHES DUNGEON
+	elif current_scene == "(S)Dungeon":
+		$Camera2D.limit_left = -128
+		$Camera2D.limit_right = 26111
+		$Camera2D.limit_top = -3000.0
+		$Camera2D.limit_bottom = 1790
+		
 	
 func player_movement(gravity):	
 	if side_view:
