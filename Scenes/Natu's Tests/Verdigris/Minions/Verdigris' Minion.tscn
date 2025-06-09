@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://f2qlqpa33lg0"]
+
+[ext_resource type="Script" uid="uid://slhyjah1nwl1" path="res://Scenes/Natu's Tests/Verdigris/Minions/minionCode.gd" id="1_1qav6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qav6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35bfv"]
+
+[node name="Verdigris\'Minion" type="CharacterBody2D"]
+script = ExtResource("1_1qav6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1qav6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_35bfv")

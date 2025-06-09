@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhl82i388y587"]
+
+[ext_resource type="Script" uid="uid://dy6w4nbxtdktk" path="res://Scenes/Natu's Tests/Verdigris/verdigrisCode.gd" id="1_yinhv"]
+[ext_resource type="PackedScene" uid="uid://f2qlqpa33lg0" path="res://Scenes/Natu's Tests/Verdigris/Minions/Verdigris' Minion.tscn" id="2_d77o6"]
+[ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="2_n0tyl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n0tyl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n0tyl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d77o6"]
+
+[node name="Verdigris" type="CharacterBody2D"]
+script = ExtResource("1_yinhv")
+minion_scene = ExtResource("2_d77o6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n0tyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d77o6")
+
+[node name="minion_spawn_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="minion_spawn_timer" to="." method="_on_minion_spawn_timer_timeout"]
