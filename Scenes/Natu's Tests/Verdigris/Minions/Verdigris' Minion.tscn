@@ -1,8 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://f2qlqpa33lg0"]
+[gd_scene load_steps=13 format=3 uid="uid://f2qlqpa33lg0"]
 
 [ext_resource type="Script" uid="uid://slhyjah1nwl1" path="res://Scenes/Natu's Tests/Verdigris/Minions/minionCode.gd" id="1_1qav6"]
+[ext_resource type="Texture2D" uid="uid://c34dpdw1ndddt" path="res://Scenes/Natu's Tests/Verdigris/Minions/Verd.Minion.png" id="2_35bfv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hbqm"]
+atlas = ExtResource("2_35bfv")
+region = Rect2(0, 0, 83, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd4u8"]
+atlas = ExtResource("2_35bfv")
+region = Rect2(83, 0, 83, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew2nd"]
+atlas = ExtResource("2_35bfv")
+region = Rect2(166, 0, 83, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sd17"]
+atlas = ExtResource("2_35bfv")
+region = Rect2(249, 0, 83, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0r8u"]
+atlas = ExtResource("2_35bfv")
+region = Rect2(332, 0, 83, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k2fj"]
+atlas = ExtResource("2_35bfv")
+region = Rect2(415, 0, 83, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g77y4"]
+atlas = ExtResource("2_35bfv")
+region = Rect2(498, 0, 83, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_376sx"]
+atlas = ExtResource("2_35bfv")
+region = Rect2(581, 0, 83, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qav6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hbqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd4u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew2nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sd17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0r8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k2fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g77y4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_376sx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 17.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35bfv"]
 
@@ -11,6 +74,7 @@ script = ExtResource("1_1qav6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1qav6")
+frame_progress = 0.058279
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_35bfv")
