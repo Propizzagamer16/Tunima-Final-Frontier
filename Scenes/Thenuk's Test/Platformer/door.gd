@@ -1,5 +1,4 @@
 extends Node2D
-
 @export var code := "0"
 var codeFromLevers := ""
 var levers := []

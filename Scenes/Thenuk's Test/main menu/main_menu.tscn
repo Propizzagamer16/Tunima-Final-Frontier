@@ -12,10 +12,10 @@ script = ExtResource("1_mkso3")
 [node name="Node2D" type="Node2D" parent="starting screen"]
 
 [node name="background" type="TextureRect" parent="starting screen"]
-offset_left = -165.0
-offset_top = -80.0
-offset_right = 2000.0
-offset_bottom = 1263.0
+offset_left = -35.0
+offset_top = -26.0
+offset_right = 1988.0
+offset_bottom = 1225.0
 texture = ExtResource("2_2x52s")
 
 [node name="start button" type="Button" parent="starting screen"]

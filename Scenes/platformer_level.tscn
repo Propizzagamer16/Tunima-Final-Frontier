@@ -215,7 +215,7 @@ position = Vector2(12487, -702)
 position = Vector2(19181, -2354)
 
 [node name="scene_transition_ani" parent="." instance=ExtResource("8_c3slm")]
-position = Vector2(3495, -1449)
+position = Vector2(-21039, -19544)
 
 [node name="player" parent="." instance=ExtResource("10_p1qp4")]
 z_index = 1
