@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://f2qlqpa33lg0"]
+[gd_scene load_steps=13 format=3 uid="uid://b5bsaa11gdc6l"]
 
 [ext_resource type="Script" uid="uid://slhyjah1nwl1" path="res://Scenes/Natu's Tests/Verdigris/Minions/minionCode.gd" id="1_1qav6"]
 [ext_resource type="Texture2D" uid="uid://c34dpdw1ndddt" path="res://Scenes/Natu's Tests/Verdigris/Minions/Verd.Minion.png" id="2_35bfv"]
