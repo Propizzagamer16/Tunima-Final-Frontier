@@ -18,7 +18,7 @@ func _ready():
 	
 	# Movement changes for scene
 	player.speed = 115
-	player.JUMP_VELOCITY = -200.0
+	player.JUMP_FORCE = -300.0
 	player.gravitydelta = 0.015
 
 func _input(event):

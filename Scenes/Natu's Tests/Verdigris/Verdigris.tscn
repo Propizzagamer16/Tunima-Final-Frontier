@@ -28,5 +28,6 @@ sprite_frames = SubResource("SpriteFrames_n0tyl")
 shape = SubResource("RectangleShape2D_d77o6")
 
 [node name="minion_spawn_timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [connection signal="timeout" from="minion_spawn_timer" to="." method="_on_minion_spawn_timer_timeout"]
