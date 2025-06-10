@@ -1,3 +1,6 @@
-[gd_scene load_steps=0 format=3 uid="uid://yi7h5w4clefy"]
+[gd_scene load_steps=2 format=3 uid="uid://yi7h5w4clefy"]
+
+[ext_resource type="Script" uid="uid://bg57ra6d17oax" path="res://intorduction.gd" id="1_ew2nl"]
 
 [node name="intorduction" type="Node2D"]
+script = ExtResource("1_ew2nl")

@@ -17,6 +17,10 @@ func _ready():
 	player.speed = 150
 	player.JUMP_VELOCITY = -200.0
 	player.gravitydelta = 0.015
+
+func _input(event):
+	if event.is_action_pressed(\"change_scene_key\"):
+		get_tree().change_scene_to_file(\"res://Scenes/Thenuk's Test/weapons_lab.tscn\")
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k753j"]
