@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://oj5onhv8j4kc"]
+[gd_scene load_steps=7 format=4 uid="uid://oj5onhv8j4kc"]
 
-[ext_resource type="Texture2D" uid="uid://bltkm7ewcycw6" path="res://Assets/Tiles/dungeon tiles/(S)/Tilesetv3.png" id="1_ilbye"]
-[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="2_5x1av"]
-[ext_resource type="PackedScene" uid="uid://bhl82i388y587" path="res://Scenes/Natu's Tests/Verdigris/Verdigris.tscn" id="3_lhsx4"]
+[ext_resource type="Script" uid="uid://dpyecyiqnps4d" path="res://Scenes/Natu's Tests/Verdigris/verdigrispahse_1Code.gd" id="1_h06y6"]
+[ext_resource type="Texture2D" uid="uid://bltkm7ewcycw6" path="res://Assets/Tiles/dungeon tiles/(S)/Tilesetv3.png" id="1_t88wn"]
+[ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="2_h06y6"]
+[ext_resource type="PackedScene" uid="uid://bhl82i388y587" path="res://Scenes/Natu's Tests/Verdigris/Verdigris.tscn" id="3_4jbsk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ueod3"]
-texture = ExtResource("1_ilbye")
+texture = ExtResource("1_t88wn")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -810,6 +811,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ueod3")
 
 [node name="Verdigris phase 1" type="Node2D"]
+script = ExtResource("1_h06y6")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_nqp17")
@@ -843,8 +845,8 @@ position = Vector2(723, 82)
 [node name="Marker2D4" type="Marker2D" parent="Minion Spawning"]
 position = Vector2(932, 66)
 
-[node name="player" parent="." instance=ExtResource("2_5x1av")]
+[node name="player" parent="." instance=ExtResource("2_h06y6")]
 position = Vector2(914, 935)
 
-[node name="Verdigris" parent="." instance=ExtResource("3_lhsx4")]
+[node name="Verdigris" parent="." instance=ExtResource("3_4jbsk")]
 position = Vector2(953, -74)
