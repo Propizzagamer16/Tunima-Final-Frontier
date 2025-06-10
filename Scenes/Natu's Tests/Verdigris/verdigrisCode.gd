@@ -22,9 +22,7 @@ func _ready():
 		spawn_timer.start()
 
 func _process(_delta):
-	if health <= health_thresholds["phase2"] and phase == BossPhase.phase1:
-		change_phase(BossPhase.phase2)
-	elif health <= health_thresholds["phase3"] and phase == BossPhase.phase2:
+	if health <= health_thresholds["phase3"] and phase == BossPhase.phase2:
 		change_phase(BossPhase.phase3)
 
 func change_phase(new_phase: BossPhase):
