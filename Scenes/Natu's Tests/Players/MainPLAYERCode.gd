@@ -124,6 +124,11 @@ func set_camera(current_scene):
 		$Camera2D.limit_right = 26111
 		$Camera2D.limit_top = -3000.0
 		$Camera2D.limit_bottom = 1790
+	elif current_scene == "Verdigris Phase 1":
+		$Camera2D.limit_left = 0
+		$Camera2D.limit_right = 1910
+		$Camera2D.limit_top = -300
+		$Camera2D.limit_bottom = 1100
 		
 	
 func player_movement(gravity):	
@@ -154,16 +159,20 @@ func player_movement(gravity):
 		velocity.x = -speed
 		if top_down:
 			velocity.y = 0
-	elif Input.is_action_pressed("ui_S") and top_down:
-		play_anim(1)
+	elif Input.is_action_pressed("ui_S"):
+		play_anim(0)
 		current_dir = "down"
-		velocity.x = 0
-		velocity.y = speed
-	elif Input.is_action_pressed("ui_W") and top_down:
-		play_anim(1)
+		if top_down:
+			play_anim(1)
+			velocity.x = 0
+			velocity.y = speed
+	elif Input.is_action_pressed("ui_W"):
 		current_dir = "up"
-		velocity.x = 0
-		velocity.y = -speed
+		play_anim(0)
+		if top_down:
+			play_anim(1)
+			velocity.x = 0
+			velocity.y = -speed
 	else:
 		play_anim(0)
 		velocity.x = 0
@@ -215,21 +224,24 @@ func play_anim(movement):
 				if attack_ip == false:
 					anim.play("SideIdle")
 			
-	if dir == "up" and top_down:
+	if dir == "up":
 		if attack_ip == false:
-			if movement == 1:
+			if movement == 1 and top_down:
 				anim.play("UpWalk")
 			elif movement == 0:
-				if attack_ip == false:
+				
+				if side_view:
+					anim.play("Idle")
+				else:
 					anim.play("UpIdle")
+					
 			
-	if dir == "down" and top_down:
+	if dir == "down":
 		if attack_ip == false:
-			if movement == 1:
+			if movement == 1 and top_down:
 				anim.play("DownWalk")
 			elif movement == 0:
-				if attack_ip == false:
-					anim.play("Idle")
+				anim.play("Idle")
 
 ##ATTACK
 func player():
@@ -260,9 +272,9 @@ func start_attack():
 		if dir == "left":
 			$AnimatedSprite2D.flip_h = true
 			$AnimatedSprite2D.play("SideAttack")
-		if dir == "down" and top_down:
+		if dir == "down":
 			$AnimatedSprite2D.play("DownAttack")
-		if dir == "up" and top_down:
+		if dir == "up":
 			$AnimatedSprite2D.play("UpAttack")
 		
 		update_attack_hitbox_position(dir)
