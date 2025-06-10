@@ -7,4 +7,4 @@ func _ready():
 	player.set_camera("Verdigris Phase 1")
 	Global.player_type = "Side"
 	player.set_mode_from_global()
-	player.JUMP_VELOCITY = -1300
+	player.JUMP_FORCE = -1500
