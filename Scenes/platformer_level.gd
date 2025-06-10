@@ -8,6 +8,8 @@ func _ready():
 	var camera = player.get_node("Camera2D")
 	camera.zoom = Vector2(1,1) 
 	player.set_camera("platformer")
+	#player.JUMP_FORCE = -1100.0
+	player.gravitydelta = 0.04
 
 func _input(event):
 	if event.is_action_pressed("change_scene_key"):

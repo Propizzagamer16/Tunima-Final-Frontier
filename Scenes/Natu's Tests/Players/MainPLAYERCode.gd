@@ -16,7 +16,6 @@ var gravitydelta = 0.04
 var attack_ip = false
 var current_dir = "none"
 var speed = 700
-var JUMP_VELOCITY = -1100.0
 var active_boosts = {}
 var powerup_cooldowns: Dictionary = {
 	"speed": 0.0,
@@ -28,9 +27,13 @@ var powerup_cooldowns: Dictionary = {
 @onready var attack_hitbox := $attack_range_hori
 
 #variable jump stuff
+const MAX_JUMP_HOLD_TIME = 0.5
+var JUMP_FORCE = -1400.0
+const JUMP_CUTOFF = 0.8
+const GRAVITY = 3000.0
 var is_jumping = false
-var jump_hold_time = 0.0
-const MAX_JUMP_HOLD_TIME = 10
+var jump_time = 0.0
+
 
 #dashing stuff
 var can_dash = true
@@ -87,7 +90,7 @@ func _physics_process(delta):
 	muzzle_position_update()
 	
 	if not is_dashing:
-		player_movement(gravitydelta)
+		player_movement(delta)
 
 func set_mode_from_global():
 	if Global.player_type == "Top Down":
@@ -131,21 +134,27 @@ func set_camera(current_scene):
 		$Camera2D.limit_bottom = 1100
 		
 	
-func player_movement(gravity):	
+func player_movement(delta):	
 	if side_view:
-		if not is_on_floor():
-			var gravity_force = get_gravity() * gravity
-			velocity += gravity_force
-
 		if Input.is_action_just_pressed("ui_W") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
+			velocity.y = JUMP_FORCE
 			is_jumping = true
-			jump_hold_time = 0.0
-			
+			jump_time = 0.0
+
 		if is_jumping:
-			jump_hold_time += gravity
-			if Input.is_action_just_released("ui_W") or jump_hold_time >= MAX_JUMP_HOLD_TIME:
+			jump_time += delta
+			if Input.is_action_just_released("ui_W"):
+				if velocity.y < 0:
+					velocity.y *= JUMP_CUTOFF
 				is_jumping = false
+			if jump_time > MAX_JUMP_HOLD_TIME:
+				is_jumping = false
+
+# Apply gravity if in air
+		if not is_on_floor():
+			velocity.y += GRAVITY * delta
+
+
 
 	if Input.is_action_pressed("ui_D"):
 		current_dir = "right"
@@ -173,6 +182,8 @@ func player_movement(gravity):
 			play_anim(1)
 			velocity.x = 0
 			velocity.y = -speed
+		elif side_view:
+			velocity.x = 0
 	else:
 		play_anim(0)
 		velocity.x = 0

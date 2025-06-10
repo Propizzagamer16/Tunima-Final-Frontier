@@ -69,7 +69,8 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35bfv"]
 
-[node name="Verdigris\'Minion" type="CharacterBody2D"]
+[node name="Verdigris Minion" type="CharacterBody2D"]
+scale = Vector2(3, 3)
 collision_mask = 2
 script = ExtResource("1_1qav6")
 speed = null

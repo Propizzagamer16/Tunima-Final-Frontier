@@ -430,7 +430,9 @@ script = ExtResource("1_rkc1m")
 position = Vector2(-1, -29)
 scale = Vector2(3.0625, 3.4375)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"SideIdle"
+animation = &"DownAttack"
+frame = 1
+frame_progress = 0.581268
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
