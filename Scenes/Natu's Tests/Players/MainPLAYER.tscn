@@ -20,7 +20,7 @@ script = ExtResource("1_rkc1m")
 position = Vector2(-1, -29)
 scale = Vector2(3.0625, 3.4375)
 sprite_frames = ExtResource("2_2n14f")
-animation = &"DownWalk"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
