@@ -1,7 +1,7 @@
 [gd_scene load_steps=41 format=4 uid="uid://bjpivmc4pgfh4"]
 
 [ext_resource type="Texture2D" uid="uid://c50lu2gofgnch" path="res://Tiles/imageedit_1_2947747048.png" id="1_sou46"]
-[ext_resource type="Script" uid="uid://duccag60y2gfs" path="res://Scenes/Thenuk's Test/Platformer/character_body_2d.gd" id="2_73ytx"]
+[ext_resource type="Script" uid="uid://duccag60y2gfs" path="res://Scenes/Thenuk's Test/Platformer/icepathmovement.gd" id="2_73ytx"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="2_q766f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_73ytx"]
@@ -671,14 +671,14 @@ tile_set = SubResource("TileSet_xt5so")
 use_parent_material = true
 tile_set = SubResource("TileSet_xt5so")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="TileMap"]
+[node name="icepathmovement" type="CharacterBody2D" parent="TileMap"]
 script = ExtResource("2_73ytx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/icepathmovement"]
 position = Vector2(1683, 1066)
 shape = SubResource("CapsuleShape2D_q766f")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMap/CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMap/icepathmovement"]
 position = Vector2(1682, 1038)
 scale = Vector2(3.69792, 3.72396)
 sprite_frames = SubResource("SpriteFrames_6h4jn")

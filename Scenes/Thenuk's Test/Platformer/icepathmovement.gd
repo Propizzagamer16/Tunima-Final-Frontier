@@ -15,6 +15,7 @@ func _unhandled_input(event):
 	if event is InputEventKey and !moving:
 		if event.is_action_pressed("ui_W"):
 			direction = Vector2.UP
+			
 		elif event.is_action_pressed("ui_S"):
 			direction = Vector2.DOWN
 		elif event.is_action_pressed("ui_A"):
