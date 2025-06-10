@@ -18,8 +18,11 @@ func _unhandled_input(event):
 			
 		elif event.is_action_pressed("ui_S"):
 			direction = Vector2.DOWN
+			
 		elif event.is_action_pressed("ui_A"):
 			direction = Vector2.LEFT
+			
 		elif event.is_action_pressed("ui_D"):
 			direction = Vector2.RIGHT
+			
 		moving = true
