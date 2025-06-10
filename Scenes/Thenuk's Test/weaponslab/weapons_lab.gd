@@ -173,3 +173,7 @@ func reset_level():
 	allow_wave_progression = true
 	_is_resetting = false
 	start_next_wave()
+
+func _input(event):
+	if event.is_action_pressed("change_scene_key"):
+		get_tree().change_scene_to_file("res://Scenes/platformer_level.tscn")
