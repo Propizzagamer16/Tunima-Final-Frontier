@@ -30,7 +30,7 @@ var powerup_cooldowns: Dictionary = {
 const MAX_JUMP_HOLD_TIME = 0.5
 var JUMP_FORCE = -1400.0
 const JUMP_CUTOFF = 0.8
-const GRAVITY = 3000.0
+var GRAVITY = 3000.0
 var is_jumping = false
 var jump_time = 0.0
 
