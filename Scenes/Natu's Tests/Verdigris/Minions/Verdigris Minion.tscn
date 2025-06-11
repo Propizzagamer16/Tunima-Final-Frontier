@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5bsaa11gdc6l"]
+[gd_scene load_steps=14 format=3 uid="uid://f2qlqpa33lg0"]
 
 [ext_resource type="Script" uid="uid://slhyjah1nwl1" path="res://Scenes/Natu's Tests/Verdigris/Minions/minionCode.gd" id="1_1qav6"]
 [ext_resource type="Texture2D" uid="uid://c34dpdw1ndddt" path="res://Scenes/Natu's Tests/Verdigris/Minions/Verd.Minion.png" id="2_35bfv"]
@@ -69,17 +69,31 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35bfv"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt3tk"]
+size = Vector2(32, 34)
+
 [node name="Verdigris Minion" type="CharacterBody2D"]
-scale = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
 collision_mask = 2
 script = ExtResource("1_1qav6")
-speed = null
-health = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -8)
 sprite_frames = SubResource("SpriteFrames_1qav6")
 autoplay = "default"
 frame_progress = 0.058279
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_35bfv")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.400001, -1.8)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bt3tk")
+
+[node name="attack_timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_cooldown_timeout"]
