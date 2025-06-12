@@ -98,7 +98,7 @@ func check_connections() -> bool:
 			if neighbor and opposite_side(direction) in get_open_sides(neighbor) and neighbor not in visited:
 				to_visit.append(neighbor)
 
-	# Check if end_tile is reachable and all nodes are visited
+	# check if end_tile is reachable and all nodes are visited
 	var all_nodes_visited = true
 	for node in nodes:
 		if node not in visited:

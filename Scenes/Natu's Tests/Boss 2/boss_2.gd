@@ -51,7 +51,7 @@ func _process(_delta):
 
 		var dist = position.distance_to(player.position)
 		if dist < dist_before_teleporting and can_teleport:
-			teleport_away()
+			teleport_away(8)
 		elif can_attack:
 			attack_player()
 
@@ -68,14 +68,13 @@ func take_damage(current_damage):
 func _on_take_damage_cooldown_timeout() -> void:
 	can_take_damage = true
 		
-func teleport_away():
+func teleport_away(attempts):
 	var arena_rect = Rect2(Vector2(150, 150), Vector2(1620, 780))
-	var attempts = 8
 	var best_pos = global_position
 	var max_distance = 0.0
 
 	for i in range(attempts):
-		var angle = TAU * i / attempts #gets 8 diff angles
+		var angle = TAU * i / attempts #gets 'attempts' number of diff angles
 		var offset = Vector2.RIGHT.rotated(angle) * 900
 		var candidate = global_position + offset
 

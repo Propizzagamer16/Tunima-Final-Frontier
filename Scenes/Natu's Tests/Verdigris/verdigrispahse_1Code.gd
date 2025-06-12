@@ -7,8 +7,5 @@ func _ready():
 	player.set_camera("Verdigris Phase 1")
 	Global.player_type = "Side"
 	player.set_mode_from_global()
-<<<<<<< Updated upstream
 	player.JUMP_FORCE = -1500
-=======
 	Global.player_type = "Side"
->>>>>>> Stashed changes
