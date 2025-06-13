@@ -18,14 +18,9 @@ func _ready():
 	
 	# Movement changes for scene
 	player.speed = 115
-<<<<<<< Updated upstream
-	player.JUMP_FORCE = -300.0
-	player.gravitydelta = 0.015
-
-=======
 	player.JUMP_FORCE = -200.0
 	player.GRAVITY = 1000.0
->>>>>>> Stashed changes
+
 func _input(event):
 	if event.is_action_pressed(\"change_scene_key\"):
 		get_tree().change_scene_to_file(\"res://Scenes/Thenuk's Test/weapons_lab.tscn\")

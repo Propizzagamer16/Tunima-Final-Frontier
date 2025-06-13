@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhl82i388y587"]
 
 [ext_resource type="Script" uid="uid://dy6w4nbxtdktk" path="res://Scenes/Natu's Tests/Verdigris/verdigrisCode.gd" id="1_yinhv"]
-[ext_resource type="PackedScene" uid="uid://b5bsaa11gdc6l" path="res://Scenes/Natu's Tests/Verdigris/Minions/Verdigris Minion.tscn" id="2_d77o6"]
+[ext_resource type="PackedScene" uid="uid://f2qlqpa33lg0" path="res://Scenes/Natu's Tests/Verdigris/Minions/Verdigris Minion.tscn" id="2_d77o6"]
 [ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="2_n0tyl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n0tyl"]

@@ -4,10 +4,10 @@ extends CharacterBody2D
 @export var health: int = 40
 @onready var player: Node2D = null
 @onready var anim = $AnimatedSprite2D
-@onready var attack_timer = $attack_timer
 
 var player_in_range = false
 var player_alive = true
+var attack_process_running = false
 
 func _ready():
 	add_to_group("enemies")
@@ -30,22 +30,37 @@ func _physics_process(delta):
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = true
-		await get_tree().create_timer(0.5).timeout
-		if player_in_range and player_alive:
-			attack_player()
-			attack_timer.start()
+		if not attack_process_running:
+			attack_process_running = true
+			_attack_sequence()
 
 func _on_hitbox_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = false
-		attack_timer.stop()
+		print("yes")
+		attack_process_running = false
 
-func _on_attack_timer_timeout():
-	if player_in_range and player_alive:
-		attack_player()
+
+func _attack_sequence():
+	await get_tree().create_timer(0.5).timeout
+
+	if not player_in_range or not player_alive:
+		attack_process_running = false
+		return
+
+	attack_player()
+
+	while player_in_range and player_alive:
+		await get_tree().create_timer(1.0).timeout
+		if player_in_range:
+			attack_player()
+		else:
+			return
+
+	attack_process_running = false
 
 func attack_player():
-	if player.has_method("take_ten_damage"):
+	if player and player.has_method("take_ten_damage"):
 		player.call("take_ten_damage")
 
 func take_damage(amount):
@@ -58,4 +73,5 @@ func die():
 	MinionTracker.report_minion_killed()
 
 func _on_player_died():
+	player_alive = false
 	set_physics_process(false)
