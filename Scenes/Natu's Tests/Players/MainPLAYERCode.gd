@@ -133,6 +133,12 @@ func set_camera(current_scene):
 		$Camera2D.limit_right = 1910
 		$Camera2D.limit_top = -300
 		$Camera2D.limit_bottom = 1100
+	elif current_scene == "Introduction":
+		$Camera2D.zoom = Vector2(1, 1)
+		$Camera2D.limit_left = 105
+		$Camera2D.limit_right = 1751.035
+		$Camera2D.limit_top = 125
+		$Camera2D.limit_bottom = 1144
 		
 	
 func player_movement(delta):	
