@@ -153,10 +153,10 @@ func player_firerate():
 	else:
 		$take_damage_cooldown.wait_time = 0.5
 
-	
+
 func low_health():
 	if health < 150:
-		dist_before_teleporting = 800
+		dist_before_teleporting = 950
 		$attack_cooldown.wait_time = 0.75
 		$vulnerable_timer.wait_time = 3
 	else:
