@@ -134,11 +134,11 @@ func set_camera(current_scene):
 		$Camera2D.limit_top = -300
 		$Camera2D.limit_bottom = 1100
 	elif current_scene == "Introduction":
-		$Camera2D.zoom = Vector2(1, 1)
-		$Camera2D.limit_left = 105
-		$Camera2D.limit_right = 1751.035
-		$Camera2D.limit_top = 125
-		$Camera2D.limit_bottom = 1144
+		$Camera2D.zoom = Vector2(2, 2)
+		$Camera2D.limit_left = -50
+		$Camera2D.limit_right = 1715
+		$Camera2D.limit_top = 250
+		$Camera2D.limit_bottom = 1320
 		
 	
 func player_movement(delta):	
@@ -146,7 +146,7 @@ func player_movement(delta):
 		if Input.is_action_just_pressed("ui_W") and is_on_floor():
 			velocity.y = JUMP_FORCE
 			is_jumping = true
-			jump_time = 0.0
+			jump_time = 0.0 
 
 		if is_jumping:
 			jump_time += delta
