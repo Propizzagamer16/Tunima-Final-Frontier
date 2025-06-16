@@ -172,12 +172,12 @@ func player_movement(delta):
 		if top_down:
 			velocity.y = 0
 	elif Input.is_action_pressed("ui_S"):
-		play_anim(0)
 		current_dir = "down"
 		if top_down:
-			play_anim(1)
 			velocity.x = 0
 			velocity.y = speed
+			play_anim(1)  # Only play once
+
 	elif Input.is_action_pressed("ui_W"):
 		current_dir = "up"
 		play_anim(0)
@@ -270,11 +270,9 @@ func attack():
 	attacking = true
 	attack_ip = true
 	$deal_attack.start()
-	var overlapping_areas = $attack_range_hori.get_overlapping_areas()
-	var dir = current_dir
+
 	var anim = $AnimatedSprite2D
-	
-	match dir:
+	match current_dir:
 		"right":
 			anim.flip_h = false
 			anim.play("SideAttack")
@@ -285,13 +283,28 @@ func attack():
 			anim.play("DownAttack")
 		"up":
 			anim.play("UpAttack")
+	
+	update_attack_range_position(current_dir)
 
+	var overlapping_areas = $attack_range_hori.get_overlapping_areas()
 	for area in overlapping_areas:
 		var parent = area.get_parent()
 		if parent.has_method("take_damage"):
 			parent.take_damage(current_damage)
 
-		
+	# Reset attack after animation duration
+	await anim.animation_finished
+	attacking = false
+	attack_ip = false
+
+
+func update_attack_range_position(current_dir):
+	match current_dir:
+		"right": $attack_range_hori.position = Vector2(40, 0)
+		"left": $attack_range_hori.position = Vector2(-40, 0)
+		"up": $attack_range_hori.position = Vector2(0, -40)
+		"down": $attack_range_hori.position = Vector2(0, 40)
+
 #func start_attack():
 	#attack_ip = true
 	##attack_hitbox.monitoring = true
