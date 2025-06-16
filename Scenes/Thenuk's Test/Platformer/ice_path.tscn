@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://bjpivmc4pgfh4"]
+[gd_scene load_steps=41 format=4 uid="uid://75dnxp6ql1g"]
 
 [ext_resource type="Texture2D" uid="uid://c50lu2gofgnch" path="res://Tiles/imageedit_1_2947747048.png" id="1_sou46"]
 [ext_resource type="Script" uid="uid://duccag60y2gfs" path="res://Scenes/Thenuk's Test/Platformer/icepathmovement.gd" id="2_73ytx"]
@@ -650,7 +650,6 @@ animations = [{
 "name": &"death",
 "speed": 5.0
 }]
-
 
 [node name="ice path" type="Node2D"]
 

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tunima Final Frontier"
-run/main_scene="res://Scenes/Thenuk's Test/Platformer/ice_path.tscn"
+run/main_scene="uid://0gdlptesj4vv"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="uid://37ksorojgtrc"
@@ -24,6 +24,7 @@ ChainGlobal="*res://Scenes/Thenuk's Test/globals/chain_global.gd"
 JumpPadGlobal="*res://Scenes/Thenuk's Test/globals/JumpPadGlobal.gd"
 MinionTracker="*res://Scenes/Natu's Tests/Verdigris/Minions/minion_tracker.gd"
 Scenechange="*res://scenechange.gd"
+InventoryManager="*res://Scenes/Natu's Tests/inventory/inventory_manager.gd"
 
 [display]
 

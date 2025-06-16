@@ -3,6 +3,13 @@ extends Control
 func _ready():
 	$UI/InventoryUI.hide()
 	$UI/weapon_upgrade.hide()
+
+	var inventory_slots = $UI/InventoryUI.get_children()
+	var hotbar_slots = $UI/Hotbar.get_children()
+
+	InventoryManager.restore_to_slots(inventory_slots, InventoryManager.saved_inventory)
+	InventoryManager.restore_to_slots(hotbar_slots, InventoryManager.saved_hotbar)
+
 	
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
@@ -29,3 +36,10 @@ func _unhandled_input(event):
 							slot.powerup_time = slot.powerup_duration
 							slot.cooldown_duration = item_ref.cooldown
 							slot.cooldown_time = 0.0
+
+func save_inventory_and_hotbar():
+	var inventory_slots = $UI/InventoryUI.get_children()
+	var hotbar_slots = $UI/Hotbar.get_children()
+
+	InventoryManager.save_inventory(inventory_slots)
+	InventoryManager.save_hotbar(hotbar_slots)

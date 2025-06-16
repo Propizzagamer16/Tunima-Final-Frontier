@@ -59,12 +59,13 @@ func _process(delta):
 				finished_fight_played = true
 				await get_tree().create_timer(2).timeout
 				SceneTransitionAnimation.play("finished_fight")
+				progression_area.visible = true
 				progression_area.monitoring = true
 				progression_area.set_deferred("collision_layer", 1)
 		else:
 			start_next_wave()
 			
-	if $"tele".overlaps_body($"player") and Input.is_action_pressed("use"):
+	if $progression_area.overlaps_body($"player") and Input.is_action_pressed("use"):
 		get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Pipe/pipe_puzzle.tscn")
 
 func _safe_connect_player_signal():
