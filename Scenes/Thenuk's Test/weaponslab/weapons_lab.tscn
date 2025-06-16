@@ -396,10 +396,10 @@ collision_layer = 0
 monitoring = false
 
 [node name="tele#CollisionShape2D" type="CollisionShape2D" parent="progression_area"]
-position = Vector2(995, 983.75)
+position = Vector2(970, 956)
 shape = SubResource("RectangleShape2D_klls0")
 
 [node name="tele#Sprite2D" type="Sprite2D" parent="progression_area"]
-position = Vector2(993, 983.5)
+position = Vector2(975, 936)
 scale = Vector2(10.0833, 9.75862)
 texture = ExtResource("7_wbu3d")
