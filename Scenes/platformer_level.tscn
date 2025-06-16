@@ -222,7 +222,7 @@ position = Vector2(-21039, -19544)
 
 [node name="player" parent="." instance=ExtResource("10_p1qp4")]
 z_index = 1
-position = Vector2(19627, -2222)
+position = Vector2(296, 987)
 motion_mode = 1
 
 [node name="Chest" parent="." instance=ExtResource("15_67wup")]

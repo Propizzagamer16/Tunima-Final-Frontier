@@ -92,8 +92,5 @@ shape = SubResource("CapsuleShape2D_35bfv")
 position = Vector2(0.400001, -1.8)
 shape = SubResource("RectangleShape2D_bt3tk")
 
-[node name="attack_timer" type="Timer" parent="."]
-
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
-[connection signal="timeout" from="attack_timer" to="." method="_on_attack_cooldown_timeout"]
