@@ -54,15 +54,9 @@ func _process(delta):
 		wave_spawn_ended = false
 
 		if current_wave == 4:
-			if not strong_enemy_spawned:
-				strong_enemy_spawned = true
-				spawn_strong_enemy()
-				wave_active = true
-			elif not finished_fight_played:
-				finished_fight_played = true
-				await get_tree().create_timer(2).timeout
-				SceneTransitionAnimation.play("finished_fight")
-				
+			await get_tree().create_timer(2).timeout
+			SceneTransitionAnimation.play("finished_fight")
+			$progression_area.monitoring = true
 		else:
 			start_next_wave()
 
@@ -121,13 +115,6 @@ func spawn_enemies(spawn_rounds: int, mobs_per_batch: int, wait_time: float):
 			add_child(enemy)
 		await get_tree().create_timer(wait_time).timeout
 
-func spawn_strong_enemy():
-	var strong_enemy = strong_enemy_scene.instantiate()
-	strong_enemy.global_position = enemy_spawn_points[0].global_position
-	strong_enemy.add_to_group("enemy")
-	add_child(strong_enemy)
-
-
 func _on_player_died():
 	if _is_resetting or _death_processed:
 		return
@@ -174,7 +161,12 @@ func reset_level():
 	allow_wave_progression = true
 	_is_resetting = false
 	start_next_wave()
+#
+#func _input(event):
+	#if event.is_action_pressed("change_scene_key"):
+		#get_tree().change_scene_to_file("res://Scenes/platformer_level.tscn")
 
-func _input(event):
-	if event.is_action_pressed("change_scene_key"):
+
+func _on_progression_area_body_entered(body: Node2D) -> void:
+	if body == player and Input.is_action_pressed("change_scene_key"):
 		get_tree().change_scene_to_file("res://Scenes/platformer_level.tscn")

@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var projectile_scene: PackedScene
 @export var weakpoints_scene: PackedScene
 var current_weakpoint: Node2D = null
-
+var godmode = false
 var direction : Vector2
 var player_inattack_zone = false
 var can_take_damage = true
@@ -24,6 +24,9 @@ var health: = 500:
 			self.queue_free()
 
 func _ready():
+	if Global.GOD_MODE:
+		godmode = true
+		
 	add_to_group("enemies")
 	add_to_group("boss_2")
 	set_physics_process(false)
@@ -50,7 +53,7 @@ func _process(_delta):
 			animated_sprite.flip_h = false
 
 		var dist = position.distance_to(player.position)
-		if dist < dist_before_teleporting and can_teleport:
+		if dist < dist_before_teleporting and can_teleport and !godmode:
 			teleport_away(8)
 		elif can_attack:
 			attack_player()

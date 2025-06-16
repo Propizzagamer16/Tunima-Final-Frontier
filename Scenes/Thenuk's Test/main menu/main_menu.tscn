@@ -28,4 +28,21 @@ offset_bottom = 115.0
 position = Vector2(105, 50)
 texture = ExtResource("3_a8s0s")
 
+[node name="start button2" type="Button" parent="starting screen"]
+offset_left = 23.0
+offset_top = 163.0
+offset_right = 344.0
+offset_bottom = 264.0
+theme_override_colors/font_disabled_color = Color(0.572549, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0.894118, 0, 0, 1)
+theme_override_constants/outline_size = 56
+theme_override_font_sizes/font_size = 45
+text = "GOD MODE"
+
+[node name="Sprite2D" type="Sprite2D" parent="starting screen/start button2"]
+position = Vector2(105, 50)
+
 [connection signal="pressed" from="starting screen/start button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="starting screen/start button2" to="." method="_on_start_button_2_pressed"]
+[connection signal="pressed" from="starting screen/start button2" to="." method="_on_start_button_pressed"]

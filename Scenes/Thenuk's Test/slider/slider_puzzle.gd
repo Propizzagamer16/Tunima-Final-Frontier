@@ -1,5 +1,6 @@
 extends Area2D
 
+var godmode
 const TILE_SIZE = 360
 const GRID_SIZE = 3
 const PUZZLE_WIDTH = TILE_SIZE * GRID_SIZE
@@ -13,6 +14,8 @@ var tiles = []
 var solved = []
 
 func _ready():
+	if Global.GOD_MODE:
+		godmode = true
 	tiles = [$tile1, $tile2, $tile3, $tile4, $tile5, $tile6, $tile7, $tile8, $tile9]
 	solved = tiles.duplicate()
 
@@ -47,6 +50,8 @@ func _input(event):
 				if tiles == solved:
 					get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/weaponslab/weapons_lab.tscn")
 				break
+	elif event is InputEventKey and event.pressed and event.keycode == KEY_SPACE and godmode:
+		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/weaponslab/weapons_lab.tscn")
 
 func check_neighbors(row, col):
 	var index = row * GRID_SIZE + col

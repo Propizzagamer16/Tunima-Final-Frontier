@@ -2,13 +2,13 @@ extends CharacterBody2D
 
 var speed = 350
 var player_chase = false
-var player = null
 
 var health = 25
 var player_inattack_zone = false
 var can_take_damage = true
 var player_attack_cooldown = true
 
+@onready var player = get_parent().find_child("player")
 @export var gravity = 5000.0
 @export var jump_velocity = -1500.0
 var can_jump = true
@@ -16,7 +16,6 @@ var can_jump = true
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func _physics_process(delta):
-	deal_with_damage()
 	attack_player()
 
 	# Apply gravity
@@ -26,25 +25,15 @@ func _physics_process(delta):
 		velocity.y = 0  # Reset vertical velocity when grounded
 
 	# Horizontal chase movement
-	if player_chase:
-		var direction = sign(player.position.x - position.x)
-		velocity.x = direction * speed
-	else:
-		velocity.x = 0
+
+	var direction = sign(player.position.x - position.x)
+	velocity.x = direction * speed
 
 	handle_jumping()
-
 	move_and_slide()
-
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		player = body
-		player_chase = true
-
-func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body == player:
-		player = null
-		player_chase = false
+	
+	if health <= 0:
+		self.queue_free()
 
 
 func enemy():
@@ -58,19 +47,11 @@ func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_inattack_zone = false
 
-func deal_with_damage():
-	if player_inattack_zone and Global.player_current_attack == true:
-		if can_take_damage == true:
-			health -= 20
-			$take_damage_cooldown.start()
-			can_take_damage = false
-			if health <= 0:
-				self.queue_free()
-				
-func take_bullet_damage():
-	health -= 5
-	if health <= 0:
-		self.queue_free()
+func take_damage(current_damage):
+	if can_take_damage == true:
+		health = health - current_damage
+		$take_damage_cooldown.start()
+		can_take_damage = false
 
 func _on_take_damage_cooldown_timeout() -> void:
 	can_take_damage = true
