@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var player = get_node("player")
 @onready var boss = get_node("Boss_2")
+@onready var progression_area := $progression_area
+var player_inside_progression_area := false
 var SceneTransitionAnimation
 
 func _ready():
@@ -27,3 +29,11 @@ func _on_player_died():
 	boss.can_attack = false
 	await get_tree().create_timer(0.5).timeout
 	_safe_connect_player_signal()
+	
+func _on_progression_area_body_entered(body: Node2D) -> void:
+	if body == player:
+		player_inside_progression_area = true
+		
+func _on_progression_area_body_exited(body: Node2D) -> void:
+	if body == player:
+		player_inside_progression_area = false
