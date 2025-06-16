@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
+var godmode = false
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var health = 100
 var max_health = 100
 var alive = true
-var base_damage: int = 20
-var current_damage: int = base_damage
+var current_damage: int = 20
 var power_shot = true
 var can_shoot_bullet = true
 var attacking = false
@@ -50,6 +50,10 @@ var hearts_list : Array[TextureRect]
 signal player_died
 
 func _ready():
+	if Global.GOD_MODE:
+		godmode = true
+		current_damage = 300
+		
 	set_mode_from_global()
 	add_to_group("player")
 	#attack_hitbox.add_to_group("player_attacks")
@@ -91,7 +95,7 @@ func _physics_process(delta):
 		player_movement(delta)
 
 func set_mode_from_global():
-	if Global.player_type == "Top Down":
+	if Global.player_type == "Top Down" or godmode:
 		motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 		top_down = true
 		side_view = false
@@ -309,12 +313,12 @@ func update_attack_range_position(current_dir):
 		"down": $attack_range_hori.position = Vector2(0, 40)
 
 func take_damage():
-	if health >= 0:
+	if health >= 0 and !godmode:
 		health -= 20
 		update_hearts()
 		
 func take_ten_damage():
-	if health >= 0:
+	if health >= 0 and !godmode:
 		health -= 10
 		update_hearts()
 
