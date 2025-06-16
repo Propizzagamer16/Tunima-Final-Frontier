@@ -395,14 +395,14 @@ position = Vector2(-10, -18)
 collision_layer = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="progression_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tele"]
 position = Vector2(985, 965.75)
 shape = SubResource("RectangleShape2D_klls0")
 
-[node name="Sprite2D" type="Sprite2D" parent="progression_area"]
+[node name="Sprite2D" type="Sprite2D" parent="tele"]
 position = Vector2(983, 965.5)
 scale = Vector2(10.0833, 9.75862)
 texture = ExtResource("7_wbu3d")
 
-[connection signal="body_entered" from="progression_area" to="." method="_on_progression_area_body_entered"]
-[connection signal="body_exited" from="progression_area" to="." method="_on_progression_area_body_exited"]
+[connection signal="body_entered" from="tele" to="." method="_on_progression_area_body_entered"]
+[connection signal="body_exited" from="tele" to="." method="_on_progression_area_body_exited"]

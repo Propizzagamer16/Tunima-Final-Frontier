@@ -176,4 +176,4 @@ func reset_level():
 		
 func _input(event):
 	if event.is_action_pressed("change_scene_key") and player_inside_progression_area:
-		get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Pipe/pipe_puzzle.tscn")
+		get_tree().change_scene_to_file("verd")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=41 format=4 uid="uid://75dnxp6ql1g"]
+[gd_scene load_steps=43 format=4 uid="uid://dwfv6tw1rg1ol"]
 
+[ext_resource type="Script" uid="uid://dapj0o45610k7" path="res://Scenes/Thenuk's Test/Platformer/ice_path.gd" id="1_73ytx"]
 [ext_resource type="Texture2D" uid="uid://c50lu2gofgnch" path="res://Tiles/imageedit_1_2947747048.png" id="1_sou46"]
 [ext_resource type="Script" uid="uid://duccag60y2gfs" path="res://Scenes/Thenuk's Test/Platformer/icepathmovement.gd" id="2_73ytx"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="2_q766f"]
@@ -651,7 +652,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xt5so"]
+size = Vector2(111, 135)
+
 [node name="ice path" type="Node2D"]
+script = ExtResource("1_73ytx")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_xt5so")
@@ -683,3 +688,10 @@ position = Vector2(1682, 1038)
 scale = Vector2(3.69792, 3.72396)
 sprite_frames = SubResource("SpriteFrames_6h4jn")
 animation = &"UpIdle"
+
+[node name="tele" type="Area2D" parent="."]
+position = Vector2(1873, 695)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tele"]
+position = Vector2(71, 0)
+shape = SubResource("RectangleShape2D_xt5so")
