@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="HealingItem" load_steps=2 format=3 uid="uid://bcgeyqg04d48u"]
+[gd_resource type="Resource" script_class="HealingItem" load_steps=3 format=3 uid="uid://bcgeyqg04d48u"]
 
 [ext_resource type="Script" uid="uid://b27bvljqjrpq8" path="res://Scenes/Natu's Tests/items/healing_item.gd" id="1_0nr63"]
+[ext_resource type="Texture2D" uid="uid://bkx8nbjsggmrd" path="res://Scenes/Natu's Tests/items/heart final.png" id="1_m1tmt"]
 
 [resource]
 script = ExtResource("1_0nr63")
@@ -9,6 +10,7 @@ boost_amount = 20.0
 duration = 1.0
 cooldown = 5.0
 name = ""
+icon = ExtResource("1_m1tmt")
 description = ""
 stat = ""
 metadata/_custom_type_script = "uid://b27bvljqjrpq8"
