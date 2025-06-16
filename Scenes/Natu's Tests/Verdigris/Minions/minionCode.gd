@@ -37,7 +37,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func _on_hitbox_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = false
-		print("yes")
 		attack_process_running = false
 
 
@@ -63,8 +62,16 @@ func attack_player():
 	if player and player.has_method("take_ten_damage"):
 		player.call("take_ten_damage")
 
+func update_color():
+	var health_ratio = clamp(float(health) / 40.0, 0.0, 1.0)
+	var red = 1.0
+	var green = health_ratio
+	var blue = health_ratio
+	anim.modulate = Color(red, green, blue)
+
 func take_damage(amount):
 	health -= amount
+	update_color()
 	if health <= 0:
 		die()
 

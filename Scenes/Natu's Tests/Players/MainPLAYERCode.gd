@@ -9,7 +9,7 @@ var base_damage: int = 20
 var current_damage: int = base_damage
 var power_shot = true
 var can_shoot_bullet = true
-var attack_buffered = false
+var attacking = false
 var side_view = false
 var top_down = false
 var gravitydelta = 0.04
@@ -23,8 +23,6 @@ var powerup_cooldowns: Dictionary = {
 	"firerate": 0.0,
 	"health": 0.0
 }
-
-@onready var attack_hitbox := $attack_range_hori
 
 #variable jump stuff
 const MAX_JUMP_HOLD_TIME = 0.5
@@ -54,7 +52,7 @@ signal player_died
 func _ready():
 	set_mode_from_global()
 	add_to_group("player")
-	attack_hitbox.add_to_group("player_attacks")
+	#attack_hitbox.add_to_group("player_attacks")
 
 	ChainGlobal.ChainOverlap.connect(chainOver)
 	JumpPadGlobal.jumpOverlap.connect(jumpPad)
@@ -161,8 +159,6 @@ func player_movement(delta):
 		if not is_on_floor():
 			velocity.y += GRAVITY * delta
 
-
-
 	if Input.is_action_pressed("ui_D"):
 		current_dir = "right"
 		play_anim(1)
@@ -176,12 +172,12 @@ func player_movement(delta):
 		if top_down:
 			velocity.y = 0
 	elif Input.is_action_pressed("ui_S"):
-		play_anim(0)
 		current_dir = "down"
 		if top_down:
-			play_anim(1)
 			velocity.x = 0
 			velocity.y = speed
+			play_anim(1)  # Only play once
+
 	elif Input.is_action_pressed("ui_W"):
 		current_dir = "up"
 		play_anim(0)
@@ -269,57 +265,48 @@ func _on_attack_cooldown_timeout() -> void:
 	enemy_attack_cooldown = true
 
 func attack():
-	if Input.is_action_just_pressed("attack"):
-		if not attack_ip:
-			start_attack()
-		else:
-			# Save a buffered attack to trigger right after the current one ends
-			attack_buffered = true
-
-
-func start_attack():
+	if attacking:
+		return
+	attacking = true
 	attack_ip = true
-	attack_hitbox.monitoring = true
 	$deal_attack.start()
-	var dir = current_dir
-	if Input.is_action_just_pressed("attack"):
-		attack_ip = true
-		if dir == "right":
-			$AnimatedSprite2D.flip_h = false
-			$AnimatedSprite2D.play("SideAttack")
-		if dir == "left":
-			$AnimatedSprite2D.flip_h = true
-			$AnimatedSprite2D.play("SideAttack")
-		if dir == "down":
-			$AnimatedSprite2D.play("DownAttack")
-		if dir == "up":
-			$AnimatedSprite2D.play("UpAttack")
-		
-		update_attack_hitbox_position(dir)
-		attack_hitbox.monitoring = true
-		$deal_attack.start() 
-
-		
-func update_attack_hitbox_position(dir: String):
-	match dir:
-		"right": attack_hitbox.position = Vector2(40, 0)
-		"left": attack_hitbox.position = Vector2(-40, 0)
-		"up": attack_hitbox.position = Vector2(0, -60)
-		"down": attack_hitbox.position = Vector2(0, 60)
+	
+	shake_camera(0.2, 2.0)
 
 
-func _on_attack_range_hori_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies") and attack_hitbox.monitoring:
-		if body.has_method("take_damage"):
-			body.take_damage(current_damage)
+	var anim = $AnimatedSprite2D
+	match current_dir:
+		"right":
+			anim.flip_h = false
+			anim.play("SideAttack")
+		"left":
+			anim.flip_h = true
+			anim.play("SideAttack")
+		"down":
+			anim.play("DownAttack")
+		"up":
+			anim.play("UpAttack")
+	
+	update_attack_range_position(current_dir)
 
-func _on_deal_attack_timeout() -> void:
-	attack_hitbox.monitoring = false
+	var overlapping_areas = $attack_range_hori.get_overlapping_areas()
+	for area in overlapping_areas:
+		var parent = area.get_parent()
+		if parent.has_method("take_damage"):
+			parent.take_damage(current_damage)
+
+	# Reset attack after animation duration
+	await anim.animation_finished
+	attacking = false
 	attack_ip = false
 
-	if attack_buffered:
-		attack_buffered = false
-		start_attack()
+
+func update_attack_range_position(current_dir):
+	match current_dir:
+		"right": $attack_range_hori.position = Vector2(40, 0)
+		"left": $attack_range_hori.position = Vector2(-40, 0)
+		"up": $attack_range_hori.position = Vector2(0, -40)
+		"down": $attack_range_hori.position = Vector2(0, 40)
 
 func take_damage():
 	if health >= 0:
@@ -362,25 +349,14 @@ func player_shooting():
 
 	if Input.is_action_just_pressed("shoot") and can_shoot_bullet:
 		var bullet_instance = bullet.instantiate() as Node2D
-		if top_down:
-			var dir = Vector2(xdirection, ydirection)
-			if dir == Vector2.ZERO:
-				match current_dir:
-					"right": dir = Vector2.RIGHT
-					"left": dir = Vector2.LEFT
-					"up": dir = Vector2.UP
-					"down": dir = Vector2.DOWN
-			bullet_instance.direction = dir
-			bullet_instance.is_sideview = false
-		elif side_view:
-			if xdirection == 0:
-				if current_dir == "right":
-					xdirection = 1
-				elif current_dir == "left":
-					xdirection = -1
-			bullet_instance.direction = Vector2(xdirection, 0)
-			bullet_instance.is_sideview = true
-
+		var dir = Vector2(xdirection, ydirection)
+		if dir == Vector2.ZERO:
+			match current_dir:
+				"right": dir = Vector2.RIGHT
+				"left": dir = Vector2.LEFT
+				"up": dir = Vector2.UP
+				"down": dir = Vector2.DOWN
+		bullet_instance.direction = dir
 		bullet_instance.global_position = muzzle.global_position
 		get_parent().add_child(bullet_instance)
 		can_shoot_bullet = false
@@ -394,6 +370,7 @@ func heavy_bullet():
 	var ydirection: float = Input.get_axis("ui_W", "ui_S")
 
 	if Input.is_action_just_pressed("power_shot"):
+		shake_camera(0.4, 12.0)
 		var power_instance = power.instantiate() as Node2D
 		if top_down:
 			var dir = Vector2(xdirection, ydirection)
@@ -500,6 +477,23 @@ func apply_power_up(stat: String, amount: float, duration: float, cooldown: floa
 			print("health acitvated")
 			health = min(health + amount, max_health)
 			update_hearts()
+
+
+func shake_camera(duration := 0.2, intensity := 5.0):
+	var timer := 0.0
+	var camera := $Camera2D
+	
+	while timer < duration:
+		var offset = Vector2(
+			randf_range(-intensity, intensity),
+			randf_range(-intensity, intensity)
+		)
+		camera.offset = offset
+		await get_tree().process_frame
+		timer += get_process_delta_time()
+	
+	camera.offset = Vector2.ZERO
+
 
 func reset(spawn_position: Vector2):
 	health = 100

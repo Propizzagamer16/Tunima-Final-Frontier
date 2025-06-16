@@ -86,7 +86,6 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="attack_range_hori" type="Area2D" parent="."]
-monitoring = false
 
 [node name="left" type="CollisionShape2D" parent="attack_range_hori"]
 shape = SubResource("RectangleShape2D_2n14f")
