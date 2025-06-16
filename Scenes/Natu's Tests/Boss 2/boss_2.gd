@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var progress_bar = $CanvasLayer/ProgressBar
 @export var projectile_scene: PackedScene
 @export var weakpoints_scene: PackedScene
+@onready var chest = get_parent().get_node("Chest")
 var current_weakpoint: Node2D = null
 var godmode = false
 var direction : Vector2
@@ -21,6 +22,8 @@ var health: = 500:
 		progress_bar.value = value
 		if value <= 0:
 			progress_bar.visible = false
+			chest.position = self.position
+			chest.visible = true
 			self.queue_free()
 
 func _ready():

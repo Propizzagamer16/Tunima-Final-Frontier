@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=4 uid="uid://37ksorojgtrc"]
+[gd_scene load_steps=15 format=4 uid="uid://37ksorojgtrc"]
 
 [ext_resource type="PackedScene" uid="uid://4lgxihbf0udc" path="res://Scenes/Natu's Tests/Boss 2/boss_2.tscn" id="1_1b56s"]
 [ext_resource type="Script" uid="uid://dvuh6ojwkenbi" path="res://Scenes/Natu's Tests/Boss 2/boss_room.gd" id="1_11nuu"]
 [ext_resource type="Texture2D" uid="uid://bgyfoom32n0k3" path="res://Assets/Tiles/nnnnnnnnnnnnnnnnn.png" id="2_mmlv2"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="2_uwyag"]
 [ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="4_11nuu"]
+[ext_resource type="PackedScene" uid="uid://b14okggqbkawx" path="res://Scenes/Natu's Tests/chests/chest.tscn" id="6_7pyhi"]
+[ext_resource type="Resource" uid="uid://2q08xwsvdb8e" path="res://Scenes/Natu's Tests/items/powerups/strength_boost.tres" id="7_7pdl0"]
+[ext_resource type="Resource" uid="uid://cbo34mrkdikaq" path="res://Scenes/Natu's Tests/items/powerups/firerate_boost.tres" id="8_7pdl0"]
+[ext_resource type="Resource" uid="uid://c73jun13epdpq" path="res://Scenes/Natu's Tests/items/powerups/speed_boost.tres" id="9_yesdl"]
+[ext_resource type="PackedScene" uid="uid://c4ovnb4nfrlf4" path="res://Scenes/Natu's Tests/chests/chest_ui_canvas.tscn" id="10_7pdl0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7pyhi"]
 texture = ExtResource("2_mmlv2")
@@ -139,3 +144,20 @@ shape = SubResource("RectangleShape2D_mmlv2")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
 position = Vector2(950.5, 633.5)
 shape = SubResource("RectangleShape2D_mmlv2")
+
+[node name="Chest" parent="." instance=ExtResource("6_7pyhi")]
+visible = false
+position = Vector2(1336, 969)
+scale = Vector2(11.415, 11.415)
+chest_contents = Array[Dictionary]([{
+"amount": 4,
+"item": ExtResource("7_7pdl0")
+}, {
+"amount": 4,
+"item": ExtResource("9_yesdl")
+}, {
+"amount": 4,
+"item": ExtResource("8_7pdl0")
+}])
+
+[node name="ChestUICanvas" parent="." instance=ExtResource("10_7pdl0")]
