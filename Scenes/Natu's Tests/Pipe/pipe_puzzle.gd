@@ -114,6 +114,7 @@ func _unhandled_input(event):
 		if check_connections():
 			print("Puzzle Complete")
 			SceneTransitionAnimation.play("finished_fight")
+			get_tree().change_scene_to_file("res://Scenes/platformer_level.tscn")
 			for row in tiles:
 				for tile in row:
 					tile.finished = true
