@@ -50,6 +50,8 @@ func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 func take_damage(current_damage):
 	if can_take_damage == true:
 		health = health - current_damage
+		if health <= 0:
+			self.queue_free()
 		$take_damage_cooldown.start()
 		can_take_damage = false
 
