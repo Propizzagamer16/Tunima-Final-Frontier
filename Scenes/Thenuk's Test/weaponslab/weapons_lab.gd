@@ -57,8 +57,8 @@ func _process(delta):
 		if current_wave == 4:
 			if not finished_fight_played:
 				finished_fight_played = true
-				await get_tree().create_timer(2).timeout
 				SceneTransitionAnimation.play("finished_fight")
+				await get_tree().create_timer(2).timeout
 				progression_area.visible = true
 				progression_area.monitoring = true
 				progression_area.set_deferred("collision_layer", 1)
@@ -66,6 +66,7 @@ func _process(delta):
 			start_next_wave()
 			
 	if $progression_area.overlaps_body($"player") and Input.is_action_pressed("use"):
+		player.get_node("Inventory").save_inventory_state()
 		get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Pipe/pipe_puzzle.tscn")
 
 func _safe_connect_player_signal():
@@ -171,9 +172,6 @@ func reset_level():
 	_is_resetting = false
 	start_next_wave()
 
-
-
-		
 func _input(event):
 	if event.is_action_pressed("change_scene_key") and player_inside_progression_area:
 		get_tree().change_scene_to_file("verd")
