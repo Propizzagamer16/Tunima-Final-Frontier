@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0lc7q05ov14n"
-path="res://.godot/imported/raw desert.png-4712fee982231239b0dbe483ba12038c.ctex"
+uid="uid://b0a0hg2gewpni"
+path="res://.godot/imported/boyfront1.png-f2d85bcf5280e5e516cb4854b853eaf9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Main Character/Idle/raw desert.png"
-dest_files=["res://.godot/imported/raw desert.png-4712fee982231239b0dbe483ba12038c.ctex"]
+source_file="res://Assets/Misc/Main Character/Idle/boyfront1.png"
+dest_files=["res://.godot/imported/boyfront1.png-f2d85bcf5280e5e516cb4854b853eaf9.ctex"]
 
 [params]
 

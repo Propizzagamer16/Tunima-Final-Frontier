@@ -1,7 +1,7 @@
 [gd_scene load_steps=59 format=3 uid="uid://du37l17labr44"]
 
 [ext_resource type="Script" uid="uid://dkhd2j6njig8v" path="res://Scenes/Natu's Tests/Players/(S)PLAYER(DO NOT USE).gd" id="1_rvpj0"]
-[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="2_a2a2e"]
+[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Misc/Main Character/Hearts/hearts.tscn" id="2_a2a2e"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="3_ym65k"]
 [ext_resource type="PackedScene" uid="uid://0v47rdwgcw8g" path="res://Scenes/Natu's Tests/inventory/inventory.tscn" id="4_fufbp"]
 

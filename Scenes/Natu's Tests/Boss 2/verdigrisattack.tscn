@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://bommep4jm6xyg"]
+
+[ext_resource type="Script" uid="uid://6vca66m1og4p" path="res://Scenes/Natu's Tests/Boss 2/verdigrisattack.gd" id="1_yvxcw"]
+[ext_resource type="Texture2D" uid="uid://cpr5ivareq4he" path="res://Scenes/Natu's Tests/Boss 2/spritesheet.png" id="2_cdwjw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qu1ds"]
+size = Vector2(22, 11.8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqcfm"]
+atlas = ExtResource("2_cdwjw")
+region = Rect2(0, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fju7"]
+atlas = ExtResource("2_cdwjw")
+region = Rect2(63, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqnhi"]
+atlas = ExtResource("2_cdwjw")
+region = Rect2(126, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eif2x"]
+atlas = ExtResource("2_cdwjw")
+region = Rect2(189, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkg8l"]
+atlas = ExtResource("2_cdwjw")
+region = Rect2(252, 0, 63, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqa05"]
+atlas = ExtResource("2_cdwjw")
+region = Rect2(315, 0, 63, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n8o1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqcfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fju7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqnhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eif2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkg8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqa05")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[node name="bullet" type="Area2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_yvxcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.2, -0.5)
+shape = SubResource("RectangleShape2D_qu1ds")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.2, -0.6)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_n8o1o")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.253868

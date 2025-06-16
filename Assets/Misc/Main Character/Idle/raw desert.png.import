@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmpuguj8sb5yl"
-path="res://.godot/imported/heavy_bullet_attack.png-eba3bbd6a0c2bafabf7607c6da029aaa.ctex"
+uid="uid://0lc7q05ov14n"
+path="res://.godot/imported/raw desert.png-9b6ef4a81e7d899677bb141e2020d1bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Misc/Weapons/heavy_bullet_attack.png"
-dest_files=["res://.godot/imported/heavy_bullet_attack.png-eba3bbd6a0c2bafabf7607c6da029aaa.ctex"]
+source_file="res://Assets/Misc/Main Character/Idle/raw desert.png"
+dest_files=["res://.godot/imported/raw desert.png-9b6ef4a81e7d899677bb141e2020d1bf.ctex"]
 
 [params]
 

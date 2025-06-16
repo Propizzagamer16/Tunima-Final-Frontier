@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d027yxnpaywvs" path="res://Scenes/Natu's Tests/Players/MainPLAYERCode.gd" id="1_rkc1m"]
 [ext_resource type="Texture2D" uid="uid://bxwxmjmrtkv3w" path="res://Assets/Test Sprites/player.png" id="2_biusk"]
-[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Main Character/Hearts/hearts.tscn" id="4_81qc2"]
+[ext_resource type="PackedScene" uid="uid://dq20x1kd55xtu" path="res://Assets/Misc/Main Character/Hearts/hearts.tscn" id="4_81qc2"]
 [ext_resource type="PackedScene" uid="uid://0v47rdwgcw8g" path="res://Scenes/Natu's Tests/inventory/inventory.tscn" id="4_rkc1m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkc1m"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duembigoqtw6q"
-path="res://.godot/imported/boyfront0 (1).png-bece6eab97c817e1c6fcb582b1ae93ad.ctex"
+uid="uid://bmpuguj8sb5yl"
+path="res://.godot/imported/heavy_bullet_attack.png-5c3a4a192a4cc89b48a8ee1b2626ff7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Main Character/Idle/boyfront0 (1).png"
-dest_files=["res://.godot/imported/boyfront0 (1).png-bece6eab97c817e1c6fcb582b1ae93ad.ctex"]
+source_file="res://Scenes/Natu's Tests/Boss 2/heavy_bullet_attack.png"
+dest_files=["res://.godot/imported/heavy_bullet_attack.png-5c3a4a192a4cc89b48a8ee1b2626ff7c.ctex"]
 
 [params]
 

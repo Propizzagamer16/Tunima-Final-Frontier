@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjeap5tohuvtw"
-path="res://.godot/imported/HeartsBeat.png-20bfcfe845723ab6be6a20868667d6d4.ctex"
+uid="uid://duembigoqtw6q"
+path="res://.godot/imported/boyfront0 (1).png-6c386897babf0fb34644f94c26c7ef9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Main Character/Hearts/HeartsBeat.png"
-dest_files=["res://.godot/imported/HeartsBeat.png-20bfcfe845723ab6be6a20868667d6d4.ctex"]
+source_file="res://Assets/Misc/Main Character/Idle/boyfront0 (1).png"
+dest_files=["res://.godot/imported/boyfront0 (1).png-6c386897babf0fb34644f94c26c7ef9f.ctex"]
 
 [params]
 
