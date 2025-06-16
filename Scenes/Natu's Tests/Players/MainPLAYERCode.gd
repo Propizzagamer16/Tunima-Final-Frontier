@@ -270,6 +270,9 @@ func attack():
 	attacking = true
 	attack_ip = true
 	$deal_attack.start()
+	
+	shake_camera(0.2, 2.0)
+
 
 	var anim = $AnimatedSprite2D
 	match current_dir:
@@ -304,50 +307,6 @@ func update_attack_range_position(current_dir):
 		"left": $attack_range_hori.position = Vector2(-40, 0)
 		"up": $attack_range_hori.position = Vector2(0, -40)
 		"down": $attack_range_hori.position = Vector2(0, 40)
-
-#func start_attack():
-	#attack_ip = true
-	##attack_hitbox.monitoring = true
-	#$deal_attack.start()
-	#var dir = current_dir
-	#if Input.is_action_just_pressed("attack"):
-		#attack_ip = true
-		#if dir == "right":
-			#$AnimatedSprite2D.flip_h = false
-			#$AnimatedSprite2D.play("SideAttack")
-		#if dir == "left":
-			#$AnimatedSprite2D.flip_h = true
-			#$AnimatedSprite2D.play("SideAttack")
-		#if dir == "down":
-			#$AnimatedSprite2D.play("DownAttack")
-		#if dir == "up":
-			#$AnimatedSprite2D.play("UpAttack")
-		#
-		##update_attack_hitbox_position(dir)
-		##attack_hitbox.monitoring = true
-		#$deal_attack.start() 
-
-		
-#func update_attack_hitbox_position(dir: String):
-	#match dir:
-		#"right": attack_hitbox.position = Vector2(40, 0)
-		#"left": attack_hitbox.position = Vector2(-40, 0)
-		#"up": attack_hitbox.position = Vector2(0, -60)
-		#"down": attack_hitbox.position = Vector2(0, 60)
-#
-#
-#func _on_attack_range_hori_body_entered(body: Node2D) -> void:
-	#if body.is_in_group("enemies") and attack_hitbox.monitoring:
-		#if body.has_method("take_damage"):
-			#body.take_damage(current_damage)
-#
-#func _on_deal_attack_timeout() -> void:
-	#attack_hitbox.monitoring = false
-	#attack_ip = false
-#
-	#if attack_buffered:
-		#attack_buffered = false
-		#start_attack()
 
 func take_damage():
 	if health >= 0:
@@ -411,6 +370,7 @@ func heavy_bullet():
 	var ydirection: float = Input.get_axis("ui_W", "ui_S")
 
 	if Input.is_action_just_pressed("power_shot"):
+		shake_camera(0.4, 12.0)
 		var power_instance = power.instantiate() as Node2D
 		if top_down:
 			var dir = Vector2(xdirection, ydirection)
@@ -517,6 +477,23 @@ func apply_power_up(stat: String, amount: float, duration: float, cooldown: floa
 			print("health acitvated")
 			health = min(health + amount, max_health)
 			update_hearts()
+
+
+func shake_camera(duration := 0.2, intensity := 5.0):
+	var timer := 0.0
+	var camera := $Camera2D
+	
+	while timer < duration:
+		var offset = Vector2(
+			randf_range(-intensity, intensity),
+			randf_range(-intensity, intensity)
+		)
+		camera.offset = offset
+		await get_tree().process_frame
+		timer += get_process_delta_time()
+	
+	camera.offset = Vector2.ZERO
+
 
 func reset(spawn_position: Vector2):
 	health = 100
