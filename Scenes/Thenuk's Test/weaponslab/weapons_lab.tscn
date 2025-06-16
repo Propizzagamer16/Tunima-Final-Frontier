@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://0gdlptesj4vv"]
+[gd_scene load_steps=11 format=4 uid="uid://0gdlptesj4vv"]
 
 [ext_resource type="Texture2D" uid="uid://bqsrd5gjyhi1d" path="res://Tiles (scenes)/platformer tiles/lab tileset finished transparent(2).png" id="1_3xmi8"]
 [ext_resource type="Script" uid="uid://c6h4seufdyhy6" path="res://Scenes/Thenuk's Test/weaponslab/weapons_lab.gd" id="1_dgrlm"]
@@ -334,6 +334,9 @@ sources/2 = SubResource("TileSetAtlasSource_6f1pe")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cykik"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klls0"]
+size = Vector2(1816, 1050)
+
 [node name="weapons lab" type="Node2D"]
 script = ExtResource("1_dgrlm")
 enemy_scene = ExtResource("2_aqc6x")
@@ -384,3 +387,14 @@ position = Vector2(967, 982)
 [node name="player" parent="." instance=ExtResource("6_cykik")]
 position = Vector2(961, 651)
 scale = Vector2(1, 1)
+
+[node name="progression_area" type="Area2D" parent="."]
+collision_layer = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="progression_area"]
+position = Vector2(959, 569)
+shape = SubResource("RectangleShape2D_klls0")
+
+[connection signal="body_entered" from="progression_area" to="." method="_on_progression_area_body_entered"]
+[connection signal="body_exited" from="progression_area" to="." method="_on_progression_area_body_exited"]

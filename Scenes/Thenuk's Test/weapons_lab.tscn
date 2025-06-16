@@ -397,6 +397,7 @@ position = Vector2(967, 982)
 position = Vector2(961, 651)
 
 [node name="progression_area" type="Area2D" parent="."]
+collision_layer = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="progression_area"]
