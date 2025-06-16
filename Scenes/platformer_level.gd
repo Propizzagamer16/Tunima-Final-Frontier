@@ -12,8 +12,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("change_scene_key"):
-		get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Boss 2/boss_room.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/slider/slider_puzzle.tscn")
 
-func _on_area_2d_body_entered(body: Node2D):
-	if body.name == "player":  
+func _process(_delta):
+	if $"tele".overlaps_body($"player") and Input.is_action_pressed("use"):
 		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/slider/slider_puzzle.tscn")

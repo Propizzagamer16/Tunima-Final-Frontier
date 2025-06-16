@@ -4455,13 +4455,13 @@ region_rect = Rect2(114.466, 165.525, 12.4266, 20.711)
 position = Vector2(545, 207)
 shape = SubResource("CapsuleShape2D_vfccf")
 
-[node name="player" parent="." instance=ExtResource("5_vfccf")]
-position = Vector2(917, 934)
-
 [node name="tele" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tele"]
 position = Vector2(255, 359)
 shape = SubResource("CircleShape2D_vfccf")
+
+[node name="player" parent="." instance=ExtResource("5_vfccf")]
+position = Vector2(917, 934)
 
 [connection signal="body_entered" from="tele" to="." method="_on_tele_body_entered"]

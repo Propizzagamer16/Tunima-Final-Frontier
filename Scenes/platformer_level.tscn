@@ -224,15 +224,15 @@ position = Vector2(4815, -2321)
 [node name="scene_transition_ani" parent="." instance=ExtResource("8_c3slm")]
 position = Vector2(-21039, -19544)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="tele" type="Area2D" parent="."]
 position = Vector2(174, 985)
 scale = Vector2(1.2, 1.2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tele"]
 position = Vector2(7642.92, -2829.17)
 shape = SubResource("RectangleShape2D_xfxp7")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="tele"]
 position = Vector2(7638.19, -2843.25)
 scale = Vector2(12.165, 14.7759)
 texture = ExtResource("14_5sr8l")
@@ -275,4 +275,4 @@ chest_contents = Array[Dictionary]([{
 [node name="ChestUICanvas" parent="." instance=ExtResource("18_go8es")]
 
 [connection signal="body_entered" from="death_zones" to="death_zones" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="tele" to="." method="_on_area_2d_body_entered"]
