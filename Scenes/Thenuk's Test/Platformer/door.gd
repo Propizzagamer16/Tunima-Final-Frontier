@@ -10,7 +10,7 @@ func _ready():
 	for lever in levers:
 		print(lever.name, '', lever.state)
 
-	CheckCode()  # Optional: check initial state
+	CheckCode()  
 
 func CheckCode():
 	codeFromLevers = ""

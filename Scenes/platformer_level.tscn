@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://c17l3c60daiqd"]
+[gd_scene load_steps=28 format=4 uid="uid://c17l3c60daiqd"]
 
 [ext_resource type="Script" uid="uid://uubwouif7j2" path="res://Scenes/platformer_level.gd" id="1_p1qp4"]
 [ext_resource type="TileSet" uid="uid://bep85a2b5tdi6" path="res://Scenes/Thenuk's Test/platformer_level.tres" id="1_rdmv5"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dg4nkao1p8hkc" path="res://Scenes/Thenuk's Test/Platformer/moveable_block.tscn" id="8_g1880"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="10_p1qp4"]
 [ext_resource type="PackedScene" uid="uid://6nym00uj3eqc" path="res://Scenes/Thenuk's Test/Platformer/jump_pad.tscn" id="11_hv84o"]
+[ext_resource type="Texture2D" uid="uid://do8prmtikaxhv" path="res://Tiles (scenes)/platformer tiles/open.png" id="14_5sr8l"]
 [ext_resource type="PackedScene" uid="uid://b14okggqbkawx" path="res://Scenes/Natu's Tests/chests/chest.tscn" id="15_67wup"]
 [ext_resource type="Resource" uid="uid://bcgeyqg04d48u" path="res://Scenes/Natu's Tests/items/healing_item.tres" id="16_inf85"]
 [ext_resource type="Script" uid="uid://b87reqo0tugs6" path="res://Scenes/Natu's Tests/items/powerups/speed_boost.gd" id="17_qsb3w"]
@@ -32,6 +33,9 @@ size = Vector2(1681, 77.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5n5x"]
 size = Vector2(8514.75, 28.5613)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfxp7"]
+size = Vector2(247.5, 396.667)
 
 [sub_resource type="Resource" id="Resource_go8es"]
 script = ExtResource("17_qsb3w")
@@ -220,9 +224,22 @@ position = Vector2(4815, -2321)
 [node name="scene_transition_ani" parent="." instance=ExtResource("8_c3slm")]
 position = Vector2(-21039, -19544)
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(174, 985)
+scale = Vector2(1.2, 1.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7642.92, -2829.17)
+shape = SubResource("RectangleShape2D_xfxp7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(7638.19, -2843.25)
+scale = Vector2(12.165, 14.7759)
+texture = ExtResource("14_5sr8l")
+
 [node name="player" parent="." instance=ExtResource("10_p1qp4")]
 z_index = 1
-position = Vector2(19627, -2222)
+position = Vector2(174, 985)
 motion_mode = 1
 
 [node name="Chest" parent="." instance=ExtResource("15_67wup")]
@@ -258,3 +275,4 @@ chest_contents = Array[Dictionary]([{
 [node name="ChestUICanvas" parent="." instance=ExtResource("18_go8es")]
 
 [connection signal="body_entered" from="death_zones" to="death_zones" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

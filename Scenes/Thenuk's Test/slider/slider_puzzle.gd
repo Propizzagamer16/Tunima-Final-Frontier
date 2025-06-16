@@ -45,7 +45,7 @@ func _input(event):
 				var col = int((tile.position.x - START_X + TILE_SIZE / 2) / TILE_SIZE)
 				check_neighbors(row, col)
 				if tiles == solved:
-					print("You win!")
+					get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/weaponslab/weapons_lab.tscn")
 				break
 
 func check_neighbors(row, col):

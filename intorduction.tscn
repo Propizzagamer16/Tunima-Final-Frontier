@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://yi7h5w4clefy"]
+[gd_scene load_steps=14 format=4 uid="uid://yi7h5w4clefy"]
 
 [ext_resource type="Script" uid="uid://bg57ra6d17oax" path="res://introduction.gd" id="1_ew2nl"]
 [ext_resource type="Texture2D" uid="uid://pkpcdbdh0yb1" path="res://Tiles/Dungeon_Tileset_at(1).png" id="2_xw2en"]
@@ -4409,6 +4409,9 @@ height = 98.0
 radius = 123.0
 height = 260.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vfccf"]
+radius = 39.4588
+
 [node name="intorduction" type="Node2D"]
 position = Vector2(-138, 169)
 script = ExtResource("1_ew2nl")
@@ -4454,3 +4457,11 @@ shape = SubResource("CapsuleShape2D_vfccf")
 
 [node name="player" parent="." instance=ExtResource("5_vfccf")]
 position = Vector2(917, 934)
+
+[node name="tele" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tele"]
+position = Vector2(255, 359)
+shape = SubResource("CircleShape2D_vfccf")
+
+[connection signal="body_entered" from="tele" to="." method="_on_tele_body_entered"]

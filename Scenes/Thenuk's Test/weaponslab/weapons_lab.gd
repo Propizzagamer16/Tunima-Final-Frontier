@@ -127,6 +127,7 @@ func spawn_strong_enemy():
 	strong_enemy.add_to_group("enemy")
 	add_child(strong_enemy)
 
+
 func _on_player_died():
 	if _is_resetting or _death_processed:
 		return
