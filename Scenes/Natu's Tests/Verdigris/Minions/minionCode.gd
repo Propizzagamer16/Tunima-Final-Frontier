@@ -62,8 +62,16 @@ func attack_player():
 	if player and player.has_method("take_ten_damage"):
 		player.call("take_ten_damage")
 
+func update_color():
+	var health_ratio = clamp(float(health) / 40.0, 0.0, 1.0)
+	var red = 1.0
+	var green = health_ratio
+	var blue = health_ratio
+	anim.modulate = Color(red, green, blue)
+
 func take_damage(amount):
 	health -= amount
+	update_color()
 	if health <= 0:
 		die()
 
