@@ -1,23 +1,120 @@
-[gd_scene load_steps=11 format=3 uid="uid://4lgxihbf0udc"]
+[gd_scene load_steps=25 format=3 uid="uid://4lgxihbf0udc"]
 
-[ext_resource type="Texture2D" uid="uid://5jo8vtgklm20" path="res://icon.svg" id="1_4wpdg"]
 [ext_resource type="Script" uid="uid://c3ieq784p6w8i" path="res://Scenes/Natu's Tests/Boss 2/boss_2.gd" id="1_wnlw4"]
 [ext_resource type="PackedScene" uid="uid://b02jemknshjq0" path="res://Scenes/Natu's Tests/Boss 2/boss_bullet.tscn" id="2_7gwg8"]
 [ext_resource type="PackedScene" uid="uid://bx56vnutkqrxg" path="res://Scenes/Natu's Tests/Boss 2/boss_weakpoints.tscn" id="3_jebbx"]
+[ext_resource type="Texture2D" uid="uid://bkx4po6ma33bd" path="res://Scenes/Natu's Tests/Boss 2/demon-attack-no-breath.png" id="4_xoil7"]
+[ext_resource type="Texture2D" uid="uid://dgc2m8mxd2e33" path="res://Scenes/Natu's Tests/Boss 2/demon-idle.png" id="5_wnlw4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wq37q"]
-atlas = ExtResource("1_4wpdg")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjnyv"]
+atlas = ExtResource("4_xoil7")
+region = Rect2(0, 0, 192, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_333tt"]
+atlas = ExtResource("4_xoil7")
+region = Rect2(192, 0, 192, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40so6"]
+atlas = ExtResource("4_xoil7")
+region = Rect2(384, 0, 192, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnajg"]
+atlas = ExtResource("4_xoil7")
+region = Rect2(576, 0, 192, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihbwe"]
+atlas = ExtResource("4_xoil7")
+region = Rect2(768, 0, 192, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gmag"]
+atlas = ExtResource("4_xoil7")
+region = Rect2(960, 0, 192, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmcvk"]
+atlas = ExtResource("4_xoil7")
+region = Rect2(1152, 0, 192, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh7bh"]
+atlas = ExtResource("4_xoil7")
+region = Rect2(1344, 0, 192, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v1fa"]
+atlas = ExtResource("5_wnlw4")
+region = Rect2(0, 0, 160, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s5rt"]
+atlas = ExtResource("5_wnlw4")
+region = Rect2(160, 0, 160, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hn0v2"]
+atlas = ExtResource("5_wnlw4")
+region = Rect2(320, 0, 160, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfdt0"]
+atlas = ExtResource("5_wnlw4")
+region = Rect2(480, 0, 160, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jec7"]
+atlas = ExtResource("5_wnlw4")
+region = Rect2(640, 0, 160, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oluks"]
+atlas = ExtResource("5_wnlw4")
+region = Rect2(800, 0, 160, 144)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7gwg8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wq37q")
+"texture": SubResource("AtlasTexture_xjnyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_333tt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40so6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnajg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihbwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gmag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmcvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh7bh")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"attacking",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v1fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s5rt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hn0v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfdt0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jec7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oluks")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
 }]
 
 [sub_resource type="Animation" id="Animation_333tt"]
@@ -41,6 +138,9 @@ weakpoints_scene = ExtResource("3_jebbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7gwg8")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.31757
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -50,7 +50,7 @@ func _process(_delta):
 
 	if not is_vulnerable and player:
 		direction = player.position - position
-		if direction.x < 0:
+		if direction.x > 0:
 			animated_sprite.flip_h = true
 		else:
 			animated_sprite.flip_h = false
@@ -60,6 +60,9 @@ func _process(_delta):
 			teleport_away(8)
 		elif can_attack:
 			attack_player()
+	
+	if is_vulnerable:
+		animated_sprite.play("idle")
 
 func _physics_process(delta: float) -> void:
 	velocity = direction.normalized() * 40
@@ -108,6 +111,7 @@ func attack_player():
 		can_attack = false
 		shoot_projectile_at_player()
 		$attack_cooldown.start()
+		animated_sprite.play("attacking")
 
 func _on_attack_cooldown_timeout():
 	can_attack = true
@@ -165,6 +169,7 @@ func low_health():
 		dist_before_teleporting = 950
 		$attack_cooldown.wait_time = 0.75
 		$vulnerable_timer.wait_time = 3
+		animated_sprite.speed_scale = 2.0
 	else:
 		dist_before_teleporting = 450
 		$attack_cooldown.wait_time = 1
