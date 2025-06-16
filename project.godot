@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tunima Final Frontier"
-run/main_scene="res://Scenes/Thenuk's Test/Platformer/ice_path.tscn"
+run/main_scene="uid://yye6egxiqxsk"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="uid://37ksorojgtrc"
