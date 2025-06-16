@@ -63,6 +63,9 @@ func _process(delta):
 				progression_area.set_deferred("collision_layer", 1)
 		else:
 			start_next_wave()
+			
+	if $"tele".overlaps_body($"player") and Input.is_action_pressed("use"):
+		get_tree().change_scene_to_file("res://Scenes/platformer_level.tscn")
 
 func _safe_connect_player_signal():
 	# Disconnect first to prevent duplicates
@@ -167,14 +170,9 @@ func reset_level():
 	_is_resetting = false
 	start_next_wave()
 
-func _on_progression_area_body_entered(body: Node2D) -> void:
-	if body == player:
-		player_inside_progression_area = true
-		
-func _on_progression_area_body_exited(body: Node2D) -> void:
-	if body == player:
-		player_inside_progression_area = false
 
+
+		
 func _input(event):
 	if event.is_action_pressed("change_scene_key") and player_inside_progression_area:
 		get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Pipe/pipe_puzzle.tscn")
