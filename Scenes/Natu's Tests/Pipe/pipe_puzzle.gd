@@ -117,5 +117,7 @@ func _unhandled_input(event):
 			for row in tiles:
 				for tile in row:
 					tile.finished = true
+			await get_tree().create_timer(2).timeout
+			get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Boss 2/boss_room.tscn")
 		else:
 			print("Path is not valid")

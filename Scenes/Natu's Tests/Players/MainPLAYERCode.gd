@@ -429,7 +429,6 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("power_shot") and power_shot:
 		heavy_bullet()
 		
-		
 	if Input.is_action_just_pressed("shoot") and can_shoot_bullet:
 		player_shooting()
 	
