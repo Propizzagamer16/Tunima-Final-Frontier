@@ -63,6 +63,7 @@ func _process(_delta):
 	
 	if is_vulnerable:
 		animated_sprite.play("idle")
+		
 
 func _physics_process(delta: float) -> void:
 	velocity = direction.normalized() * 40
