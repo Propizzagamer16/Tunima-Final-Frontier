@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://gvbitnmddng5"]
+[gd_scene load_steps=9 format=4 uid="uid://gvbitnmddng5"]
 
 [ext_resource type="Script" uid="uid://dpyecyiqnps4d" path="res://Scenes/Natu's Tests/Verdigris/verdigrispahse_1Code.gd" id="1_h06y6"]
 [ext_resource type="Texture2D" uid="uid://bltkm7ewcycw6" path="res://Assets/Tiles/dungeon tiles/(S)/Tilesetv3.png" id="1_t88wn"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="2_h06y6"]
 [ext_resource type="PackedScene" uid="uid://bhl82i388y587" path="res://Scenes/Natu's Tests/Verdigris/Verdigris.tscn" id="3_4jbsk"]
+[ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="5_4jbsk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ueod3"]
 texture = ExtResource("1_t88wn")
@@ -854,3 +855,8 @@ position = Vector2(937, 992)
 [node name="Verdigris" parent="." instance=ExtResource("3_4jbsk")]
 position = Vector2(953, -74)
 minion_scene = SubResource("Resource_h06y6")
+
+[node name="scene_transition_ani" parent="." instance=ExtResource("5_4jbsk")]
+
+[node name="player_spawnpoint" type="Marker2D" parent="."]
+position = Vector2(943, 982)

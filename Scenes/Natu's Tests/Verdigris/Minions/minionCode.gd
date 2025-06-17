@@ -81,4 +81,4 @@ func die():
 
 func _on_player_died():
 	player_alive = false
-	set_physics_process(false)
+	queue_free()

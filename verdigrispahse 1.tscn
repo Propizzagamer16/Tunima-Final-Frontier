@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://hx2fpacxd60x"]
+[gd_scene load_steps=8 format=4 uid="uid://hx2fpacxd60x"]
 
 [ext_resource type="Texture2D" uid="uid://bltkm7ewcycw6" path="res://Assets/Tiles/dungeon tiles/(S)/Tilesetv3.png" id="1_ilbye"]
 [ext_resource type="Script" uid="uid://b8hnf48dye2cu" path="res://verdigrispahse_1.gd" id="1_lhsx4"]
 [ext_resource type="PackedScene" uid="uid://botjx0e8asnn4" path="res://Scenes/Natu's Tests/Players/MainPLAYER.tscn" id="2_5x1av"]
 [ext_resource type="PackedScene" uid="uid://bhl82i388y587" path="res://Scenes/Natu's Tests/Verdigris/Verdigris.tscn" id="3_lhsx4"]
+[ext_resource type="PackedScene" uid="uid://dpnslhku5ncfk" path="res://scene_transition_ani.tscn" id="5_76pp6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ueod3"]
 texture = ExtResource("1_ilbye")
@@ -850,3 +851,8 @@ position = Vector2(914, 935)
 
 [node name="Verdigris" parent="." instance=ExtResource("3_lhsx4")]
 position = Vector2(953, -74)
+
+[node name="player_spawnpoint" type="Marker2D" parent="."]
+position = Vector2(924, 937)
+
+[node name="scene_transition_ani" parent="." instance=ExtResource("5_76pp6")]

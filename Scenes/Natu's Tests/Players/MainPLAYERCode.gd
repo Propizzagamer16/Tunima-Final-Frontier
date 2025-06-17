@@ -85,9 +85,9 @@ func _physics_process(delta):
 	if health <= 0 and alive:
 		alive = false
 		health = 0
-		hide()
 		set_physics_process(false)
 		emit_signal("player_died")
+		$AnimatedSprite2D.play("death")
 	
 	muzzle_position_update()
 	
@@ -223,38 +223,39 @@ func play_anim(movement):
 	var dir = current_dir
 	var anim = $AnimatedSprite2D
 	
-	if dir == "right":
-		anim.flip_h = false
-		if attack_ip == false:
-			if movement == 1:
-				anim.play("SideWalk")
-			elif movement == 0:
-				if attack_ip == false:
-					anim.play("SideIdle")
-				
-	if dir == "left":
-		anim.flip_h = true
-		if attack_ip == false:
-			if movement == 1:
-				anim.play("SideWalk")
-			elif movement == 0:
-				if attack_ip == false:
-					anim.play("SideIdle")
-			
-	if dir == "up":
-		if attack_ip == false:
-			if movement == 1 and top_down:
-				anim.play("UpWalk")
-			elif movement == 0:
-				anim.play("UpIdle")
+	if alive:
+		if dir == "right":
+			anim.flip_h = false
+			if attack_ip == false:
+				if movement == 1:
+					anim.play("SideWalk")
+				elif movement == 0:
+					if attack_ip == false:
+						anim.play("SideIdle")
 					
-			
-	if dir == "down":
-		if attack_ip == false:
-			if movement == 1 and top_down:
-				anim.play("DownWalk")
-			elif movement == 0:
-				anim.play("Idle")
+		if dir == "left":
+			anim.flip_h = true
+			if attack_ip == false:
+				if movement == 1:
+					anim.play("SideWalk")
+				elif movement == 0:
+					if attack_ip == false:
+						anim.play("SideIdle")
+				
+		if dir == "up":
+			if attack_ip == false:
+				if movement == 1 and top_down:
+					anim.play("UpWalk")
+				elif movement == 0:
+					anim.play("UpIdle")
+						
+				
+		if dir == "down":
+			if attack_ip == false:
+				if movement == 1 and top_down:
+					anim.play("DownWalk")
+				elif movement == 0:
+					anim.play("Idle")
 
 ##ATTACK
 func player():

@@ -7,6 +7,6 @@ func _physics_process(delta):
 	position += direction * speed * delta
 
 func _on_area_entered(area):
-	if area.name == "Player":
+	if area.name == "player":
 		area.take_damage(1)
 		queue_free()
