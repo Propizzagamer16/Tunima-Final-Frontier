@@ -3,6 +3,7 @@ extends Node2D
 @onready var SceneTransitionAnimation = $scene_transition_ani/AnimationPlayer
 @export var tile_scene: PackedScene
 @export var grid_size := Vector2i(8, 5)
+@onready var player = preload("res://Scenes/Natu's Tests/Players/MainPLAYER.tscn")
 
 var tiles = []
 var nodes = []
@@ -119,5 +120,8 @@ func _unhandled_input(event):
 			for row in tiles:
 				for tile in row:
 					tile.finished = true
+			await get_tree().create_timer(2.0).timeout
+			player.get_node("Inventory").save_inventory_state()
+			get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Boss 2/boss_room.tscn")
 		else:
 			print("Path is not valid")

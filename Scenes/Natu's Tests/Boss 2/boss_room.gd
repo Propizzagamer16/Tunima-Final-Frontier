@@ -6,6 +6,7 @@ extends Node2D
 var player_inside_progression_area := false
 var SceneTransitionAnimation
 
+
 func _ready():
 	player.set_camera("boss_2")
 	Global.player_type = "Top Down"

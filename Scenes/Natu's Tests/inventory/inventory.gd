@@ -7,10 +7,10 @@ func _ready():
 	var inventory_slots = $UI/InventoryUI.get_children()
 	var hotbar_slots = $UI/Hotbar.get_children()
 
+	# Load previously saved items
 	InventoryManager.restore_to_slots(inventory_slots, InventoryManager.saved_inventory)
 	InventoryManager.restore_to_slots(hotbar_slots, InventoryManager.saved_hotbar)
 
-	
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
 		var index = -1
@@ -37,9 +37,7 @@ func _unhandled_input(event):
 							slot.cooldown_duration = item_ref.cooldown
 							slot.cooldown_time = 0.0
 
-func save_inventory_and_hotbar():
+func save_inventory_state():
 	var inventory_slots = $UI/InventoryUI.get_children()
 	var hotbar_slots = $UI/Hotbar.get_children()
-
-	InventoryManager.save_inventory(inventory_slots)
-	InventoryManager.save_hotbar(hotbar_slots)
+	InventoryManager.save_inventory(inventory_slots, hotbar_slots)

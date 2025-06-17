@@ -184,7 +184,6 @@ func player_movement(delta):
 
 	elif Input.is_action_pressed("ui_W"):
 		current_dir = "up"
-		play_anim(0)
 		if top_down:
 			play_anim(1)
 			velocity.x = 0
@@ -247,11 +246,7 @@ func play_anim(movement):
 			if movement == 1 and top_down:
 				anim.play("UpWalk")
 			elif movement == 0:
-				
-				if side_view:
-					anim.play("Idle")
-				else:
-					anim.play("UpIdle")
+				anim.play("UpIdle")
 					
 			
 	if dir == "down":
