@@ -15,10 +15,12 @@ func _ready():
 	SceneTransitionAnimation = get_node("scene_transition_ani/AnimationPlayer")
 	progression_area.visible = false
 
-func _process(_delta):
-	if $"progression_area".overlaps_body($"player") and Input.is_action_pressed("use"):
-		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/Platformer/ice_path.tscn")
 
+
+func _input(event):
+	if event.is_action_pressed("change_scene_key"):
+		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/Platformer/ice_path.tscn")
+		
 func _safe_connect_player_signal():
 	# Disconnect first to prevent duplicates
 	if player.is_connected("player_died", _on_player_died):
@@ -35,3 +37,7 @@ func _on_player_died():
 	await get_tree().create_timer(0.5).timeout
 	_safe_connect_player_signal()
 	
+func _process(_delta):
+	if $progression_area.overlaps_body($"player") and Input.is_action_pressed("use"):
+		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/Platformer/ice_path.tscn")
+		print("hi")

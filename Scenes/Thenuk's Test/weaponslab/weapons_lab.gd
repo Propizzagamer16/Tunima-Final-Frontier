@@ -82,7 +82,12 @@ func get_enemy_count() -> int:
 		if child.is_in_group("enemy"):
 			count += 1
 	return count
-
+	
+func _input(event):
+	if event.is_action_pressed("change_scene_key"):
+		get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Pipe/pipe_puzzle.tscn")
+		
+		
 func start_next_wave():
 	if wave_spawn_ended or current_wave >= 4 or wave_spawning or _is_resetting:
 		return

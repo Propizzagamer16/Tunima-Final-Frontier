@@ -51,6 +51,8 @@ func _input(event):
 					get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/weaponslab/weapons_lab.tscn")
 				break
 	elif event is InputEventKey and event.pressed and event.keycode == KEY_SPACE and godmode:
+		get_tree().change_scene_to_file("")
+	elif event.is_action_pressed("change_scene_key"):
 		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/weaponslab/weapons_lab.tscn")
 
 func check_neighbors(row, col):

@@ -108,7 +108,9 @@ func check_connections() -> bool:
 
 	return end_tile in visited and all_nodes_visited
 
-
+func _input(event):
+	if event.is_action_pressed("change_scene_key"):
+		get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Boss 2/boss_room.tscn")
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
@@ -117,11 +119,10 @@ func _unhandled_input(event):
 			SceneTransitionAnimation.play("finished_fight")
 			await get_tree().create_timer(2).timeout
 			get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Boss 2/boss_room.tscn")
+			
 			for row in tiles:
 				for tile in row:
 					tile.finished = true
-			await get_tree().create_timer(2.0).timeout
-			player.get_node("Inventory").save_inventory_state()
-			get_tree().change_scene_to_file("res://Scenes/Natu's Tests/Boss 2/boss_room.tscn")
+			
 		else:
 			print("Path is not valid")

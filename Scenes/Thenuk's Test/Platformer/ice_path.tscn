@@ -676,14 +676,14 @@ tile_set = SubResource("TileSet_xt5so")
 use_parent_material = true
 tile_set = SubResource("TileSet_xt5so")
 
-[node name="icepathmovement" type="CharacterBody2D" parent="TileMap"]
+[node name="icepathmovement" type="CharacterBody2D" parent="."]
 script = ExtResource("2_73ytx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/icepathmovement"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="icepathmovement"]
 position = Vector2(1683, 1066)
 shape = SubResource("CapsuleShape2D_q766f")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TileMap/icepathmovement"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="icepathmovement"]
 position = Vector2(1682, 1038)
 scale = Vector2(3.69792, 3.72396)
 sprite_frames = SubResource("SpriteFrames_6h4jn")
