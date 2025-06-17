@@ -40,4 +40,3 @@ func _on_player_died():
 func _process(_delta):
 	if $progression_area.overlaps_body($"player") and Input.is_action_pressed("use"):
 		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/Platformer/ice_path.tscn")
-		print("hi")

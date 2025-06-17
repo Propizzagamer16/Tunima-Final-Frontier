@@ -177,6 +177,6 @@ func reset_level():
 	_is_resetting = false
 	start_next_wave()
 
-func _input(event):
-	if event.is_action_pressed("change_scene_key") and player_inside_progression_area:
-		get_tree().change_scene_to_file("verd")
+#func _input(event):
+	#if event.is_action_pressed("change_scene_key") and player_inside_progression_area:
+		#get_tree().change_scene_to_file("verd")
