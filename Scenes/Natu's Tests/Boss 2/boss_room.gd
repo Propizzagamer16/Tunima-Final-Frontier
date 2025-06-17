@@ -16,7 +16,7 @@ func _ready():
 	progression_area.visible = false
 
 func _process(_delta):
-	if $"progression_area".overlaps_body($"player") and Input.is_action_pressed("use"):
+	if $"progression_area".overlaps_body(player) and Input.is_action_pressed("use"):
 		get_tree().change_scene_to_file("res://Scenes/Thenuk's Test/Platformer/ice_path.tscn")
 
 func _safe_connect_player_signal():
